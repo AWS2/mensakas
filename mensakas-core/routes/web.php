@@ -15,6 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/adminPanel', function () {
+    return view('adminPanel');
+})->middleware('auth');
+
+Route::get('/users', function () {
+    return view('users');
+})->middleware('auth');
+
+Route::get('/products', function () {
+    return view('products');
+})->middleware('auth');
+
+Route::get('/orders', function () {
+    return view('orders');
+})->middleware('auth');
+
+Route::get('/businesses', function () {
+    return view('businesses');
+})->middleware('auth');
+
+Route::get('/delivers', function () {
+    return view('delivers');
+})->middleware('auth');
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
