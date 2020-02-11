@@ -51,6 +51,6 @@ class CustomerAddress extends Model
      */
     public function comandas()
     {
-        return $this->hasMany('App\Comanda', 'address_id');
+        return $this->hasOne('App\Comanda', 'address_id');
     }
 }
