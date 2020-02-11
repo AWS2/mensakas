@@ -288,9 +288,9 @@ class CreateTables extends Migration
 
             $table->bigIncrements('id');
             $table->bigInteger('rider_id')->unsigned();
-            $table->decimal('latitude', 2, 8)->nullable();
-            $table->decimal('longitude', 2, 8)->nullable();
-            $table->decimal('accuracy', 3, 2)->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 10, 8)->nullable();
+            $table->decimal('accuracy', 6, 2)->nullable();
             $table->integer('speed')->nullable();
 
             $table->index('rider_id', 'fk_location_rider_idx');
@@ -361,7 +361,6 @@ class CreateTables extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('tag_id')->unsigned();
-            $table->dateTime('timestampss')->nullable();
 
             $table->index('product_id', 'fk_tag_product_idx');
             $table->index('tag_id', 'fk_tag_product_tag_idx');
