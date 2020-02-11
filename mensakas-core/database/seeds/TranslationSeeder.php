@@ -55,7 +55,7 @@ class TranslationSeeder extends Seeder
             'id' => 1,
             'language_id' => 1,
             'tag_id' => 1,
-            'category' => "extra"
+            'tag_name' => "extra"
         ]);
 
         //Menu tag
@@ -63,7 +63,7 @@ class TranslationSeeder extends Seeder
             'id' => 2,
             'language_id' => 1,
             'tag_id' => 2,
-            'category' => "menu"
+            'tag_name' => "menu"
         ]);
 
         //Tag
@@ -71,19 +71,19 @@ class TranslationSeeder extends Seeder
             'id' => 3,
             'language_id' => 1,
             'tag_id' => 3,
-            'category' => "comida rapida"
+            'tag_name' => "comida rapida"
         ]);
         DB::table('tag_translation')->insert([
             'id' => 4,
             'language_id' => 2,
             'tag_id' => 3,
-            'category' => "menjar rapid"
+            'tag_name' => "menjar rapid"
         ]);
         DB::table('tag_translation')->insert([
             'id' => 5,
             'language_id' => 3,
             'tag_id' => 3,
-            'category' => "fast food"
+            'tag_name' => "fast food"
         ]);
     }
 
