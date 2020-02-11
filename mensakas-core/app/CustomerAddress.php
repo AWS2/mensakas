@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property integer $customer_id
  * @property string $city
- * @property int $zipCode
+ * @property int $zip_code
  * @property string $street
  * @property int $number
  * @property string $house_number
@@ -36,7 +36,7 @@ class CustomerAddress extends Model
     /**
      * @var array
      */
-    protected $fillable = ['customer_id', 'city', 'zipCode', 'street', 'number', 'house_number', 'created_at', 'updated_at'];
+    protected $fillable = ['customer_id', 'city', 'zip_code', 'street', 'number', 'house_number', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

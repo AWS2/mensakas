@@ -36,7 +36,7 @@ class Order extends Model
     /**
      * @var array
      */
-    protected $fillable = ['order_status_id', 'payment_id', 'comanda_id', 'ticket_json', 'created_at', 'updated_at'];
+    protected $fillable = ['order_status_id', 'payment_id', 'comanda_id', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
