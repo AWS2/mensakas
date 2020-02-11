@@ -32,7 +32,7 @@ class Comanda extends Model
     /**
      * @var array
      */
-    protected $fillable = ['address_id', 'created_at', 'updated_at'];
+    protected $fillable = ['address_id', 'ticket_json', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
