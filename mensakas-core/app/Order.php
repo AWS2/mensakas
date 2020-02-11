@@ -67,6 +67,6 @@ class Order extends Model
      */
     public function deliveries()
     {
-        return $this->hasMany('App\Delivery');
+        return $this->hasOne('App\Delivery');
     }
 }

@@ -34,7 +34,7 @@ class CreateTables extends Migration
             $table->decimal('price', 9, 2);
             $table->boolean('avalible');
             $table->string('image', 45)->nullable();
-            $table->bigInteger('main_product_id')->unsigned();
+            $table->bigInteger('main_product_id')->unsigned()->nullable();
 
             $table->index('business_id', 'fk_product_business1_idx');
             $table->index('main_product_id', 'fk_product_extra_idx');
@@ -100,7 +100,7 @@ class CreateTables extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('customer_id')->unsigned();
             $table->string('city', 45);
-            $table->integer('zipCode');
+            $table->integer('zip_code');
             $table->string('street', 45);
             $table->integer('number');
             $table->string('house_number', 45)->nullable();
@@ -118,6 +118,7 @@ class CreateTables extends Migration
 
             $table->bigIncrements('id');
             $table->bigInteger('address_id')->unsigned();
+            $table->json('ticket_json')->nullable();
 
             $table->index('address_id', 'fk_comanda_address1_idx');
 
@@ -134,7 +135,6 @@ class CreateTables extends Migration
             $table->bigInteger('order_status_id')->unsigned();
             $table->bigInteger('payment_id')->unsigned();
             $table->bigInteger('comanda_id')->unsigned();
-            $table->json('ticket_json')->nullable();
 
             $table->index('order_status_id', 'fk_order_status1_idx');
             $table->index('payment_id', 'fk_order_payment1_idx');
@@ -159,8 +159,8 @@ class CreateTables extends Migration
             $table->string('first_name', 45);
             $table->string('last_name', 45);
             $table->boolean('active');
-            $table->string('username', 45);
-            $table->string('phone', 45);
+            $table->string('username', 45)->unique();
+            $table->string('phone', 45)->unique();
 
             $table->timestamps();
         });
@@ -216,7 +216,7 @@ class CreateTables extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('language_id')->unsigned();
             $table->bigInteger('tag_id')->unsigned();;
-            $table->string('category', 45);
+            $table->string('tag_name', 45);
 
             $table->index('language_id', 'fk_tag_translation_lenguage_idx');
             $table->index('tag_id', 'fk_tag_translation_tag_idx');
@@ -233,7 +233,7 @@ class CreateTables extends Migration
         Schema::create('invoice', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('id');
+            $table->bigIncrements('id');
             $table->bigInteger('payment_id')->unsigned();
 
             $table->index('payment_id', 'fk_invoice_payment_idx');
@@ -288,49 +288,15 @@ class CreateTables extends Migration
 
             $table->bigIncrements('id');
             $table->bigInteger('rider_id')->unsigned();
-            $table->decimal('latitude', 11, 2)->nullable();
-            $table->decimal('longitude', 11, 2)->nullable();
-            $table->decimal('accuracy', 11, 2)->nullable();
+            $table->decimal('latitude', 2, 8)->nullable();
+            $table->decimal('longitude', 2, 8)->nullable();
+            $table->decimal('accuracy', 3, 2)->nullable();
             $table->integer('speed')->nullable();
 
             $table->index('rider_id', 'fk_location_rider_idx');
 
             $table->foreign('rider_id')
                 ->references('id')->on('rider');
-
-            $table->timestamps();
-        });
-
-        Schema::create('temporal_product', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->bigInteger('product_id')->unsigned();
-
-            $table->index('product_id', 'fk_product_temporal_idx');
-
-            $table->foreign('product_id')
-                ->references('id')->on('product');
-
-            $table->timestamps();
-        });
-
-        Schema::create('temporal_product_extras', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->bigInteger('temporal_product_id')->unsigned();
-            $table->bigInteger('product_extra_id')->unsigned();
-
-            $table->index('temporal_product_id', 'fk_product_temporal_ptoduct_idx');
-            $table->index('product_extra_id', 'fk_product_temporal_extra_idx');
-
-            $table->foreign('temporal_product_id')
-                ->references('id')->on('temporal_product');
-
-            $table->foreign('product_extra_id')
-                ->references('id')->on('product');
-
 
             $table->timestamps();
         });
@@ -352,7 +318,7 @@ class CreateTables extends Migration
         Schema::create('description_translation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('id');
+            $table->bigIncrements('id');
             $table->bigInteger('product_description_id')->unsigned();
             $table->bigInteger('language_id')->unsigned();
             $table->string('name', 45);
@@ -463,8 +429,6 @@ class CreateTables extends Migration
         Schema::drop('schedule');
         Schema::drop('description_translation');
         Schema::drop('product_description');
-        Schema::drop('temporal_product_extras');
-        Schema::drop('temporal_product');
         Schema::drop('location');
         Schema::drop('business_address');
         Schema::drop('comanda_product');

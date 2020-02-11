@@ -40,6 +40,6 @@ class Customer extends Model
      */
     public function customerAddresses()
     {
-        return $this->hasMany('App\CustomerAddress');
+        return $this->hasOne('App\CustomerAddress');
     }
 }
