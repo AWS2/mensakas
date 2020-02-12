@@ -71,7 +71,7 @@ class Product extends Model
      */
     public function productDescriptions()
     {
-        return $this->hasMany('App\ProductDescription');
+        return $this->hasOne('App\ProductDescription');
     }
 
     /**
@@ -80,21 +80,5 @@ class Product extends Model
     public function productTags()
     {
         return $this->hasMany('App\ProductTag');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function temporalProducts()
-    {
-        return $this->hasMany('App\TemporalProduct');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function temporalProductExtras()
-    {
-        return $this->hasMany('App\TemporalProductExtra', 'product_extra_id');
     }
 }
