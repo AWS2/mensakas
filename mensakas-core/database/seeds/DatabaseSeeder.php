@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TranslationSeeder::class);
         $this->call(BusinessCategorySeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(ProductDescriptionSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(ProductExtraSeeder::class);
     }
 
     public function truncate()
@@ -48,8 +51,7 @@ class DatabaseSeeder extends Seeder
             TRUNCATE `mensakas`.`status`;
             TRUNCATE `mensakas`.`tag`;
             TRUNCATE `mensakas`.`tag_translation`;
-            TRUNCATE `mensakas`.`temporal_product`;
-            TRUNCATE `mensakas`.`temporal_product_extras`;
+            TRUNCATE `mensakas`.`users`;
             SET FOREIGN_KEY_CHECKS=1;');
     }
 }

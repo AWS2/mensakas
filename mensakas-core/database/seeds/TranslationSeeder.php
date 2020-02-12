@@ -49,23 +49,41 @@ class TranslationSeeder extends Seeder
 
     public function tagTranslation()
     {
+
+        //Extra tag
         DB::table('tag_translation')->insert([
             'id' => 1,
             'language_id' => 1,
             'tag_id' => 1,
-            'category' => "comida rapida"
+            'tag_name' => "extra"
         ]);
+
+        //Menu tag
         DB::table('tag_translation')->insert([
             'id' => 2,
-            'language_id' => 2,
-            'tag_id' => 1,
-            'category' => "menjar rapid"
+            'language_id' => 1,
+            'tag_id' => 2,
+            'tag_name' => "menu"
         ]);
+
+        //Tag
         DB::table('tag_translation')->insert([
             'id' => 3,
+            'language_id' => 1,
+            'tag_id' => 3,
+            'tag_name' => "comida rapida"
+        ]);
+        DB::table('tag_translation')->insert([
+            'id' => 4,
+            'language_id' => 2,
+            'tag_id' => 3,
+            'tag_name' => "menjar rapid"
+        ]);
+        DB::table('tag_translation')->insert([
+            'id' => 5,
             'language_id' => 3,
-            'tag_id' => 1,
-            'category' => "fast food"
+            'tag_id' => 3,
+            'tag_name' => "fast food"
         ]);
     }
 
