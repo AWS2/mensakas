@@ -52,6 +52,8 @@ class BusinessController extends Controller
         $business->businessAddresses = $businessAddress;
 
         $business->save();
+
+        return redirect(route('businesses.index'));
     }
 
     /**
@@ -62,7 +64,8 @@ class BusinessController extends Controller
      */
     public function show(Business $business)
     {
-        //
+        return view('businesses.show')
+            ->with('business', $business);
     }
 
     /**
@@ -73,7 +76,8 @@ class BusinessController extends Controller
      */
     public function edit(Business $business)
     {
-        //
+        return view('businesses.edit')
+            ->with('business', $business);
     }
 
     /**
@@ -85,7 +89,21 @@ class BusinessController extends Controller
      */
     public function update(Request $request, Business $business)
     {
-        //
+        $business->name = $request->name;
+        $business->phone = $request->phone;
+
+        $businessAddress = $business->businessAddresses;
+        $businessAddress->city = $request->city;
+        $businessAddress->zip_code = $request->zip_code;
+        $businessAddress->street = $request->street;
+        $businessAddress->number = $request->number;
+
+        $business->save();
+
+        return redirect()->action(
+            'BusinessController@show',
+            ['business' => $business->id]
+        );
     }
 
     /**
@@ -96,6 +114,7 @@ class BusinessController extends Controller
      */
     public function destroy(Business $business)
     {
-        //
+        $business->delete();
+        return redirect(route('businesses.index'));
     }
 }
