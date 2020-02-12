@@ -33,7 +33,7 @@ class TagTranslation extends Model
     /**
      * @var array
      */
-    protected $fillable = ['language_id', 'tag_id', 'category', 'created_at', 'updated_at'];
+    protected $fillable = ['language_id', 'tag_id', 'tag_name', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

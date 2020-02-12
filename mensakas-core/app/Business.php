@@ -44,7 +44,7 @@ class Business extends Model
      */
     public function businessAddresses()
     {
-        return $this->hasMany('App\BusinessAddress');
+        return $this->hasOne('App\BusinessAddress');
     }
 
     /**
