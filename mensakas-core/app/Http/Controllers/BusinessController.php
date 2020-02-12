@@ -14,10 +14,10 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        // $businesses = Business::all();
+        $businesses = Business::all();
 
-        // return view('businesses.index')
-        //     ->with('businesses', $businesses);
+        return view('businesses.index')
+            ->with('businesses', $businesses);
     }
 
     /**
