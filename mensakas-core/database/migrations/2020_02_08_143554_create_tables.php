@@ -41,10 +41,12 @@ class CreateTables extends Migration
 
 
             $table->foreign('business_id')
-                ->references('id')->on('business');
+                ->references('id')->on('business')
+                ->onDelete('cascade');
 
             $table->foreign('main_product_id')
-                ->references('id')->on('product');
+                ->references('id')->on('product')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -108,7 +110,8 @@ class CreateTables extends Migration
             $table->index('customer_id', 'fk_address_customer1_idx');
 
             $table->foreign('customer_id')
-                ->references('id')->on('customer');
+                ->references('id')->on('customer')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -117,13 +120,14 @@ class CreateTables extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->bigInteger('address_id')->unsigned();
+            $table->bigInteger('address_id')->unsigned()->nullable();
             $table->json('ticket_json')->nullable();
 
             $table->index('address_id', 'fk_comanda_address1_idx');
 
             $table->foreign('address_id')
-                ->references('id')->on('customer_address');
+                ->references('id')->on('customer_address')
+                ->onDelete('set null');
 
             $table->timestamps();
         });
@@ -177,7 +181,8 @@ class CreateTables extends Migration
             $table->index('order_id', 'fk_deliver_order1_idx');
 
             $table->foreign('riders_id')
-                ->references('id')->on('rider');
+                ->references('id')->on('rider')
+                ->onDelete('cascade');
 
             $table->foreign('order_id')
                 ->references('id')->on('order');
@@ -257,7 +262,8 @@ class CreateTables extends Migration
             $table->index('comanda_id', 'fk_purchase_comanda');
 
             $table->foreign('product_id')
-                ->references('id')->on('product');
+                ->references('id')->on('product')
+                ->onDelete('cascade');
 
             $table->foreign('comanda_id')
                 ->references('id')->on('comanda');
@@ -278,7 +284,8 @@ class CreateTables extends Migration
             $table->index('business_id', 'fk_address_b_business1_idx');
 
             $table->foreign('business_id')
-                ->references('id')->on('business');
+                ->references('id')->on('business')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -296,7 +303,8 @@ class CreateTables extends Migration
             $table->index('rider_id', 'fk_location_rider_idx');
 
             $table->foreign('rider_id')
-                ->references('id')->on('rider');
+                ->references('id')->on('rider')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -310,7 +318,8 @@ class CreateTables extends Migration
             $table->index('product_id', 'fk_product_description_product1_idx');
 
             $table->foreign('product_id')
-                ->references('id')->on('product');
+                ->references('id')->on('product')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -328,7 +337,8 @@ class CreateTables extends Migration
             $table->index('language_id', 'fk_product_description_transalte_language_idx');
 
             $table->foreign('product_description_id')
-                ->references('id')->on('product_description');
+                ->references('id')->on('product_description')
+                ->onDelete('cascade');
 
             $table->foreign('language_id')
                 ->references('id')->on('language');
@@ -350,7 +360,8 @@ class CreateTables extends Migration
             $table->index('business_id', 'fk_schedule_business_idx');
 
             $table->foreign('business_id')
-                ->references('id')->on('business');
+                ->references('id')->on('business')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -367,7 +378,8 @@ class CreateTables extends Migration
 
 
             $table->foreign('product_id')
-                ->references('id')->on('product');
+                ->references('id')->on('product')
+                ->onDelete('cascade');
             $table->foreign('tag_id')
                 ->references('id')->on('tag');
 
@@ -406,8 +418,8 @@ class CreateTables extends Migration
             $table->index('business_id', 'fk_business_has_category_business1_idx');
 
             $table->foreign('business_id')
-                ->references('id')->on('business');
-
+                ->references('id')->on('business')
+                ->onDelete('cascade');
             $table->foreign('category_id')
                 ->references('id')->on('category');
 
