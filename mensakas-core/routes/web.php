@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pruebas', function () {
+    $business = App\Business::all();
+    // return ("test");
+    return view('pruebaCarpeta.index', ["businesses"=>$business]);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
