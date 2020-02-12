@@ -36,12 +36,11 @@
 
                 </td>
                 <td>
-                <form action="{{route('businesses.destroy', ['business'=>$business->id])}}" method="get">
+                <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="get">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <input type="submit" value="Delete" class="btn btn-danger">
                 </form>
-
                 </td>
             </tr>
             @endforeach

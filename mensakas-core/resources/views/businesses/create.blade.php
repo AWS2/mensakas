@@ -2,10 +2,9 @@
 
 @section('content')
 
-<div >
-    <form actio="{{route('businesses.create')}}" method="post">
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
+<div>
+    <form action="{{route('businesses.store')}}" method="post">
+        {{ csrf_field() }}
         <div class="row">
             <div class="col-6 mx-auto">
                 <div class="form-group col-8 mx-auto">
@@ -40,7 +39,7 @@
                 </div>
             </div>
             <div class="col-10 mx-auto">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>
