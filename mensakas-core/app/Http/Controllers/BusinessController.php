@@ -42,16 +42,16 @@ class BusinessController extends Controller
         $business = new Business();
         $business->name = $request->name;
         $business->phone = $request->phone;
+        $business->active = 1;
+        $business->save();
 
         $businessAddress = new BusinessAddress();
         $businessAddress->city = $request->city;
         $businessAddress->zip_code = $request->zip_code;
         $businessAddress->street = $request->street;
         $businessAddress->number = $request->number;
-
-        $business->businessAddresses = $businessAddress;
-
-        $business->save();
+        $businessAddress->business_id = $business->id;
+        $businessAddress->save();
 
         return redirect(route('businesses.index'));
     }
@@ -91,14 +91,14 @@ class BusinessController extends Controller
     {
         $business->name = $request->name;
         $business->phone = $request->phone;
+        $business->save();
 
         $businessAddress = $business->businessAddresses;
         $businessAddress->city = $request->city;
         $businessAddress->zip_code = $request->zip_code;
         $businessAddress->street = $request->street;
         $businessAddress->number = $request->number;
-
-        $business->save();
+        $businessAddress->save();
 
         return redirect()->action(
             'BusinessController@show',
