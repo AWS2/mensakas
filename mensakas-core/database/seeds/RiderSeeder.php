@@ -16,7 +16,7 @@ class RiderSeeder extends Seeder
     {
         factory(Rider::class, 20)->create()->each(function ($rider) {
             $rider->locations()->save(factory(Location::class)->make());
-            $rider->deliveries()->save(factory(Delivery::Class)->make());
+            $rider->deliveries()->save(factory(Delivery::class)->make());
         });
     }
 }

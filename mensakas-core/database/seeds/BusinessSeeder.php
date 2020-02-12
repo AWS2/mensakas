@@ -2,6 +2,7 @@
 
 use App\Business;
 use App\BusinessAddress;
+use App\Schedule;
 use Illuminate\Database\Seeder;
 
 class BusinessSeeder extends Seeder
@@ -15,6 +16,7 @@ class BusinessSeeder extends Seeder
     {
         factory(Business::class, 10)->create()->each(function ($business) {
             $business->businessAddresses()->save(factory(BusinessAddress::class)->make());
+            $business->schedules()->save(factory(Schedule::class)->make());
         });
     }
 }

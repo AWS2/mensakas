@@ -50,6 +50,6 @@ class Rider extends Model
      */
     public function locations()
     {
-        return $this->hasMany('App\Location');
+        return $this->hasOne('App\Location');
     }
 }

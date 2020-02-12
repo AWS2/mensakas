@@ -15,6 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomerSeeder::class);
         $this->call(BusinessSeeder::class);
         $this->call(TranslationSeeder::class);
+        $this->call(BusinessCategorySeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(ProductDescriptionSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(ProductExtraSeeder::class);
+        $this->call(ComandaSeeder::class);
+        $this->call(PaymentSeeder::class);
+        $this->call(OrderSeeder::class);
         $this->call(RiderSeeder::class);
     }
 
@@ -47,8 +55,7 @@ class DatabaseSeeder extends Seeder
             TRUNCATE `mensakas`.`status`;
             TRUNCATE `mensakas`.`tag`;
             TRUNCATE `mensakas`.`tag_translation`;
-            TRUNCATE `mensakas`.`temporal_product`;
-            TRUNCATE `mensakas`.`temporal_product_extras`;
+            TRUNCATE `mensakas`.`users`;
             SET FOREIGN_KEY_CHECKS=1;');
     }
 }

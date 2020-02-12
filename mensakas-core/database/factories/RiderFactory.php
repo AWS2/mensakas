@@ -21,17 +21,16 @@ $factory->define(Rider::class, function (Faker $faker) {
 
 $factory->define(Location::class, function (Faker $faker) {
     return [
-        'latitude' => FakerEs::latitude($min = -90, $max = 90),
-        'longitude'=> FakerEs::longitude($min = -180, $max = 180),
-        'accuracy' => rand(10,10000),
-        'speed' => rand(0,80)
+        'latitude' => rand(10000, 99999) / 1000,
+        'longitude' => rand(10000, 99999) / 1000,
+        'accuracy' => rand(100, 999) / 10,
+        'speed' => rand(0, 80)
     ];
 });
 
 $factory->define(Delivery::class, function () {
     return [
-        'Delivery' =>FakerTime::time($format = 'H:i:s')
+        'order_id' => 1,
+        'delivery' => FakerTime::time($format = 'H:i:s')
     ];
 });
-
-

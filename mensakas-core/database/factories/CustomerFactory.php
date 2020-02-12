@@ -18,7 +18,7 @@ $factory->define(Customer::class, function (Faker $faker) {
 $factory->define(CustomerAddress::class, function (Faker $faker) {
     return [
         'city' => $faker->city,
-        'zipCode' => $faker->numberBetween($min = 1000, $max = 9000),
+        'zip_code' => $faker->numberBetween($min = 1000, $max = 9000),
         'street' => $faker->streetAddress,
         'number' => $faker->randomDigitNotNull,
         'house_number' => $faker->randomDigitNotNull

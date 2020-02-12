@@ -48,6 +48,6 @@ class Payment extends Model
      */
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasOne('App\Order');
     }
 }
