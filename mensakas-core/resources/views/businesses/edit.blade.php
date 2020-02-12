@@ -8,7 +8,6 @@
     {{ method_field('PUT') }}
         <div class="row">
             <div class="col-6 mx-auto">
-
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" value="{{$business->name}}" name="name">
@@ -17,7 +16,6 @@
                     <label for="tel">Phone:</label>
                     <input type="text" class="form-control" id="phone" value="{{$business->phone}}" name="phone">
                 </div>
-
             </div>
             <div class="col-6">
                 <div class="form-row">
@@ -40,15 +38,12 @@
                         <input type="text" class="form-control" id="Zip" name="zip_code" value="{{$business->businessAddresses->zip_code}}">
                     </div>
                 </div>
-
-
             </div>
             <div class="col-10 mx-auto">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+            </div>
         </div>
     </form>
-
 </div>
 
 @endsection
