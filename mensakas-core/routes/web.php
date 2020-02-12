@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('comandas', 'ComandaController@index')->name('comandas.index');
+
+Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show');
+
+Route::get('comandas/{comanda}/edit', 'ComandaController@edit')->name('comandas.edit');
+
+Route::put('comandas/{comanda}', 'ComandaController@update')->name('comandas.update');
