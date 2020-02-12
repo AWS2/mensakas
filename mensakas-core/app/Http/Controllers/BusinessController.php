@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\BusinessAddress;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -14,10 +15,10 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        // $businesses = Business::all();
+        $businesses = Business::all();
 
-        // return view('businesses.index')
-        //     ->with('businesses', $businesses);
+        return view('businesses.index')
+            ->with('businesses', $businesses);
     }
 
     /**
@@ -27,7 +28,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        // return view('businesses.create');
+        return view('businesses.create');
     }
 
     /**
@@ -38,7 +39,19 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $business = new Business();
+        $business->name = $request->name;
+        $business->phone = $request->phone;
+
+        $businessAddress = new BusinessAddress();
+        $businessAddress->city = $request->city;
+        $businessAddress->zip_code = $request->zip_code;
+        $businessAddress->street = $request->street;
+        $businessAddress->number = $request->number;
+
+        $business->businessAddresses = $businessAddress;
+
+        $business->save();
     }
 
     /**
