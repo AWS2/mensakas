@@ -12,6 +12,8 @@ class OrderSeeder extends Seeder
     public function run()
     {
         $this->status();
+        $this->orderStatus();
+        $this->order();
     }
 
     public function status()
@@ -37,11 +39,11 @@ class OrderSeeder extends Seeder
 
     public function order()
     {
-        DB::table('order_status')->insert([
+        DB::table('order')->insert([
             'id' => 1,
             'order_status_id' => 1,
-            'payment_id' => 1,
             'comanda_id' => 1,
+            'payment_id' => 1
         ]);
     }
 }

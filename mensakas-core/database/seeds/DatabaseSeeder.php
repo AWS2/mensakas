@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ComandaSeeder::class);
         $this->call(PaymentSeeder::class);
         $this->call(OrderSeeder::class);
+        $this->call(RiderSeeder::class);
     }
 
     public function truncate()

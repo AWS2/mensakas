@@ -6,7 +6,6 @@ use App\Business;
 use App\BusinessAddress;
 use App\Schedule;
 use Faker\Generator as Faker;
-use Faker\Provider\es_ES\PhoneNumber as FakerEs;
 
 $factory->define(Business::class, function (Faker $faker) {
     return [
