@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Last name:</label>
-                    <input type="text" class="form-control" id="name" value="" name="first_name">
+                    <input type="text" class="form-control" id="name" value="" name="last_name">
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Email</label>
@@ -25,6 +25,7 @@
                 </div>
             </div>
             <div class="col-6">
+                <div class="h4" style="opacity:0.7">Address</div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="street">Street:</label>
@@ -52,11 +53,11 @@
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
                 </form>
                 <div >
-                <form action="{{route('businesses.index')}}" method="get">
+                <form action="{{route('customers.index')}}" method="get">
                     <button type="submit" class="btn btn-success">Back</button>
                 </form>
             </div>
