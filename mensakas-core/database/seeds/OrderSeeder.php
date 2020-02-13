@@ -1,5 +1,7 @@
 <?php
 
+use App\OrderStatus;
+use App\Status;
 use Illuminate\Database\Seeder;
 
 class OrderSeeder extends Seeder
@@ -18,14 +20,10 @@ class OrderSeeder extends Seeder
 
     public function status()
     {
-        DB::table('status')->insert([
-            'id' => 1,
-            'status' => "ok"
-        ]);
-        DB::table('status')->insert([
-            'id' => 2,
-            'status' => "error"
-        ]);
+        Status::create(['status' => 'Confiramdo']);
+        Status::create(['status' => 'En Restaurante']);
+        Status::create(['status' => 'En Envio']);
+        Status::create(['status' => 'Entregado']);
     }
 
     public function orderStatus()
