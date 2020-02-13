@@ -31,6 +31,22 @@
                 </div>
             </div>
         @endif
+
+        @if (isset($comanda->orders->orderStatus))
+            <div class="col-6 mx-auto">
+                <div class="h3" style="opacity:0.7">Status</div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="status"><strong>Status:</strong></label>
+                        <p id="status">{{ $comanda->orders->orderStatus->status->status }}</p>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="message"><strong>Message:</strong></label>
+                        <p id="message">{{$comanda->orders->orderStatus->message ?? 'no additiona info'}}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
             
         <div class="col-10 mx-auto row">
             <div class="mr-2">
