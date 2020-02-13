@@ -24,3 +24,5 @@ Route::resource('adminUsers', 'AdminUserController');
 Route::resource('riders', 'RiderController');
 
 Route::resource('customers', 'CustomerController');
+
+Route::resource('businesses', 'BusinessController');
