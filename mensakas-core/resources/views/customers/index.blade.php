@@ -3,7 +3,7 @@
 @section('content')
 <div class="table d-flex justify-content-center">
     <div class="">
-            <form action="{{route('custoemrs.create')}}" method="get">
+            <form action="{{route('customers.create')}}" method="get">
                 <input type="submit" value="Add new business" class="btn btn-success mb-3 ml-3">
             </form>
 
