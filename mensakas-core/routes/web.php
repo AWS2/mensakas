@@ -12,7 +12,7 @@
 */
 
 Route::get('/home', function () {
-    return view('home');
+    return  redirect()->route('home');
 });
 
 Route::get('/users', function () {
