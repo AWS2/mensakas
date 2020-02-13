@@ -36,10 +36,10 @@
 
                 </td>
                 <td>
-                <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="get">
+                <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <input type="submit" value="Delete" class="btn btn-danger">
+                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('are you sure?')">
                 </form>
                 </td>
             </tr>

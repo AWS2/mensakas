@@ -38,14 +38,15 @@
         </div>
         <div class="col-10 mx-auto row">
             <div class="mr-2">
-                <form action="{{route('businesses.index')}}" method="get">
-                    <button type="submit" class="btn btn-success">Back</button>
-                </form>
-            </div>
-            <div>
                 <form action="{{route('businesses.edit', ['business'=>$business->id])}}" method="get">
                     <button type="submit" class="btn btn-warning">Edit</button>
                 </form>
+            </div>
+            <div>
+                <form action="{{route('businesses.index')}}" method="get">
+                    <button type="submit" class="btn btn-success">Back</button>
+                </form>
+
             </div>
         </div>
     </div>

@@ -43,11 +43,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10 mx-auto">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-10 mx-auto row">
+                <div class="mr-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+                <div >
+                <form action="{{route('businesses.index')}}" method="get">
+                    <button type="submit" class="btn btn-success">Back</button>
+                </form>
+            </div>
+
             </div>
         </div>
-    </form>
+
+
 </div>
 
 @endsection
