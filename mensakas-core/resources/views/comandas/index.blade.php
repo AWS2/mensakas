@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Orders'])
+@endsection
+
 @section('content')
 <div class="table d-flex justify-content-center">
     <div class="">

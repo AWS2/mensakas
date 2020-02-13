@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Rider'])
+@endsection
+
 @section('content')
 
 <div>
@@ -17,7 +21,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="username"><strong>username:</strong></label>
+                    <label for="username"><strong>Username:</strong></label>
                     <p id="username">{{$rider->username}}</p>
                 </div>
                 <div class="form-group col-md-6">

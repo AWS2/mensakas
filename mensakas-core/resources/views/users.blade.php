@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Users Menu'])
+@endsection
+
 @section('content')
 
 <div class="mt-5 pt-5 border">

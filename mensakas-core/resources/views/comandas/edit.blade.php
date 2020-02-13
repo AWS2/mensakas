@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Edit Order'])
+@endsection
+
 @section('content')
 
 <div>

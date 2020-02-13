@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Edit Customer'])
+@endsection
+
 @section('content')
 @php ($customerAddress = $customer->customerAddresse)    
 <div>
