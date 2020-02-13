@@ -65,7 +65,7 @@ class Order extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function deliveries()
+    public function delivery()
     {
         return $this->hasOne('App\Delivery');
     }
