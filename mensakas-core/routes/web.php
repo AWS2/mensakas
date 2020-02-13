@@ -26,3 +26,5 @@ Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show'
 Route::get('comandas/{comanda}/edit', 'ComandaController@edit')->name('comandas.edit');
 
 Route::put('comandas/{comanda}', 'ComandaController@update')->name('comandas.update');
+
+Route::resource('businesses', 'BusinessController');
