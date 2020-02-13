@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Businesses'])
+@endsection
+
 @section('content')
+
 <div class="table d-flex justify-content-center">
     <div class="">
             <form action="{{route('businesses.create')}}" method="get">

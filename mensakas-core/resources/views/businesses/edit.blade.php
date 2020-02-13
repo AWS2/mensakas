@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('space')
+    @include('layouts.secondNav', ['title' => 'Edit business'])
+@endsection
+
 @section('content')
 
 <div>
