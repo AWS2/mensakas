@@ -51,3 +51,9 @@ Route::resource('riders', 'RiderController')->middleware('auth');
 Route::resource('customers', 'CustomerController')->middleware('auth');
 
 Route::resource('businesses', 'BusinessController')->middleware('auth');
+
+
+//Simulators
+// Route::get('simulator/business/{zip}', function ($zip) {
+// })->name('businessZip');
+Route::get('simulator', 'Simulator\Business\BusinessSimulatorController@crete')->name('simulator.show');

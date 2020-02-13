@@ -59,14 +59,14 @@
                 <div class="mr-2">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
+            </div>
+        </div>
     </form>
     <div>
         <form action="{{route('customers.index')}}" method="get">
             <button type="submit" class="btn btn-success">Back</button>
         </form>
     </div>
-</div>
-</form>
 </div>
 
 @endsection
