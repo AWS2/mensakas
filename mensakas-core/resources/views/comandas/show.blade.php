@@ -10,6 +10,23 @@
                 <p id="ticket">{{$comanda->ticket_json}}</p>
             </div>
         </div>
+
+        @if (isset($comanda->order->orderStatus))
+            <div class="col-6 mx-auto">
+                <div class="h3" style="opacity:0.7">Status</div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="status"><strong>Status:</strong></label>
+                        <p id="status">{{ $comanda->order->orderStatus->status->status ?? 'status not info'}}</p>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="message"><strong>Message:</strong></label>
+                        <p id="message">{{$comanda->order->orderStatus->message ?? 'no additional info'}}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         @if (isset($comanda->customerAddress->customer))
             <div class="col-6 mx-auto">
                 <div class="h3" style="opacity:0.7">Customer</div>
@@ -26,22 +43,6 @@
                         <form action="{{route('customers.show', ['customer'=>$comanda->customerAddress->customer->id])}}" method="get">
                             <input type="submit" value="View Customer" class="btn btn-success">
                         </form>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        @if (isset($comanda->order->orderStatus))
-            <div class="col-6 mx-auto">
-                <div class="h3" style="opacity:0.7">Status</div>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="status"><strong>Status:</strong></label>
-                        <p id="status">{{ $comanda->order->orderStatus->status->status ?? 'status not info'}}</p>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="message"><strong>Message:</strong></label>
-                        <p id="message">{{$comanda->order->orderStatus->message ?? 'no additional info'}}</p>
                     </div>
                 </div>
             </div>
@@ -70,15 +71,15 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="amount"><strong>Amount:</strong></label>
-                        <p id="amount">{{ $comanda->order->amount ?? 'not informed'}}</p>
+                        <p id="amount">{{ $comanda->order->payment->amount ?? 'not informed'}}</p>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="message"><strong>Status:</strong></label>
-                        <p id="message">{{$comanda->order->status ?? 'no additional info'}}</p>
+                        <p id="message">{{$comanda->order->payment->status ?? 'no additional info'}}</p>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="token"><strong>Token:</strong></label>
-                        <p id="token">{{$comanda->order->token ?? 'token not informed'}}</p>
+                        <p id="token">{{$comanda->order->payment->token ?? 'token not informed'}}</p>
                     </div>
                 </div>
             </div>

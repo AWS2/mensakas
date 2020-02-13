@@ -34,7 +34,7 @@ class ComandaController extends Controller
         $comanda->ticket_json = $request->ticket_json;
         $comanda->save();
 
-        $order = $comanda->orders;
+        $order = $comanda->order;
         $orderStatus = $order->orderStatus;
 
         $orderStatus->status_id = $request->status_id;
