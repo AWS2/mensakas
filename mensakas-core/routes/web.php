@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 });
 
@@ -34,20 +34,20 @@ Route::get('/delivers', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('comandas', 'ComandaController@index')->name('comandas.index');
+Route::get('comandas', 'ComandaController@index')->name('comandas.index')->middleware('auth');
 
-Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show');
+Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show')->middleware('auth');
 
-Route::get('comandas/{comanda}/edit', 'ComandaController@edit')->name('comandas.edit');
+Route::get('comandas/{comanda}/edit', 'ComandaController@edit')->name('comandas.edit')->middleware('auth');
 
-Route::put('comandas/{comanda}', 'ComandaController@update')->name('comandas.update');
+Route::put('comandas/{comanda}', 'ComandaController@update')->name('comandas.update')->middleware('auth');
 
-Route::resource('adminUsers', 'AdminUserController');
+Route::resource('adminUsers', 'AdminUserController')->middleware('auth');
 
-Route::resource('riders', 'RiderController');
+Route::resource('riders', 'RiderController')->middleware('auth');
 
-Route::resource('customers', 'CustomerController');
+Route::resource('customers', 'CustomerController')->middleware('auth');
 
-Route::resource('businesses', 'BusinessController');
+Route::resource('businesses', 'BusinessController')->middleware('auth');
