@@ -13,7 +13,7 @@
                 <strong><h5 class="">USERS</h5></strong>
             </div>
         </div>
-        <div class="card onclick=location.href='/businesses'">
+        <div class="card" onclick="location.href='/businesses'">
             <a href="/businesses">
                 <img src="https://image.flaticon.com/icons/svg/123/123403.svg" width="200" height="200" class="card-img-top" alt="...">
             </a>
@@ -21,7 +21,7 @@
             <h5 class="card-title ">BUSINESSES</h5>
             </div>
         </div>
-        <div class="card onclick=location.href='/products'">
+        <div class="card" onclick="location.href='/products'">
             <a href="/products">
                 <img src="https://image.flaticon.com/icons/svg/1046/1046788.svg" width="200" height="200" class="card-img-top" alt="...">
             </a>
@@ -30,8 +30,8 @@
 
             </div>
         </div>
-        <div class="card onclick=location.href='/orders'">
-            <a href="/orders">
+        <div class="card" onclick="location.href='/comandas'">
+            <a href="/comandas">
                 <img src="https://image.flaticon.com/icons/svg/950/950258.svg" width="200" height="200" class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
@@ -39,7 +39,7 @@
 
             </div>
         </div>
-        <div class="card onclick=location.href='/delivers'">
+        <div class="card" onclick="location.href='/delivers'">
             <a href="/delivers">
                 <img src="https://image.flaticon.com/icons/svg/2467/2467098.svg" width="200" height="200" class="card-img-top" alt="...">
             </a>
