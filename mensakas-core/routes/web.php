@@ -12,8 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/users', function () {
+    return view('users');
+})->middleware('auth');
+
+Route::get('/products', function () {
+    return view('products');
+})->middleware('auth');
+
+Route::get('/orders', function () {
+    return view('orders');
+})->middleware('auth');
+
+Route::get('/delivers', function () {
+    return view('delivers');
+})->middleware('auth');
+
 
 Auth::routes();
 
