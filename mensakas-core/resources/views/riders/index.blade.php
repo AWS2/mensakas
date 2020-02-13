@@ -4,7 +4,7 @@
 <div class="table d-flex justify-content-center">
     <div class="">
             <form action="{{route('riders.create')}}" method="get">
-                <input type="submit" value="Add new business" class="btn btn-success mb-3 ml-3">
+                <input type="submit" value="Add new rider" class="btn btn-success mb-3 ml-3">
             </form>
 
         <table>
