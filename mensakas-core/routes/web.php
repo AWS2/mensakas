@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 });
 
@@ -34,12 +34,20 @@ Route::get('/delivers', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('adminUsers', 'AdminUserController');
+Route::get('comandas', 'ComandaController@index')->name('comandas.index')->middleware('auth');
 
-Route::resource('riders', 'RiderController');
+Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show')->middleware('auth');
 
-Route::resource('customers', 'CustomerController');
+Route::get('comandas/{comanda}/edit', 'ComandaController@edit')->name('comandas.edit')->middleware('auth');
 
-Route::resource('businesses', 'BusinessController');
+Route::put('comandas/{comanda}', 'ComandaController@update')->name('comandas.update')->middleware('auth');
+
+Route::resource('adminUsers', 'AdminUserController')->middleware('auth');
+
+Route::resource('riders', 'RiderController')->middleware('auth');
+
+Route::resource('customers', 'CustomerController')->middleware('auth');
+
+Route::resource('businesses', 'BusinessController')->middleware('auth');

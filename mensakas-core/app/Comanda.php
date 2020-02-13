@@ -53,7 +53,7 @@ class Comanda extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orders()
+    public function order()
     {
         return $this->hasOne('App\Order');
     }
