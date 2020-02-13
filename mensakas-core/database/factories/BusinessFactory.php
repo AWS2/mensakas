@@ -4,8 +4,8 @@
 
 use App\Business;
 use App\BusinessAddress;
+use App\Schedule;
 use Faker\Generator as Faker;
-use Faker\Provider\es_ES\PhoneNumber as FakerEs;
 
 $factory->define(Business::class, function (Faker $faker) {
     return [
@@ -23,5 +23,15 @@ $factory->define(BusinessAddress::class, function (Faker $faker) {
         'zip_code' => $faker->numberBetween($min = 1000, $max = 9000),
         'street' => $faker->streetAddress,
         'number' => $faker->randomDigitNotNull
+    ];
+});
+
+$factory->define(Schedule::class, function (Faker $faker) {
+    return [
+        'day' => rand(0, 6),
+        'open_1' => '09:00:00',
+        'close_1' => '15:00:00',
+        'open_2' => '20:00:00',
+        'close_2' => '23:30:00',
     ];
 });

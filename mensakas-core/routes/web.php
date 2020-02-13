@@ -12,12 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-Route::get('/adminPanel', function () {
-    return view('adminPanel');
-})->middleware('auth');
 
 Route::get('/users', function () {
     return view('users');
@@ -31,16 +27,19 @@ Route::get('/orders', function () {
     return view('orders');
 })->middleware('auth');
 
-Route::get('/businesses', function () {
-    return view('businesses');
-})->middleware('auth');
-
 Route::get('/delivers', function () {
     return view('delivers');
 })->middleware('auth');
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('adminUsers', 'AdminUserController');
+
+Route::resource('riders', 'RiderController');
+
+Route::resource('customers', 'CustomerController');
+
+Route::resource('businesses', 'BusinessController');

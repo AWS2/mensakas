@@ -38,8 +38,8 @@ class Customer extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function customerAddresses()
+    public function customerAddresse()
     {
-        return $this->hasMany('App\CustomerAddress');
+        return $this->hasOne('App\CustomerAddress');
     }
 }
