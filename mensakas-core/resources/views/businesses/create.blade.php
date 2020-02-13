@@ -40,7 +40,7 @@
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
                 </form>
                 <div >
