@@ -14,8 +14,9 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function businessesInZipCode(Request $request)
     {
-        return view('businesses.create');
+        $b = Business::filter($request->all())->get();
+        return view('simulators.business.businesses')->with(['b' => $b, 'r' => $request]);
     }
 }

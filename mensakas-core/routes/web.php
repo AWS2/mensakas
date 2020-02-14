@@ -56,4 +56,4 @@ Route::resource('businesses', 'BusinessController')->middleware('auth');
 //Simulators
 // Route::get('simulator/business/{zip}', function ($zip) {
 // })->name('businessZip');
-Route::get('simulator', 'Simulator\Business\BusinessSimulatorController@crete')->name('simulator.show');
+Route::get('simulator/business', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');

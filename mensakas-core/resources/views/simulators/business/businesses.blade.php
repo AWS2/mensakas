@@ -1,5 +1,14 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('space')
-@include('layout.secondNav',['title'=>'Bussinesses in yor city']);
+@include('layouts.secondNav',['title'=>'Bussinesses in yor city'])
+@endsection
+
+@section('content')
+{{ $br }}
+
+@foreach ($b as $bb)
+{{ $bb->active }}
+
+@endforeach
 @endsection
