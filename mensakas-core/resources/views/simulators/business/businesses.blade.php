@@ -5,14 +5,13 @@
 @endsection
 
 @section('content')
-<div class="col-3 mx-auto">
-    @forelse ($busisnesses as $biz)
-        @php($business = $biz->business )
-        <div class="row my-4">
-            <img src="{{$business->logo}}" alt="">
-            <h3 class="mt-3">{{ $business->name }}</h3>
-            <form action="{{route('simulator.business.businessMenu', ['business'=>$business->id])}}" method="get">
-                <input type="submit" value="See Menu" class=" mt-3 ml-2">
+<div class="col-6 mx-auto">
+    @forelse ($busisnesses as $business)
+        <div class="row mb-4">
+            <img src="{{$business->logo}}" alt="" class="col-4 rounded p-4"> 
+            <h3 class="my-auto col-4">{{ $business->name }}</h3>
+            <form class=" my-auto col-4" action="{{route('simulator.business.businessMenu', ['business'=>$business->id])}}" method="get">
+                <input type="submit" value="See Menu" class="btn btn-link mt-3 ml-2">
             </form>
         </div>
     @empty

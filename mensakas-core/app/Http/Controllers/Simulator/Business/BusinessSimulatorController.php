@@ -10,7 +10,10 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
 {
     public function businessesInZipCode($zip)
     {
-        $busisnesses = BusinessAddress::where('zip_code', $zip)->get();
+        $busisnesses = Business::addSelect('*')
+            ->join('business_address', 'business.id', '=', 'business_address.business_id')
+            ->where('zip_code', '=', $zip)->get();
+
         return view('simulators.business.businesses')->with(['busisnesses' => $busisnesses]);
     }
 
