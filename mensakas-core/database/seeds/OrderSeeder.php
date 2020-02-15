@@ -1,8 +1,8 @@
 <?php
 
-use App\OrderStatus;
 use App\Status;
 use Illuminate\Database\Seeder;
+use Faker\Provider\DateTime as FakerTime;
 
 class OrderSeeder extends Seeder
 {
@@ -41,7 +41,8 @@ class OrderSeeder extends Seeder
             'id' => 1,
             'order_status_id' => 1,
             'comanda_id' => 1,
-            'payment_id' => 1
+            'payment_id' => 1,
+            'estimate_time' => FakerTime::time($format = 'H:i:s')
         ]);
     }
 }

@@ -139,6 +139,7 @@ class CreateTables extends Migration
             $table->bigInteger('order_status_id')->unsigned();
             $table->bigInteger('payment_id')->unsigned();
             $table->bigInteger('comanda_id')->unsigned();
+            $table->time('estimate_time')->nullable();
 
             $table->index('order_status_id', 'fk_order_status1_idx');
             $table->index('payment_id', 'fk_order_payment1_idx');
@@ -175,7 +176,6 @@ class CreateTables extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('riders_id')->unsigned();
             $table->bigInteger('order_id')->unsigned();
-            $table->time('delivery')->nullable();
 
             $table->index('riders_id', 'fk_deliver_riders1_idx');
             $table->index('order_id', 'fk_deliver_order1_idx');
