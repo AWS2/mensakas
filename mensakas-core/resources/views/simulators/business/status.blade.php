@@ -13,7 +13,7 @@
                     <h5>ORDER <span class="text-primary font-weight-bold">#{{$order->id}}</span></h5>
                     </div>
                     <div class="d-flex flex-column text-sm-right">
-                        <p class="mb-0">Expected Arrival: <span>{{$order->time ?? 'Not informed yet'}}</span></p>
+                        <p class="mb-0">Expected Arrival: <span>{{$order->estimate_time ?? 'Not informed yet'}}</span></p>
                     </div>
                 </div> <!-- Add class 'active' to progress -->
                 <div class="row d-flex justify-content-center">
