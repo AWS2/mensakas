@@ -8,15 +8,14 @@ use Illuminate\Http\Request;
 
 class BusinessSimulatorController extends \App\Http\Controllers\Controller
 {
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function businessesInZipCode(Request $request)
+    public function businessesInZipCode($zip)
     {
-        $b = Business::filter($request->all())->get();
-        return view('simulators.business.businesses')->with(['b' => $b, 'r' => $request]);
+        $busisnesses = BusinessAddress::where('zip_code', $zip)->get();
+        return view('simulators.business.businesses')->with(['busisnesses' => $busisnesses]);
+    }
+
+    public function businessMenu(Business $business)
+    {
+        return view('simulators.business.menu')->with(['business' => $business]);
     }
 }
