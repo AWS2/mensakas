@@ -11,7 +11,7 @@ $factory->define(Business::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'phone' => rand(910000000, 999999999),
-        'logo' => 'https://picsum.photos/75/75',
+        'logo' => 'https://picsum.photos/200/100',
         'image' => 'https://picsum.photos/600/300',
         'active' => rand(0, 1),
     ];
