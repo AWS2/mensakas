@@ -51,3 +51,9 @@ Route::resource('riders', 'RiderController')->middleware('auth');
 Route::resource('customers', 'CustomerController')->middleware('auth');
 
 Route::resource('businesses', 'BusinessController')->middleware('auth');
+
+
+//Simulators
+Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
+
+Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('space')
-    @include('layouts.secondNav', ['title' => 'New Business'])
+@include('layouts.secondNav', ['title' => 'New Business'])
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
             <div class="col-6 mx-auto">
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" value="" name="name">
+                    <input type="text" class="form-control" id="name" value="" name="name" required>
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="tel">Phone:</label>
@@ -46,14 +46,14 @@
                 <div class="mr-2">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
-                </form>
-                <div >
-                <form action="{{route('businesses.index')}}" method="get">
-                    <button type="submit" class="btn btn-success">Back</button>
-                </form>
-            </div>
-        </div>
     </form>
+    <div>
+        <form action="{{route('businesses.index')}}" method="get">
+            <button type="submit" class="btn btn-success">Back</button>
+        </form>
+    </div>
+</div>
+</form>
 </div>
 
 @endsection
