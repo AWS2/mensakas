@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Simulator\Business;
 
 use App\Business;
-use App\BusinessAddress;
+use App\Order;
 use Illuminate\Http\Request;
 
 class BusinessSimulatorController extends \App\Http\Controllers\Controller
@@ -20,5 +20,10 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
     public function businessMenu(Business $business)
     {
         return view('simulators.business.menu')->with(['business' => $business]);
+    }
+
+    public function orderStatus(Order $order)
+    {
+        return view('simulators.business.status')->with(['order' => $order]);
     }
 }

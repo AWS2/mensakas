@@ -20,9 +20,10 @@ class OrderSeeder extends Seeder
 
     public function status()
     {
+        Status::create(['status' => 'Sin Pagar']);
         Status::create(['status' => 'Confiramdo']);
-        Status::create(['status' => 'En Restaurante']);
-        Status::create(['status' => 'En Envio']);
+        Status::create(['status' => 'Preparando']);
+        Status::create(['status' => 'Reparto']);
         Status::create(['status' => 'Entregado']);
     }
 
