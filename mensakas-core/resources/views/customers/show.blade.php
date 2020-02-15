@@ -56,14 +56,20 @@
         </div>
         <div class="col-10 mx-auto row">
             <div class="mr-2">
+                <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+            </div>
+            <div class="mr-2">
                 <form action="{{route('customers.edit', ['customer'=>$customer->id])}}" method="get">
-                    <button type="submit" class="btn btn-warning">Edit</button>
+                    <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</button>     
                 </form>
             </div>
             <div>
-            <form action="{{route('customers.index')}}" method="get">
-                <button type="submit" class="btn btn-success">Back</button>
-            </form>
+                <form action="{{route('customers.destroy', ['customer'=>$customer])}}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

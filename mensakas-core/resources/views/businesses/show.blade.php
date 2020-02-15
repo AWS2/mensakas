@@ -42,15 +42,21 @@
         </div>
         <div class="col-10 mx-auto row">
             <div class="mr-2">
-                <form action="{{route('businesses.edit', ['business'=>$business->id])}}" method="get">
-                    <button type="submit" class="btn btn-warning">Edit</button>
-                </form>
-            </div>
-            <div>
                 <form action="{{route('businesses.index')}}" method="get">
                     <button type="submit" class="btn btn-success">Back</button>
                 </form>
-
+            </div>
+            <div class="mr-2">
+                <form action="{{route('businesses.edit', ['business'=>$business->id])}}" method="get">
+                    <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</button>     
+                </form>
+            </div>
+            <div class="mr-2">
+                <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                </form>
             </div>
         </div>
     </div>

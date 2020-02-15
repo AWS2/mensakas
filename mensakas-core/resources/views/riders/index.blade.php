@@ -6,11 +6,8 @@
 
 @section('content')
 <div class="table d-flex justify-content-center">
+    
     <div class="">
-            <form action="{{route('riders.create')}}" method="get">
-                <input type="submit" value="Add new rider" class="btn btn-success mb-3 ml-3">
-            </form>
-
         <table>
             <tr>
             <td></td>
@@ -18,8 +15,11 @@
             <td><strong>Last name</strong></td>
             <td><strong>Username</strong></td>
             <td><strong>Phone</strong></td>
-            <td></td>
-            <td></td>
+            <td colspan="2"> 
+                <form action="{{route('riders.create')}}" method="get">
+                    <button type="submit" value="Add new rider" class="btn btn-success ml-4"><i class="fa fa-plus"></i> Add Rider</button>
+                </form>
+            </td>
 
             </tr>
 
@@ -27,7 +27,7 @@
             <tr>
                 <td>
                 <form action="{{route('riders.show', ['rider'=>$rider])}}" method="get">
-                    <input type="submit" value="+" class="btn btn-success">
+                    <button type="submit" class="btn btn-success fa fa-search"></button>
                 </form>
 
                 </td>
@@ -37,15 +37,14 @@
                 <td>{{$rider->phone}}</td>
                 <td>
                     <form action="{{route('riders.edit', ['rider'=>$rider])}}" method="get">
-                        <input type="submit" value="Edit" class="btn btn-warning">
+                        <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</button>                        
                     </form>
-
                 </td>
                 <td>
                 <form action="{{route('riders.destroy', ['rider'=>$rider])}}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('are you sure?')">
+                    <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
                 </form>
                 </td>
             </tr>
