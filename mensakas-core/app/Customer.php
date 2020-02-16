@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $phone
  * @property string $created_at
  * @property string $updated_at
- * @property CustomerAddress[] $customerAddresses
+ * @property CustomerAddress[] $customerAddresse
  */
 class Customer extends Model
 {
