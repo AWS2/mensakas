@@ -37,7 +37,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="mr-2">
-                        <button type="submit" class="btn btn-warning">Edit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
     </form>
     <div>
