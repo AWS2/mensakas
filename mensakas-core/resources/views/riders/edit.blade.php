@@ -41,9 +41,7 @@
                     </div>
     </form>
     <div>
-        <form action="{{route('riders.index')}}" method="get">
-            <button type="submit" class="btn btn-success">Back</button>
-        </form>
+        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
     </div>
 </div>
 </div>
