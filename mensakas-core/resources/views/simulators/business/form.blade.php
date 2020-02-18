@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('space')
-@include('layouts.secondNav', ['title' => 'New Customer'])
+@include('layouts.secondNav',['title'=>'1'])
 @endsection
+
 
 @section('content')
 
 <div>
-    <form action="{{route('simulator.business.customerCreate')}}" method="post">
+    <form action="{{route('simulator/business.customerStore')}}" method="post">
         {{ csrf_field() }}
+        {{ method_field('head') }}
         <div class="row">
             <div class="col-6 mx-auto">
                 <div class="form-group col-8 mx-auto">
