@@ -59,3 +59,11 @@ Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorCont
 Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');
 
 Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.business.orderStatus');
+
+Route::get('simulator/rider', 'Simulator\Rider\RiderSimulatorController@selectRider')->name('simulator.rider.selectRider');
+
+Route::get('simulator/rider/{rider}/jobs', 'Simulator\Rider\RiderSimulatorController@jobs')->name('simulator.rider.jobs');
+
+Route::post('simulator/rider/{order}/{rider}', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
+
+Route::get('simulator/rider/{deliver}/order', 'Simulator\Rider\RiderSimulatorController@deliverStatus')->name('simulator.rider.deliverStatus');
