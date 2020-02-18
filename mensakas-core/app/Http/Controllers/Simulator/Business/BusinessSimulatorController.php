@@ -27,6 +27,11 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
         return view('simulators.business.form');
     }
 
+    public function carrito()
+    {
+        return view('simulators.business.carrito');
+    }
+
     public function customerStore(Request $request)
     {
         $customer = new Customer();

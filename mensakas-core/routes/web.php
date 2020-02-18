@@ -54,10 +54,12 @@ Route::resource('businesses', 'BusinessController')->middleware('auth');
 
 
 //Simulators
-Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
+// Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
 
 Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');
 
 Route::get('simulator/business', 'Simulator\Business\BusinessSimulatorController@customerForm')->name('simulator.business.customerForm');
+
+Route::get('simulator/business/carrito', 'Simulator\Business\BusinessSimulatorController@carrito')->name('simulator.business.carrito');
 
 // Route::get('simulator/business/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.business.customerStore');
