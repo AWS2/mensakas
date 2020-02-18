@@ -67,6 +67,10 @@
                 </div>
             </div>
         </div>
+    </form>
+    <div>
+        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+    </div>
 </div>
 
 @endsection

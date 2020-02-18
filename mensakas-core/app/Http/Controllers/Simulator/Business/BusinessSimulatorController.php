@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Simulator\Business;
 
 use App\Customer;
 use App\CustomerAddress;
+use App\Business;
+use App\Order;
+use App\Product;
+use App\ProductDescription;
 use Illuminate\Http\Request;
 
 class BusinessSimulatorController extends \App\Http\Controllers\Controller
@@ -29,6 +33,7 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
 
     public function carrito()
     {
+        $products= Product::all();
         return view('simulators.business.carrito');
     }
 
@@ -54,4 +59,8 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
         // return redirect(route('customers.index'));
     }
 
+    public function orderStatus(Order $order)
+    {
+        return view('simulators.business.status')->with(['order' => $order]);
+    }
 }

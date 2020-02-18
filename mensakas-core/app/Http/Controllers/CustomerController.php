@@ -55,7 +55,7 @@ class CustomerController extends Controller
         $customerAddress->customer_id = $customer->id;
         $customerAddress->save();
 
-        return redirect(route('customers.index'));
+        return redirect(route('customers.index'))->with('success', 'Customer created successfully!');
     }
 
     /**
@@ -108,7 +108,7 @@ class CustomerController extends Controller
         return redirect()->action(
             'CustomerController@show',
             ['customer' => $customer->id]
-        );
+        )->with('success', 'Customer edited successfully!');
     }
 
     /**
@@ -120,6 +120,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        return redirect(route('customers.index'));
+        return redirect(route('customers.index'))->with('success', 'Customer removed successfully!');
     }
 }

@@ -31,13 +31,18 @@
             </div>
             <div class="mt-3 row">
                 <div class="mr-2">
+                    <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+                </div>
+                <div class="mr-2">
                     <form action="{{route('riders.edit', ['rider'=>$rider])}}" method="get">
-                        <button type="submit" class="btn btn-warning">Edit</button>
+                        <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</button>      
                     </form>
                 </div>
-                <div >
-                    <form action="{{route('riders.index')}}" method="get">
-                        <button type="submit" class="btn btn-success">Back</button>
+                <div>
+                    <form action="{{route('riders.destroy', ['rider'=>$rider])}}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
                     </form>
                 </div>
             </div>

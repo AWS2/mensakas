@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property integer $riders_id
  * @property integer $order_id
- * @property string $delivery
  * @property string $created_at
  * @property string $updated_at
  * @property Order $order
@@ -33,7 +32,7 @@ class Delivery extends Model
     /**
      * @var array
      */
-    protected $fillable = ['riders_id', 'order_id', 'delivery', 'created_at', 'updated_at'];
+    protected $fillable = ['riders_id', 'order_id', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

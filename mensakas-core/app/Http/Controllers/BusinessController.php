@@ -53,7 +53,7 @@ class BusinessController extends Controller
         $businessAddress->business_id = $business->id;
         $businessAddress->save();
 
-        return redirect(route('businesses.index'));
+        return redirect(route('businesses.index'))->with('success', 'Business created successfully!');
     }
 
     /**
@@ -102,7 +102,7 @@ class BusinessController extends Controller
         return redirect()->action(
             'BusinessController@show',
             ['business' => $business->id]
-        );
+        )->with('success', 'Business edited successfully!');
     }
 
     /**
@@ -114,6 +114,6 @@ class BusinessController extends Controller
     public function destroy(Business $business)
     {
         $business->delete();
-        return redirect(route('businesses.index'));
+        return redirect(route('businesses.index'))->with('success', 'Bussines deleted successfully!');;
     }
 }
