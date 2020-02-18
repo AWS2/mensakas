@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('script')
+<script src="{{ asset('js/menuCarrito.js') }} " defer></script>
+@endsection
+
 @section('space')
 @include('layouts.secondNav',['title'=>'Cesta'])
 @endsection
-
-<!-- @section('script')
-<script src="{{ asset('js/productsCreate.js') }} " defer></script>
-@endsection -->
 
 @section('content')
 
@@ -22,15 +22,15 @@
                 <p><strong>Price</strong></p>
             </div>
             <div class="col-3">
-            <input type="button" value="+" class="btn btn-success">
-            <label for="" class="ml-2 mr-2">0</label>
-            <input type="button" value="-" class="btn btn-danger">
-                
+                <input type="button" value="+" class="btn btn-success">
+                <label for="" class="ml-2 mr-2">0</label>
+                <input type="button" value="-" class="btn btn-danger">
+
             </div>
         </div>
     </div>
     <div class="col-6 border">
-    <div class="ml-5"><label for="" class="h3">Shopping cart:</label></div>
+        <div class="ml-5"><label for="" class="h3">Shopping cart:</label></div>
     </div>
 </div>
 
