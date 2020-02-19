@@ -13,9 +13,11 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $businesses = Business::all();
+        $params = $request->except('_token');
+
+        $businesses = Business::filter($params)->get();
 
         return view('businesses.index')
             ->with('businesses', $businesses);
