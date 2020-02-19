@@ -1,16 +1,31 @@
-// $(document).ready(ready);
+$(document).ready(main);
 
-// function ready() {
-//     console.log('menuCarrito');
-// }
-
-// function addProduct(id) {
-//     var divToClone = $('#' + id + ' > #nameAndDescription');
-//     divToClone.clone().appendTo('#ShoppingCart');
-// }
-
-$(document).ready(imReady);
-
-function imReady() {
-    console.log("menu working")
+function main() {
+    console.log('menuCarrito');
+    $(".add").click(addProduct);
+    $(".remove").click(removeProduct);
 }
+
+function addProduct(e) {
+    var counter = $(e.target).siblings()[2];
+    var id = $(e.target).siblings().first().val();
+    var nameAndDescription = $(e.target).parent().siblings().first();
+    var price = $(e.target).parent().siblings().last();
+
+    if(counter.innerHTML == 0){
+        counter.innerHTML = parseInt(counter.innerHTML) + 1;
+        $("<div class='col-10 row' id='"+id+"'></div>").appendTo('#ShoppingCart');
+        nameAndDescription.clone().appendTo('#ShoppingCart > #'+id);
+        price.clone().appendTo('#ShoppingCart > #'+id);
+    }else{
+        counter.innerHTML = parseInt(counter.innerHTML) + 1;
+        var priceSum = $('#ShoppingCart > #'+id).children().last().children();
+        var sum = parseFloat(priceSum.text()) + parseFloat(price.children().text());
+        priceSum.text(sum.toFixed(2));
+    }
+}
+
+function removeProduct(){
+
+}
+
