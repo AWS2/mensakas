@@ -9,7 +9,7 @@
 
 <div>
     <div class="row">
-        <div class="col-6 mx-auto">
+        <div class="col-4 ml-auto">
             <div class="form-group col-8 mx-auto">
                 <label for="first_name"><strong>First name:</strong></strong></label>
                 <p id="first_name">{{$customer->first_name}}</p>
@@ -27,7 +27,7 @@
                 <p id="phone">{{$customer->phone}}</p>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-4 mr-auto">
             <div class="h4" style="opacity:0.7">Address</div>
             <div class="form-row">
                 <div class="form-group col-md-4">
@@ -39,7 +39,7 @@
                     <p id="number">{{$customerAddress->number}}</p>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="number"><strong>House number:</strong></label>
+                    <label for="house_number"><strong>House:</strong></label>
                     <p id="house_number">{{$customerAddress->house_number}}</p>
                 </div>
             </div>
@@ -54,15 +54,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-10 mx-auto row">
-            <div class="mr-2">
-                <form action="{{route('customers.edit', ['customer'=>$customer->id])}}" method="get">
-                    <button type="submit" class="btn btn-warning">Edit</button>
-                </form>
-            </div>
-            <div>
-            <form action="{{route('customers.index')}}" method="get">
-                <button type="submit" class="btn btn-success">Back</button>
+    </div>
+    <div class="col-7 row mt-3 mx-auto">
+        <div class="mr-2">
+            <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+        </div>
+        <div class="mr-2">
+            <form action="{{route('customers.edit', ['customer'=>$customer->id])}}" method="get">
+                <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</button>     
+            </form>
+        </div>
+        <div>
+            <form action="{{route('customers.destroy', ['customer'=>$customer])}}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
             </form>
         </div>
     </div>

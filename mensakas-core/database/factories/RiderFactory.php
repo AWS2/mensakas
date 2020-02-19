@@ -6,8 +6,6 @@ use App\Rider;
 use App\Location;
 use App\Delivery;
 use Faker\Generator as Faker;
-use Faker\Provider\es_ES\Address as FakerEs;
-use Faker\Provider\DateTime as FakerTime;
 
 $factory->define(Rider::class, function (Faker $faker) {
     return [
@@ -30,7 +28,6 @@ $factory->define(Location::class, function (Faker $faker) {
 
 $factory->define(Delivery::class, function () {
     return [
-        'order_id' => 1,
-        'delivery' => FakerTime::time($format = 'H:i:s')
+        'order_id' => 1
     ];
 });

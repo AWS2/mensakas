@@ -69,9 +69,7 @@
                 </div>
     </form>
     <div>
-        <form action="{{route('customers.index')}}" method="get">
-            <button type="submit" class="btn btn-success">Back</button>
-        </form>
+        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
     </div>
 </div>
 </form>
