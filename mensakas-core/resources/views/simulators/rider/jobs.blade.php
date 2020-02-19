@@ -12,6 +12,7 @@
                 <td></td>
                 <td></td>
                 <td><strong>Customer Address</strong></td>
+                <td><strong>Time</strong></td>
                 <td><strong>Order Status</strong></td>
                 <td><strong>Additional Message</strong></td>
             </tr>
@@ -27,6 +28,7 @@
                 </td>
                 <td>#{{$order->id}}</td>
                 <td>{{$order->comanda->customerAddress->street ?? 'user address'}}</td>
+                <td>{{$order->estimate_time}}</td>
                 <td>{{$order->orderStatus->status->status ?? 'without status'}}</td>
                 <td>{{$order->orderStatus->message ?? ''}}</td>
             </tr>
