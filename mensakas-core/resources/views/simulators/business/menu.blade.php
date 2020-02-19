@@ -22,7 +22,7 @@
 
                         </div>
                         <div class="col-2">
-                            <p id="price-{{$product->id}}"><strong>{{$product->price ?? '0'}}</strong></p>
+                            <p id="price-{{$product->id}}" class="price"><strong>{{$product->price ?? '0'}}</strong></p>
                         </div>
                         <div class="col-3">
                             <input type="hidden" name="idProduct" value="{{$product->id}}">
@@ -38,7 +38,9 @@
         </div>
         <div class="col-6 border">
             <div class="ml-5"><label for="" class="h3">Shopping cart:</label></div>
-            <div id="ShoppingCart"></div>
+            <div id="ShoppingCart">
+            </div>
+            <label class="mr-2"><strong>TOTAL:</strong></label><label class="total">0</label>
         </div>
     </div>
 </div>
