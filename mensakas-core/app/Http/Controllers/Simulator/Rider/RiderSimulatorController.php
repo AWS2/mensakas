@@ -17,23 +17,35 @@ class RiderSimulatorController extends \App\Http\Controllers\Controller
 
     public function jobs(Rider $rider)
     {
-        $ordersWhithoutDeliver = Order::leftJoin('delivery', 'delivery.order_id', '=', 'order.id')
+        $ordersWhithoutDeliver = Order::addSelect('order.*')
+            ->leftJoin('delivery', 'delivery.order_id', '=', 'order.id')
             ->whereNull('delivery.order_id')->get();
+
         return view('simulators.rider.jobs')->with(['orders' => $ordersWhithoutDeliver, 'rider' => $rider]);
     }
 
-    public function setJob(Order $order, Rider $rider)
+    public function setJob(Request $request)
     {
         $delivery = new Delivery();
-        $delivery->riders_id = $rider->id;
-        $delivery->order_id = $order->id;
+        $delivery->riders_id = $request->rider_id;
+        $delivery->order_id = $request->order_id;
         $delivery->save();
 
-        return redirect()->route('simulator.rider.deliverStatus');
+        return view('simulators.rider.status')->with('order', $delivery->order);
     }
 
-    public function deliverStatus(Order $order)
+    public function changeStatus(Request $request)
     {
-        return view('simulators.rider.status')->with(['order' => $order]);
+        $order = Order::find($request->order_id);
+        $order->orderStatus->status_id = $request->status_id;
+        $order->push();
+
+        return view('simulators.rider.status')->with('order', $order);
+    }
+
+    public function status($orderId)
+    {
+        $order = Order::find($orderId);
+        return view('simulators.rider.status')->with('order', $order);
     }
 }

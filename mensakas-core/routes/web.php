@@ -55,6 +55,8 @@ Route::get('simulator/rider', 'Simulator\Rider\RiderSimulatorController@selectRi
 
 Route::get('simulator/rider/{rider}/jobs', 'Simulator\Rider\RiderSimulatorController@jobs')->name('simulator.rider.jobs');
 
-Route::post('simulator/rider/{order}/{rider}', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
+Route::post('simulator/rider', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
 
-Route::get('simulator/rider/{deliver}/order', 'Simulator\Rider\RiderSimulatorController@deliverStatus')->name('simulator.rider.deliverStatus');
+Route::patch('simulator/rider', 'Simulator\Rider\RiderSimulatorController@changeStatus')->name('simulator.rider.changeStatus');
+
+Route::get('simulator/rider/{order}/order', 'Simulator\Rider\RiderSimulatorController@status')->name('simulator.rider.status');
