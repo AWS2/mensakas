@@ -62,8 +62,6 @@ Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSim
 
 Route::get('simulator/business', 'Simulator\Business\BusinessSimulatorController@customerForm')->name('simulator.business.customerForm');
 
-Route::get('simulator/business/carrito', 'Simulator\Business\BusinessSimulatorController@carrito')->name('simulator.business.carrito');
-
-// Route::get('simulator/business/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.business.customerStore');
+//Route::post('simulator/business/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.business.customerStore');
 
 Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.business.orderStatus');

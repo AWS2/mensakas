@@ -31,12 +31,6 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
         return view('simulators.business.form');
     }
 
-    public function carrito()
-    {
-        $products= Product::all();
-        return view('simulators.business.carrito');
-    }
-
     public function customerStore(Request $request)
     {
         $customer = new Customer();
@@ -54,7 +48,7 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
         $customerAddress->house_number = $request->house_number;
         $customerAddress->customer_id = $customer->id;
         $customerAddress->save();
-        
+
         return businessesInZipCode($request->zip_code);
         // return redirect(route('customers.index'));
     }
