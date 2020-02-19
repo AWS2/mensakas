@@ -25,7 +25,16 @@ function addProduct(e) {
     }
 }
 
-function removeProduct(){
+function removeProduct(e){
+    var id = $(e.target).siblings().first().val();
+    var counter = $(e.target).siblings()[1];
+    console.log(id);
+    if(counter.innerHTML == 0){
 
+    }else if(counter.innerHTML == 1){
+        //borrar el div
+    }else{
+        //restar precio
+    }
 }
 
