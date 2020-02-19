@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/productsCreate.js', 'public/js')
    .js('resources/js/menuCarrito.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
-   .sass('resources/sass/orderStatus.scss', 'public/css');
+   .sass('resources/sass/orderStatus.scss', 'public/css')
+   .sass('resources/sass/filterTable.scss', 'public/css');
