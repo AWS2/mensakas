@@ -111,9 +111,7 @@
     @endif
     <div class="col-7 mx-auto row mt-2">
         <div class="mr-2">
-            <form action="{{route('businesses.index')}}" method="get">
-                <button type="submit" class="btn btn-success">Back</button>
-            </form>
+            <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
         </div>
         <div class="mr-2">
             <form action="{{route('businesses.edit', ['business'=>$business->id])}}" method="get">

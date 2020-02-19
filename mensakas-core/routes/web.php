@@ -42,6 +42,8 @@ Route::resource('customers', 'CustomerController')->middleware('auth');
 
 Route::resource('businesses', 'BusinessController')->middleware('auth');
 
+Route::resource('products', 'ProductController')->middleware('auth');
+
 
 //Simulator business
 Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
