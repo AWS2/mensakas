@@ -45,7 +45,7 @@ Route::resource('businesses', 'BusinessController')->middleware('auth');
 Route::resource('products', 'ProductController')->middleware('auth');
 
 
-//Simulator business
+//Simulator comanda
 Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
 
 Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');
@@ -62,3 +62,12 @@ Route::post('simulator/rider', 'Simulator\Rider\RiderSimulatorController@setJob'
 Route::patch('simulator/rider', 'Simulator\Rider\RiderSimulatorController@changeStatus')->name('simulator.rider.changeStatus');
 
 Route::get('simulator/rider/{order}/order', 'Simulator\Rider\RiderSimulatorController@status')->name('simulator.rider.status');
+
+//Simulator business/restaurant
+Route::get('simulator/restaurants', 'Simulator\RestaurantSimulatorController@listBusinesses')->name('simulator.restaurant.listBusinesses');
+
+Route::get('simulator/restaurants/{business}', 'Simulator\RestaurantSimulatorController@ordersInRestaurant')->name('simulator.restaurant.ordersInRestaurant');
+
+Route::get('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@order')->name('simulator.restaurant.order');
+
+Route::patch('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@preparingOrder')->name('simulator.restaurant.preparing');
