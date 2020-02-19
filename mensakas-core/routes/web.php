@@ -11,6 +11,11 @@
 |
 */
 
+Auth::routes();
+
+//Menus
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/home', function () {
     return  redirect()->route('home');
 });
@@ -19,23 +24,8 @@ Route::get('/users', function () {
     return view('users');
 })->middleware('auth');
 
-Route::get('/products', function () {
-    return view('products');
-})->middleware('auth');
 
-Route::get('/orders', function () {
-    return view('orders');
-})->middleware('auth');
-
-Route::get('/delivers', function () {
-    return view('delivers');
-})->middleware('auth');
-
-
-Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
-
+//Cruds
 Route::get('comandas', 'ComandaController@index')->name('comandas.index')->middleware('auth');
 
 Route::get('comandas/{comanda}', 'ComandaController@show')->name('comandas.show')->middleware('auth');
@@ -55,9 +45,20 @@ Route::resource('businesses', 'BusinessController')->middleware('auth');
 Route::resource('products', 'ProductController')->middleware('auth');
 
 
-//Simulators
+//Simulator business
 Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
 
 Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');
 
 Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.business.orderStatus');
+
+//Simulator rider
+Route::get('simulator/rider', 'Simulator\Rider\RiderSimulatorController@selectRider')->name('simulator.rider.selectRider');
+
+Route::get('simulator/rider/{rider}/jobs', 'Simulator\Rider\RiderSimulatorController@jobs')->name('simulator.rider.jobs');
+
+Route::post('simulator/rider', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
+
+Route::patch('simulator/rider', 'Simulator\Rider\RiderSimulatorController@changeStatus')->name('simulator.rider.changeStatus');
+
+Route::get('simulator/rider/{order}/order', 'Simulator\Rider\RiderSimulatorController@status')->name('simulator.rider.status');
