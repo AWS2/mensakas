@@ -31,7 +31,7 @@ class RiderSimulatorController extends \App\Http\Controllers\Controller
         $delivery->order_id = $request->order_id;
         $delivery->save();
 
-        return view('simulators.rider.status')->with('order', $delivery->order);
+        return redirect()->route('simulator.rider.status', ['order' => $delivery->order]);
     }
 
     public function changeStatus(Request $request)
@@ -40,7 +40,7 @@ class RiderSimulatorController extends \App\Http\Controllers\Controller
         $order->orderStatus->status_id = $request->status_id;
         $order->push();
 
-        return view('simulators.rider.status')->with('order', $order);
+        return redirect()->route('simulator.rider.status', ['order' => $order]);
     }
 
     public function status($orderId)
