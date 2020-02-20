@@ -11,7 +11,7 @@
 @section('content')
 <div class="container">
 
-    <div class="border">
+    <div class="border" style="background-color: white;">
         <div class="d-flex justify-content-center mt-5">
             <label for=""><strong>simulating payment information</strong></label>
         </div>
@@ -35,7 +35,7 @@
             </form>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection

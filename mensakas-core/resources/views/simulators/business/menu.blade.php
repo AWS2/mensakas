@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="background-color: white;">
     <div class="row">
         <div class="col-6 border">
             <label for="" class="h3 ml-5">Products:</label>
@@ -41,19 +41,21 @@
             </div>
         </div>
         <div class="col-6 border">
-            <div class="ml-5"><label for="" class="h3">Shopping cart:</label></div>
-            <div id="ShoppingCart">
-            </div>
-            <label class="mr-2"><strong>TOTAL:</strong></label><label class="total">0</label>
-            <input type="hidden" name="totalShopping" class="totalShopping" value="0">
+            <form method="POST"
+                action="{{ route('simulator.comanda.saveOrder',['customer' => $customer, 'business' => $business]) }}">
+                @csrf
+                <div class="ml-5"><label for="" class="h3">Shopping cart:</label></div>
+                <div id="ShoppingCart">
+                </div>
+                <label class="mr-2"><strong>TOTAL:</strong></label><label class="total">0</label>
+                <input type="hidden" name="totalShopping" class="totalShopping" value="0">
+                <div>
+                    @csrf
+                    <button class="btn btn-success" type="submit">Checkout</button>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="mt-2">
-        <form method="POST"
-            action="{{ route('simulator.comanda.saveOrder',['customer' => $customer, 'business' => $business]) }}">
-            @csrf
-            <button class="btn btn-success" type="submit">Checkout</button>
-        </form>
-    </div>
 </div>
+
 @endsection
