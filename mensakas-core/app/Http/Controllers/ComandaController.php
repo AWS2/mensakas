@@ -44,6 +44,6 @@ class ComandaController extends Controller
         return redirect()->action(
             'ComandaController@show',
             ['comanda' => $comanda->id]
-        );
+        )->with('success', 'Order edited successfully!');
     }
 }

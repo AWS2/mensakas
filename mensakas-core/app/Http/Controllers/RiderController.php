@@ -46,7 +46,7 @@ class RiderController extends Controller
         $rider->phone = $request->phone;
         $rider->save();
 
-        return redirect(route('riders.index'));
+        return redirect(route('riders.index'))->with('success', 'Rider created successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class RiderController extends Controller
         return redirect()->action(
             'RiderController@show',
             ['rider' => $rider->id]
-        );
+        )->with('success', 'Rider edited successfully!');;
     }
 
     /**
@@ -104,6 +104,6 @@ class RiderController extends Controller
     public function destroy(Rider $rider)
     {
         $rider->delete();
-        return redirect(route('riders.index'));
+        return redirect(route('riders.index'))->with('success', 'Rider deleted successfully!');
     }
 }

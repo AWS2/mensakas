@@ -13,9 +13,11 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $businesses = Business::all();
+        $params = $request->except('_token');
+
+        $businesses = Business::filter($params)->get();
 
         return view('businesses.index')
             ->with('businesses', $businesses);
@@ -53,7 +55,7 @@ class BusinessController extends Controller
         $businessAddress->business_id = $business->id;
         $businessAddress->save();
 
-        return redirect(route('businesses.index'));
+        return redirect(route('businesses.index'))->with('success', 'Business created successfully!');
     }
 
     /**
@@ -91,19 +93,18 @@ class BusinessController extends Controller
     {
         $business->name = $request->name;
         $business->phone = $request->phone;
-        $business->save();
 
         $businessAddress = $business->businessAddresses;
         $businessAddress->city = $request->city;
         $businessAddress->zip_code = $request->zip_code;
         $businessAddress->street = $request->street;
         $businessAddress->number = $request->number;
-        $businessAddress->save();
+        $business->push();
 
         return redirect()->action(
             'BusinessController@show',
             ['business' => $business->id]
-        );
+        )->with('success', 'Business edited successfully!');
     }
 
     /**
@@ -115,6 +116,6 @@ class BusinessController extends Controller
     public function destroy(Business $business)
     {
         $business->delete();
-        return redirect(route('businesses.index'));
+        return redirect(route('businesses.index'))->with('success', 'Business deleted successfully!');;
     }
 }

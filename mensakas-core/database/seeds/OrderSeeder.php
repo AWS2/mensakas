@@ -1,8 +1,8 @@
 <?php
 
-use App\OrderStatus;
 use App\Status;
 use Illuminate\Database\Seeder;
+use Faker\Provider\DateTime as FakerTime;
 
 class OrderSeeder extends Seeder
 {
@@ -20,9 +20,10 @@ class OrderSeeder extends Seeder
 
     public function status()
     {
+        Status::create(['status' => 'Sin Pagar']);
         Status::create(['status' => 'Confiramdo']);
-        Status::create(['status' => 'En Restaurante']);
-        Status::create(['status' => 'En Envio']);
+        Status::create(['status' => 'Preparando']);
+        Status::create(['status' => 'Reparto']);
         Status::create(['status' => 'Entregado']);
     }
 
@@ -41,7 +42,8 @@ class OrderSeeder extends Seeder
             'id' => 1,
             'order_status_id' => 1,
             'comanda_id' => 1,
-            'payment_id' => 1
+            'payment_id' => 1,
+            'estimate_time' => FakerTime::time($format = 'H:i:s')
         ]);
     }
 }

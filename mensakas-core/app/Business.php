@@ -70,4 +70,22 @@ class Business extends Model
     {
         return $this->hasMany('App\Schedule');
     }
+
+    public function scopeFilter($query, $params)
+    {
+        if (isset($params['status']) && trim($params['status'] !== '')) {
+            $query->where('active', '=', trim($params['status']));
+        }
+        if (isset($params['search']) && trim($params['search'] !== '')) {
+            $columns = $this->fillable;
+            foreach ($columns as $key => $column) {
+                if ($key === array_key_first($columns)) {
+                    $query->where($column, 'LIKE', '%' . $params['search'] . '%');
+                } else {
+                    $query->orWhere($column, 'LIKE', '%' . $params['search'] . '%');
+                }
+            }
+        }
+        return $query;
+    }
 }

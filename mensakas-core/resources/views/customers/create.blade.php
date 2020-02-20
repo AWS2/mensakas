@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('space')
-    @include('layouts.secondNav', ['title' => 'New Customer'])
+@include('layouts.secondNav', ['title' => 'New Customer'])
 @endsection
 
 @section('content')
-    
+
 <div>
-    <form action="{{route('customers.store')}}" method="post">
+    <form action="{{route('simulator.business.customerCreate')}}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-6 mx-auto">
                 <div class="form-group col-8 mx-auto">
                     <label for="name">First name:</label>
-                    <input type="text" class="form-control" id="name" value="" name="first_name">
+                    <input type="text" class="form-control" id="name" value="" name="first_name" required>
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Last name:</label>
@@ -60,13 +60,17 @@
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
                 </form>
-                <div >
-                <form action="{{route('customers.index')}}" method="get">
-                    <button type="submit" class="btn btn-success">Back</button>
-                </form>
+                <div>
+                    <form action="{{route('customers.index')}}" method="get">
+                        <button type="submit" class="btn btn-success">Back</button>
+                    </form>
+                </div>
             </div>
         </div>
     </form>
+    <div>
+        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+    </div>
 </div>
 
 @endsection
