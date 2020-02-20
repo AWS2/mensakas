@@ -46,15 +46,15 @@ Route::resource('products', 'ProductController')->middleware('auth');
 
 
 //Simulator comanda
-Route::get('simulator/business/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.business.businessesInZipCode');
+Route::get('simulator/comanda', 'Simulator\Business\BusinessSimulatorController@customerForm')->name('simulator.comanda.customerForm');
 
-Route::get('simulator/business/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.business.businessMenu');
+Route::get('simulator/comanda/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.comanda.businessesInZipCode');
 
-Route::get('simulator/business', 'Simulator\Business\BusinessSimulatorController@customerForm')->name('simulator.business.customerForm');
+Route::get('simulator/comanda/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.comanda.businessMenu');
 
-//Route::post('simulator/business/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.business.customerStore');
+//Route::post('simulator/comanda/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.comanda.customerStore');
 
-Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.business.orderStatus');
+Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.comanda.orderStatus');
 
 //Simulator rider
 Route::get('simulator/rider', 'Simulator\Rider\RiderSimulatorController@selectRider')->name('simulator.rider.selectRider');
