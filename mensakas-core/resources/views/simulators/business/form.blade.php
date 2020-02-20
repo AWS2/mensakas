@@ -1,21 +1,20 @@
 @extends('layouts.app')
 
 @section('space')
-@include('layouts.secondNav',['title'=>'1'])
+@include('layouts.secondNav',['title'=>'Simulator: Make order'])
 @endsection
 
 
 @section('content')
 
-<div>
-    <form action="{{route('simulator/business.customerStore')}}" method="post">
+<div class="container">
+    <form action="{{route('simulator.comanda.customerStore')}}" method="post">
         {{ csrf_field() }}
-        {{ method_field('head') }}
         <div class="row">
-            <div class="col-6 mx-auto">
+            <div class="col-6">
                 <div class="form-group col-8 mx-auto">
                     <label for="name">First name:</label>
-                    <input type="text" class="form-control" id="name" value="" name="first_name" required>
+                    <input type="text" class="form-control" id="name" value="" name="first_name">
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Last name:</label>
@@ -23,7 +22,7 @@
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="name">Email</label>
-                    <input type="text" class="form-control" id="name" value="" name="email">
+                    <input type="text" class="form-control" id="name" value="" name="email" required>
                 </div>
                 <div class="form-group col-8 mx-auto">
                     <label for="tel">Phone:</label>
@@ -35,40 +34,34 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="street">Street:</label>
-                        <input type="text" class="form-control" id="street" name="street" value="">
+                        <input type="text" class="form-control" id="street" name="street" value="" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="number">Number:</label>
-                        <input type="text" class="form-control" id="number" name="number" value="">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="number">House number:</label>
-                        <input type="text" class="form-control" id="number" name="house_number" value="">
+                        <input type="text" class="form-control" id="number" name="number" value="" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="City">City:</label>
-                        <input type="text" class="form-control" id="City" name="city" value="">
+                        <input type="text" class="form-control" id="City" name="city" value="" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="Zip">Zip:</label>
-                        <input type="text" class="form-control" id="Zip" name="zip_code" value="">
+                        <input type="text" class="form-control" id="Zip" name="zip_code" value="" required>
                     </div>
                 </div>
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Start order</button>
                 </div>
-                </form>
-                <div>
-                    <form action="{{route('customers.index')}}" method="get">
-                        <button type="submit" class="btn btn-success">Back</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    </form>
+    <div>
+        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+    </div>
+</div>
+</div>
 </div>
 
 @endsection

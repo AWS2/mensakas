@@ -48,13 +48,19 @@ Route::resource('products', 'ProductController')->middleware('auth');
 Route::view('/simulators', 'simulatorsMenu');
 
 //Simulator comanda
-Route::get('simulator/comanda', 'Simulator\Business\BusinessSimulatorController@customerForm')->name('simulator.comanda.customerForm');
+Route::view('simulator/comanda', 'simulators.business.form');
 
-Route::get('simulator/comanda/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.comanda.businessesInZipCode');
+Route::post('simulator/comanda', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.comanda.customerStore');
 
-Route::get('simulator/comanda/{business}/menu', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.comanda.businessMenu');
+Route::get('simulator/comanda/{customer}/zip/{zip}', 'Simulator\Business\BusinessSimulatorController@businessesInZipCode')->name('simulator.comanda.businessesInZipCode');
 
-//Route::post('simulator/comanda/store', 'Simulator\Business\BusinessSimulatorController@customerStore')->name('simulator.comanda.customerStore');
+Route::get('simulator/comanda/{customer}/menu/{business}', 'Simulator\Business\BusinessSimulatorController@businessMenu')->name('simulator.comanda.businessMenu');
+
+Route::post('simulator/comanda/{customer}/menu/{business}', 'Simulator\Business\BusinessSimulatorController@saveOrder')->name('simulator.comanda.saveOrder');
+
+Route::get('simulator/comanda/{order}/pay', 'Simulator\Business\BusinessSimulatorController@pay')->name('simulator.comanda.pay');
+
+Route::patch('simulator/comanda/{order}/pay', 'Simulator\Business\BusinessSimulatorController@makePaid')->name('simulator.comanda.makePaid');
 
 Route::get('simulator/business/{order}/status', 'Simulator\Business\BusinessSimulatorController@orderStatus')->name('simulator.comanda.orderStatus');
 
