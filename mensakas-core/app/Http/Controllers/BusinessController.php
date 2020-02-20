@@ -116,6 +116,6 @@ class BusinessController extends Controller
     public function destroy(Business $business)
     {
         $business->delete();
-        return redirect(route('businesses.index'))->with('success', 'Bussines deleted successfully!');;
+        return redirect(route('businesses.index'))->with('success', 'Business deleted successfully!');;
     }
 }

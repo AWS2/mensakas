@@ -23,6 +23,15 @@ function addProduct(e) {
         var sum = parseFloat(priceSum.text()) + parseFloat(price.children().text());
         priceSum.text(sum.toFixed(2));
     }
+
+    var total =  $(".total");
+    var priceProducts =  $("#ShoppingCart > div > div > .price");
+    var totalPrice = 0;
+    priceProducts.each(function(){
+        totalPrice = parseFloat($(this).text()) + totalPrice;
+    });
+    total.text(totalPrice.toFixed(2));
+    $('.totalShopping').val(totalPrice.toFixed(2));
 }
 
 function removeProduct(e){
@@ -43,9 +52,14 @@ function removeProduct(e){
         priceSum.text(sum.toFixed(2));
     }
 
-    // var total =  $(".total").text();
-    // $(".total").text(1);
-    //$("#ShoppingCart > div > div > .price")
+    var total =  $(".total");
+    var priceProducts =  $("#ShoppingCart > div > div > .price");
+    var totalPrice = 0;
+    priceProducts.each(function(){
+        totalPrice = parseFloat($(this).text()) + totalPrice;
+    });
+    total.text(totalPrice.toFixed(2));
+    $('.totalShopping').val(totalPrice.toFixed(2));
 
 }
 

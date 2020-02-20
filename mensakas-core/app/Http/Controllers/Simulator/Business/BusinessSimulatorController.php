@@ -67,7 +67,7 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
         $orderStatus->save();
 
         $payment = new Payment();
-        $payment->amount = 20;
+        $payment->amount = floatval($request->totalShopping);
         $payment->save();
 
         $order = new Order();
