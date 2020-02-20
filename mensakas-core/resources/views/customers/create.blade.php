@@ -7,7 +7,7 @@
 @section('content')
 
 <div>
-    <form action="{{route('simulator.business.customerCreate')}}" method="post">
+    <form action="{{route('customers.store')}}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-6 mx-auto">
@@ -59,18 +59,15 @@
                 <div class="mr-2">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
-                </form>
-                <div>
-                    <form action="{{route('customers.index')}}" method="get">
-                        <button type="submit" class="btn btn-success">Back</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </form>
     <div>
         <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
     </div>
+</div>
+</div>
+</form>
+<div>
+</div>
 </div>
 
 @endsection
