@@ -7,44 +7,51 @@
 
         <div class="card border" onclick="location.href='/users'">
             <a href="/users">
-                <img src="https://image.flaticon.com/icons/svg/476/476863.svg" width="200" height="200" class="card-img-top" alt="...">
+                <img src="https://image.flaticon.com/icons/svg/476/476863.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
-                <strong><h5 class="">USERS</h5></strong>
+                <strong>
+                    <h5 class="">USERS</h5>
+                </strong>
             </div>
         </div>
         <div class="card" onclick="location.href='/businesses'">
             <a href="/businesses">
-                <img src="https://image.flaticon.com/icons/svg/123/123403.svg" width="200" height="200" class="card-img-top" alt="...">
+                <img src="https://image.flaticon.com/icons/svg/123/123403.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
-            <h5 class="card-title ">BUSINESSES</h5>
+                <h5 class="card-title ">BUSINESSES</h5>
             </div>
         </div>
         <div class="card" onclick="location.href='/products'">
             <a href="/products">
-                <img src="https://image.flaticon.com/icons/svg/1046/1046788.svg" width="200" height="200" class="card-img-top" alt="...">
+                <img src="https://image.flaticon.com/icons/svg/1046/1046788.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
-            <h5 class="card-title">PRODUCTS</h5>
+                <h5 class="card-title">PRODUCTS</h5>
 
             </div>
         </div>
         <div class="card" onclick="location.href='/comandas'">
             <a href="/comandas">
-                <img src="https://image.flaticon.com/icons/svg/950/950258.svg" width="200" height="200" class="card-img-top" alt="...">
+                <img src="https://image.flaticon.com/icons/svg/950/950258.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
-            <h5 class="card-title">ORDERS</h5>
+                <h5 class="card-title">ORDERS</h5>
 
             </div>
         </div>
-        <div class="card" onclick="location.href='/delivers'">
-            <a href="/delivers">
-                <img src="https://image.flaticon.com/icons/svg/2467/2467098.svg" width="200" height="200" class="card-img-top" alt="...">
+        <div class="card" onclick="location.href='/simulators'">
+            <a href="/simulators">
+                <img src="https://image.flaticon.com/icons/svg/1118/1118917.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
             </a>
             <div class="card-body mx-auto">
-            <h5 class="card-title ">DELIVERS</h5>
+                <h5 class="card-title ">SIMULATORS</h5>
             </div>
         </div>
     </div>
