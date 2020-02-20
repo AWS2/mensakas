@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('space')
-@include('layouts.secondNav',['title'=>'Estado del pedido'])
+@include('layouts.secondNav',['title'=>'Simulador: Estado del pedido'])
 @endsection
 
 @section('content')

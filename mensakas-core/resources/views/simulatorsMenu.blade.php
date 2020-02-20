@@ -8,8 +8,8 @@
 
 <div class="mt-5 pt-5 border">
     <div class="card-deck ml-3 mr-3 pt-4">
-        <div class="card onclick=location.href='/simulator/business'">
-            <a href="/simulator/business">
+        <div class="card onclick=location.href='/simulator/comanda'">
+            <a href="/simulator/comanda">
                 <img src="https://image.flaticon.com/icons/svg/2467/2467098.svg" width="200" height="200"
                     class="card-img-top" alt="...">
             </a>
