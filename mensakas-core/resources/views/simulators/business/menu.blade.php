@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-6 border">
             <label for="" class="h3 ml-5">Products:</label>
-            <div class="border row" name="products">
+            <div class="row" name="products">
                 @forelse ($business->products as $product)
                 <div class="col-12 row" id="{{$product->id}}">
                     <div class="col-6" id="nameAndDescription-{{$product->id}}">
@@ -45,9 +45,10 @@
             <div id="ShoppingCart">
             </div>
             <label class="mr-2"><strong>TOTAL:</strong></label><label class="total">0</label>
+            <input type="hidden" name="totalShopping" class="totalShopping" value="0">
         </div>
     </div>
-    <div>
+    <div class="mt-2">
         <form method="POST"
             action="{{ route('simulator.comanda.saveOrder',['customer' => $customer, 'business' => $business]) }}">
             @csrf
