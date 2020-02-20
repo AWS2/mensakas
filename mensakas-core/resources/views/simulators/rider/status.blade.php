@@ -20,6 +20,10 @@
             <label for="message"><strong>Message:</strong></label>
             <p id="message">{{$comanda->order->orderStatus->message ?? 'no additional info'}}</p>
         </div>
+        <div class="form-group col-md-4">
+            <label for="message"><strong>Time:</strong></label>
+            <p id="message">{{$order->estimate_time ?? 'no additional info'}}</p>
+        </div>
     </div>
 </div>
 @endif
