@@ -19,7 +19,9 @@ class RiderSimulatorController extends \App\Http\Controllers\Controller
     {
         $ordersWhithoutDeliver = Order::addSelect('order.*')
             ->leftJoin('delivery', 'delivery.order_id', '=', 'order.id')
-            ->whereNull('delivery.order_id')->get();
+            ->join('order_status', 'order_status.id', '=', 'order.order_status_id')
+            ->whereNull('delivery.order_id')
+            ->where('order_status.status_id', '=', 3)->get();
 
         return view('simulators.rider.jobs')->with(['orders' => $ordersWhithoutDeliver, 'rider' => $rider]);
     }
