@@ -27,23 +27,23 @@
             @foreach($riders as $rider)
             <tr>
                 <td>
-                    <form action="{{route('riders.show', ['rider'=>$rider])}}" method="get">
+                    <form action="{{route('riders.show', ['rider'=>$rider['id']])}}" method="get">
                         <button type="submit" class="btn btn-success fa fa-search"></button>
                     </form>
 
                 </td>
-                <td>{{$rider->first_name}}</td>
-                <td>{{$rider->last_name}}</td>
-                <td>{{$rider->username}}</td>
-                <td>{{$rider->phone}}</td>
+                <td>{{$rider['first_name']}}</td>
+                <td>{{$rider['last_name']}}</td>
+                <td>{{$rider['username']}}</td>
+                <td>{{$rider['phone']}}</td>
                 <td>
-                    <form action="{{route('riders.edit', ['rider'=>$rider])}}" method="get">
+                    <form action="{{route('riders.edit', ['rider'=>$rider['id']])}}" method="get">
                         <button type="submit" value="Edit" class="btn btn-warning"><i class="fa fa-pencil"></i>
                             Edit</button>
                     </form>
                 </td>
                 <td>
-                    <form action="{{route('riders.destroy', ['rider'=>$rider])}}" method="post">
+                    <form action="{{route('riders.destroy', ['rider'=>$rider['id']])}}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button type="submit" value="Delete" class="btn btn-danger"
