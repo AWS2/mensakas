@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class RiderController extends Controller
 {
@@ -14,10 +15,12 @@ class RiderController extends Controller
      */
     public function index()
     {
-        $riders = Rider::all();
+        $requestAPIGetAllMensakas = Request::create('api/mensakas', 'GET');
+        $requestAPIGetAllMensakas = json_decode(Route::dispatch($requestAPIGetAllMensakas)->getContent(),true);
+        $getOnlyDataMensakas = $requestAPIGetAllMensakas['data'];
 
         return view('riders.index')
-            ->with('riders', $riders);
+            ->with('riders', $getOnlyDataMensakas);
     }
 
     /**
@@ -57,6 +60,9 @@ class RiderController extends Controller
      */
     public function show(Rider $rider)
     {
+
+
+
         return view('riders.show')
             ->with('rider', $rider);
     }
