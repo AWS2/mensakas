@@ -28,12 +28,15 @@ class RiderSimulatorController extends \App\Http\Controllers\Controller
 
     public function setJob(Request $request)
     {
-        $delivery = new Delivery();
-        $delivery->riders_id = $request->rider_id;
-        $delivery->order_id = $request->order_id;
-        $delivery->save();
-
-        return redirect()->route('simulator.rider.status', ['order' => $delivery->order]);
+        if($request->ajax()){
+          $delivery = new Delivery();
+          $delivery->riders_id = $request->id_rider;
+          $delivery->order_id = $request->id_order;
+          $delivery->save();
+          return redirect()->route('simulator.rider.status', ['order' => $delivery->order]);
+        } else {
+          return back();
+        }
     }
 
     public function changeStatus(Request $request)
