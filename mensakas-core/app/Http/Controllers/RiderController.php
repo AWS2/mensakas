@@ -18,7 +18,7 @@ class RiderController extends Controller
         $requestAPIGetAllMensakas = Request::create('api/mensakas', 'GET');
         $requestAPIGetAllMensakas = json_decode(Route::dispatch($requestAPIGetAllMensakas)->getContent(),true);
         $getOnlyDataMensakas = $requestAPIGetAllMensakas['data'];
-        
+
         return view('riders.index')
             ->with('riders', $getOnlyDataMensakas);
     }
@@ -60,6 +60,9 @@ class RiderController extends Controller
      */
     public function show(Rider $rider)
     {
+
+
+
         return view('riders.show')
             ->with('rider', $rider);
     }
