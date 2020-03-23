@@ -37,7 +37,6 @@ class ComandaController extends Controller
         $order = $comanda->order;
         $orderStatus = $order->orderStatus;
 
-        $orderStatus->status_id = $request->status_id;
         $orderStatus->message = $request->message;
         $orderStatus->save();
 
