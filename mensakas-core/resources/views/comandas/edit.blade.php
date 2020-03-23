@@ -4,6 +4,10 @@
 @include('layouts.secondNav', ['title' => 'Edit Order'])
 @endsection
 
+@section('script')
+<script src="{{ asset('js/editRiderOrder.js') }} " defer></script>
+@endsection
+
 @section('content')
 
 <div>
@@ -37,6 +41,19 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" id="orderID" value="{{$comanda->order->id}}">
+                <input type="hidden" id="deliveryID" value="{{$comanda->order->delivery->id ?? 0}}">
+                <div class="h3" style="opacity:0.7">Delivery</div>
+                <label for="rider"><strong>Rider:</strong></strong></label>
+                <label name="delivery" id="rider" cols=50 rows=10>{{$comanda->order->delivery->rider->username ?? 'Rider not selected'}}</label>
+                <a id="changeRiderButton" class="btn btn-success">Show active riders</a>
+            </div>
+        </div>
+        <div class="h3" style="opacity:0.7"></div>
         <div class="col-6 mx-auto row">
             <div class="mr-2">
                 <button type="submit" class="btn btn-primary">Update</button>

@@ -24,7 +24,6 @@ Route::get('/users', function () {
     return view('users');
 })->middleware('auth');
 
-
 //Cruds
 Route::get('comandas', 'ComandaController@index')->name('comandas.index')->middleware('auth');
 
