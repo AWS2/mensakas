@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('businesses/zipcode/{zipcode}', 'Simulator\Business\BusinessSimulatorController@getBusinessesByZipcode');
+Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesByZipcode');
+
+Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');

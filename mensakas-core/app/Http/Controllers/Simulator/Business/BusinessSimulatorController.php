@@ -97,17 +97,4 @@ class BusinessSimulatorController extends \App\Http\Controllers\Controller
     {
         return view('simulators.business.status')->with(['order' => $order]);
     }
-
-    /**
-     * API function that returns a JSON with all businesses of a determined zip code
-     * @param String $zipcode
-     * @return JSON
-     */
-    public function getBusinessesByZipcode($zipcode)
-    {
-        $dbBusinessZipcode = Business::join('business_address', 'business.id', '=', 'business_address.business_id')
-                                      ->where('zip_code', '=', $zipcode)->get();
-
-        return response()->json($dbBusinessZipcode)->header('Content-Type', 'application/json');
-    }
 }
