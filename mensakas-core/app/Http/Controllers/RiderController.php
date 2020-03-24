@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Rider;
+use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,8 +61,6 @@ class RiderController extends Controller
      */
     public function show(Rider $rider)
     {
-
-
 
         return view('riders.show')
             ->with('rider', $rider);
