@@ -1,10 +1,20 @@
-function main(){
+function Geo(){
+  var id_rider = $('#id_rider').val();
+  console.log(id_rider);
+  $.ajax({
+        type: 'GET',
+        url: '/api/geolocation/'+id_rider,
+        dataType: 'json',
+        success: function(data) {
+            localizacion(data.data[0]);
+        }
+    });
 
-  function localizacion(posicion){
-    //var latitude = posicion.coords.latitude;
-    //var longitude = posicion.coords.longitude;
-    var latitude = 41.355825;
-    var longitude = 2.077628;
+  function localizacion(data){
+    latitude = parseFloat(data.latitude);
+    longitude = parseFloat(data.longitude);
+    console.log(latitude);
+    console.log(longitude);
 
     var myLatLng = {lat: latitude, lng: longitude};
     var mapOptions = {
@@ -28,4 +38,4 @@ function main(){
   navigator.geolocation.getCurrentPosition(localizacion,error);
 }
 
-google.maps.event.addDomListener(window, 'load', main);
+google.maps.event.addDomListener(window, 'load', Geo);

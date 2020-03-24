@@ -29,11 +29,9 @@
                     <p id="phone">{{$rider->phone}}</p>
                 </div>
             </div>
+            <input type="hidden" id='id_rider' name="" value="{{$rider->id}}">
             <div class="from-row" id="map" style="height: 300px; border-radius: 10px;">
-              @section('script')
-                  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-                  <script src="{{ asset('js/geolocation.js') }}"></script>
-              @endsection
+
             </div>
             <div class="mt-3 row">
                 <div class="mr-2">
