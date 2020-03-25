@@ -1,6 +1,13 @@
 function updateGeolocation(){
   var id_rider = $('#id_rider').val();
-
+  $.ajax({
+        type: 'GET',
+        url: '/api/geolocation/'+id_rider,
+        dataType: 'json',
+        success: function(data) {
+            localizacion(data.data[0]);
+        }
+  });
 
 	function localizacion(posicion){
 		var latitude = posicion.coords.latitude;
@@ -27,7 +34,7 @@ function updateGeolocation(){
 	}
 
 	function error(){
-		output.innerHTML = "<p>Could not get your location</p>";
+		output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
 	}
 
 	navigator.geolocation.getCurrentPosition(localizacion,error);

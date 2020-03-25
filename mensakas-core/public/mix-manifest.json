@@ -3,7 +3,10 @@
     "/css/app.css": "/css/app.css",
     "/css/orderStatus.css": "/css/orderStatus.css",
     "/css/filterTable.css": "/css/filterTable.css",
+    "/js/editMessageOrder.js": "/js/editMessageOrder.js",
     "/js/editRiderOrder.js": "/js/editRiderOrder.js",
+    "/js/geolocation.js": "/js/geolocation.js",
     "/js/menuCarrito.js": "/js/menuCarrito.js",
-    "/js/productsCreate.js": "/js/productsCreate.js"
+    "/js/productsCreate.js": "/js/productsCreate.js",
+    "/js/updateGeolocation.js": "/js/updateGeolocation.js"
 }
