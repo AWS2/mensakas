@@ -18,7 +18,7 @@
             }
 
             function error(){
-              output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
+
             }
 
             navigator.geolocation.getCurrentPosition(localizacion,error);
@@ -44,9 +44,10 @@
             @foreach($riders as $rider)
             <tr>
                 <td>
-                    <form action="{{route('simulator.rider.createGeolocation', ['rider'=>$rider['id']])}}" method="post">
+                    <form action="{{route('simulator.rider.updateGeolocation', ['rider'=>$rider['id']])}}" method="post">
                         <input type="hidden" class="lat" name="lat" value="">
                         <input type="hidden" class="lon" name="lon" value="">
+                        <input type="hidden" class="id" name="id_rider_v" value="{{$rider['id']}}">
                         <button type="submit" class="btn btn-success">Geo</button>
                     </form>
                 </td>

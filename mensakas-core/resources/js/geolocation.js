@@ -32,7 +32,7 @@ function geolocation(){
   }
 
   function error(){
-    output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
+    output.innerHTML = "<p>Could not get your location</p>";
   }
 
   navigator.geolocation.getCurrentPosition(localizacion,error);
