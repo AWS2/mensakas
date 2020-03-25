@@ -1,3 +1,5 @@
+console.log('EDIT RIDER ORDER JS');
+
 $(document).ready(main);
 
 //Add event on button #changeRiderButton --- Call function getAllDataRidersAPI();
@@ -21,13 +23,13 @@ function createSelectForChangeRider(jsonRiders) {
 //Function to show and stop showing the button to show the riders,
 //if text button is Select Rider then call a function updateOrCreateRiderOrder(rider_id,order_id); with new data
 function showOrHideRiders() {
-		if($('#changeRiderButton').text()=='Show active riders'){
+		if($('#changeRiderButton').text()=='Select new rider'){
 			$('#selectWithRiders').toggle();
-			$('#changeRiderButton').text('Select Rider');
+			$('#changeRiderButton').text('Confirm rider');
 		}
-		else if($('#changeRiderButton').text()=='Select Rider'){
+		else if($('#changeRiderButton').text()=='Confirm rider'){
 			$('#selectWithRiders').toggle();
-			$('#changeRiderButton').text('Show active riders');
+			$('#changeRiderButton').text('Select new rider');
 			var rider_id = $("#selectWithRiders option:selected").val();
 			var order_id = $("#orderID").val();
 			updateOrCreateRiderOrder(rider_id,order_id);
@@ -38,7 +40,7 @@ function showOrHideRiders() {
 function getAllDataRidersAPI(){
 	$.ajax({
         type: 'GET',
-        url: ' http://localhost:8000/api/mensakas',
+        url: ' http://localhost:8000/api/rider',
         dataType: 'json',
         success: function(data) {
         	createSelectForChangeRider(data['data']);

@@ -16,7 +16,7 @@ class RiderController extends Controller
      */
     public function index()
     {
-        $requestAPIGetAllMensakas = Request::create('api/mensakas', 'GET');
+        $requestAPIGetAllMensakas = Request::create('api/rider', 'GET');
         $requestAPIGetAllMensakas = json_decode(Route::dispatch($requestAPIGetAllMensakas)->getContent(),true);
         $getOnlyDataMensakas = $requestAPIGetAllMensakas['data'];
 

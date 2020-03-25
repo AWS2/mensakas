@@ -6,6 +6,7 @@
 
 @section('script')
 <script src="{{ asset('js/editRiderOrder.js') }} " defer></script>
+<script src="{{ asset('js/editMessageOrder.js') }} " defer></script>
 @endsection
 
 @section('content')
@@ -29,9 +30,11 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="message"><strong>Message:</strong></label>
-                        <input type="text" name="message" id="message"
-                            value="{{$comanda->order->orderStatus->message ?? ''}}">
+                        <label type="text" name="message" id="message">{{$comanda->order->orderStatus->message ?? 'Empty'}}</label>
+                        <input type="text" id="inputMessage"></input>
+                        <a id="addNewMessage" class="btn btn-warning">Add new message</a>
                     </div>
+            
                     <div class="form-group col-md-4">
                         {{-- <label for="status"><strong>Status:</strong></label> --}}
                         {{-- <input name="status" id="status">{{ $comanda->order->orderStatus->status->status ?? 'status not info'}}
@@ -39,6 +42,7 @@
                         <input type="hidden" name="status_id" value="1">
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="row">
@@ -50,7 +54,7 @@
                 <div class="h3" style="opacity:0.7">Delivery</div>
                 <label for="rider"><strong>Rider:</strong></strong></label>
                 <label name="delivery" id="rider" cols=50 rows=10>{{$comanda->order->delivery->rider->username ?? 'Rider not selected'}}</label>
-                <a id="changeRiderButton" class="btn btn-success">Show active riders</a>
+                <a id="changeRiderButton" class="btn btn-warning">Select new rider</a>
             </div>
         </div>
         <div class="h3" style="opacity:0.7"></div>

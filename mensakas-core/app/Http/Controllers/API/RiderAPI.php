@@ -5,13 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Rider;
-class MensakasAPI extends Controller
+class RiderAPI extends Controller
 {
     /**
     * API function that returns a JSON with all mensakas
     * @return JSON
     */
-    public function getAllMensakas()
+    public function getAllRider()
     {
         $dbMensakasAll = Rider::all();
 
