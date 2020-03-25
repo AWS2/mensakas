@@ -70,11 +70,7 @@ Route::get('simulator/rider/{rider}/jobs', 'Simulator\Rider\RiderSimulatorContro
 
 Route::get('simulator/rider/{rider}/geo', 'Simulator\Rider\GeolocationRiderController@geolocation')->name('simulator.rider.geo');
 
-Route::post('simulator/rider/{rider}/createGeolocation', 'Simulator\Rider\GeolocationRiderController@createGeolocation')->name('simulator.rider.createGeolocation');
-
 Route::post('simulator/rider/{rider}/updateGeolocation', 'Simulator\Rider\GeolocationRiderController@updateGeolocation')->name('simulator.rider.updateGeolocation');
-
-Route::post('simulator/rider/{rider}/destryGeolocation', 'Simulator\Rider\GeolocationRiderController@destroyGeolocation')->name('simulator.rider.destroyGeolocation');
 
 // Route::post('simulator/rider', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
 Route::get('/acceptOrder', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
