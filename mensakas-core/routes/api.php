@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('business/{business}/rate', 'API\facturacion\BusinessRateController@retriveBusinessRateByBusinessId');
+
+Route::put('business/rate', 'API\facturacion\BusinessRateController@modifyOrCreateBusinessRate');

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property BusinessCategory[] $businessCategories
  * @property Product[] $products
  * @property Schedule[] $schedules
+ * @property BusinessRate $businessRate
  */
 class Business extends Model
 {
@@ -69,6 +70,14 @@ class Business extends Model
     public function schedules()
     {
         return $this->hasMany('App\Schedule');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function businessRate()
+    {
+        return $this->hasOne('App\BusinessRate');
     }
 
     public function scopeFilter($query, $params)
