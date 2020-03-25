@@ -198,7 +198,7 @@ function updateOrCreateRiderOrder(rider_id, order_id) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/rafa/laravelDev/mensakas/mensakas-core/resources/js/editRiderOrder.js */"./resources/js/editRiderOrder.js");
+module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/editRiderOrder.js */"./resources/js/editRiderOrder.js");
 
 
 /***/ })
