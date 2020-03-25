@@ -23,7 +23,7 @@
                 </td>
 
             </tr>
-            
+
             @foreach($riders as $rider)
             <tr>
                 <td>

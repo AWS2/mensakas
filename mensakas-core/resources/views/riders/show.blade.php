@@ -4,6 +4,10 @@
     @include('layouts.secondNav', ['title' => 'Rider'])
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/geolocation.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div>
