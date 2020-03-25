@@ -14,24 +14,25 @@ class OrderAPI extends Controller
     public function updateMessage(Request $request,$id)
     {
         //
-        $order = OrderStatus::find($id);
+        $order = Order::find($id);
+        $orderMessage = OrderStatus::find($order->order_status_id);
 
         if ($request->message == "") {
             return 'Message null.0';
         }
 
-        if (is_null($order)) {
+        if (is_null($orderMessage)) {
             return 'OrderStatus not found.1';
         }
 
-        if ($order->message == NULL) {
-            $order->message = $request->message;
-            $order->save();
+        if ($orderMessage->message == NULL) {
+            $orderMessage->message = $request->message;
+            $orderMessage->save();
             return 'OrderStatus updated successfully.2';
         }
 
-        $order->message = $order->message." / ".$request->message;
-        $order->save();
+        $orderMessage->message = $orderMessage->message." / ".$request->message;
+        $orderMessage->save();
         return 'OrderStatus updated successfully.3';
     }
 
