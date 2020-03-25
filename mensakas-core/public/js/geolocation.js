@@ -1,4 +1,4 @@
-function Geo(){
+function geolocation(){
   var id_rider = $('#id_rider').val();
   console.log(id_rider);
   $.ajax({
@@ -8,7 +8,7 @@ function Geo(){
         success: function(data) {
             localizacion(data.data[0]);
         }
-    });
+  });
 
   function localizacion(data){
     latitude = parseFloat(data.latitude);
@@ -38,4 +38,4 @@ function Geo(){
   navigator.geolocation.getCurrentPosition(localizacion,error);
 }
 
-google.maps.event.addDomListener(window, 'load', Geo);
+google.maps.event.addDomListener(window, 'load', geolocation);

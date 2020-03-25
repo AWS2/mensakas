@@ -5,7 +5,9 @@
 @endsection
 
 @section('script')
+
 <script src="{{ asset('js/geolocation.js') }} " defer></script>
+
 @endsection
 
 @section('content')
