@@ -16,7 +16,6 @@ class OrderAPI extends Controller
         //
         $order = Order::find($id);
         $orderMessage = OrderStatus::find($order->order_status_id);
-
         if ($request->message == "") {
             return 'Message null.0';
         }
