@@ -11,6 +11,7 @@
 |
 */
 
+
 Auth::routes();
 
 //Menus
@@ -83,3 +84,6 @@ Route::get('simulator/restaurants/{business}', 'Simulator\RestaurantSimulatorCon
 Route::get('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@order')->name('simulator.restaurant.order');
 
 Route::patch('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@preparingOrder')->name('simulator.restaurant.preparing');
+
+//Generate PDF
+Route::get('/download.pdf','GeneratePdfController@downloadPdf')->name('downloadPdf'); 
