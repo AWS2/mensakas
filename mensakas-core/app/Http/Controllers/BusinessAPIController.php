@@ -70,7 +70,7 @@ class BusinessAPIController extends Controller
 
         $validator = Validator::make($input, [
             'name' => 'required',
-            'detail' => 'required'
+            'id' => 'required'
         ]);
 
 
@@ -142,25 +142,15 @@ class BusinessAPIController extends Controller
 
     public function updateBusiness(Request $request, Business $id)
     {
-       $input = $request->all();
-
-
-        $validator = Validator::make($input, [
-            'name' => 'required',
-            'detail' => 'required'
-        ]);
-
-
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
-        }
-
-
-        $business->name = $input['name'];
-        $business->detail = $input['detail'];
+       //I am doing validation here
+        $business = Business::findOrFail($id);
+        $business->name = $request->name;
+        $business->phone = $request->phone;
+        $business->logo = $request->logo;
+        $business->image = $request->image;
         $business->save();
-
-        return response()->json($business ->toArray(), 'Business updated successfully.');
+        
+        return response()->json(['msg' =>'Business update successfully.']);
     }
     /**
      * Remove the specified resource from storage.
@@ -175,10 +165,11 @@ class BusinessAPIController extends Controller
 
     public function destroyBusiness(Business $id)
     {
-         $id->delete();
+         $business= Business::findOrFail($id);
+         $business->delete();
 
 
-        return $this->sendResponse($id->toArray(), 'Business deleted successfully.');
+        return response()->json(['msg' =>'Business deleted successfully.']);
     }
 
     /**

@@ -23,6 +23,7 @@ Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusin
 
 
 //API Business 
+Route::apiResource('business','BusinessAPIController');
 Route::get('business', 'BusinessAPIController@indexBusinessAll');
 Route::get('business/{id}', 'BusinessAPIController@showBusiness');
 Route::post('business', 'BusinessAPIController@createBusiness');
