@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use App\Business;
 
 class BusinessAPIController extends Controller
@@ -244,6 +245,45 @@ class BusinessAPIController extends Controller
         'status' => 200,
         'msg' => 'OK',
         'products' => $businessProducts
+      ])->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * API function that returns a JSON with the businesses filtered by a column and a value.
+     * Example: http://localhost:8000/api/businesses/filter/active/1 ("active" -> column, "1" -> value)
+     * The filter for the columns "name" and "phone" it's a "contain" filter.
+     * @param String $column
+     * @param String $value
+     * @return JSON
+     */
+    public function filterBusinesses($column, $value)
+    {
+      $dbBusinessColumns = Schema::getColumnListing('business');
+      if (!in_array($column, $dbBusinessColumns)) {
+        return response()->json([
+          'status' => 404,
+          'msg' => 'Column '.$column.' doesn\'t exist'
+        ])->header('Content-Type', 'application/json');
+      }
+
+      if ($column == 'name' || $column == 'phone') {
+        $dbBusinessFiltered = Business::where($column, 'LIKE' , '%'.$value.'%')->get();
+      } else {
+        $dbBusinessFiltered = Business::where($column, $value)->get();
+      }
+      $dbBusinessFiltered->makeHidden(['created_at', 'updated_at']);
+
+      if (count($dbBusinessFiltered) == 0) {
+        return response()->json([
+          'status' => 404,
+          'msg' => 'No businesses found'
+        ])->header('Content-Type', 'application/json');
+      }
+
+      return response()->json([
+        'status' => 200,
+        'msg' => 'OK',
+        'businesses' => $dbBusinessFiltered
       ])->header('Content-Type', 'application/json');
     }
 }

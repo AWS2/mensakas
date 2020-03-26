@@ -21,6 +21,8 @@ Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesB
 
 Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');
 
+Route::get('businesses/filter/{column}/{value}', 'BusinessAPIController@filterBusinesses');
+
 Route::get('businesses', 'BusinessAPIController@getBusinessesSimulation');
 
 
