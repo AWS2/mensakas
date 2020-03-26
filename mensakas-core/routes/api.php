@@ -20,3 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesByZipcode');
 
 Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');
+
+
+//API Business 
+Route::get('business', 'BusinessAPIController@indexBusinessAll');
+Route::get('business/{id}', 'BusinessAPIController@showBusiness');
+Route::post('business', 'BusinessAPIController@createBusiness');
+Route::put('business/{id}', 'BusinessAPIController@updateBusiness');
+Route::delete('business/{id}', 'BusinessAPIController@delete');

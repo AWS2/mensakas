@@ -12,9 +12,20 @@ class BusinessAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexBusinessAll()
     {
-        //
+        $businessAll = Business::all();
+
+        if (is_null($businessAll)) {
+            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
+            return response()->json($response, 404);
+        }
+
+        $BusinessArray = $businessAll->toArray();
+
+        $response = ['success' => true,'data' => $BusinessArray,'message' => 'Business retrieved successfully.'];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
     /**
@@ -24,7 +35,21 @@ class BusinessAPIController extends Controller
      */
     public function create()
     {
-        //
+        
+       //
+    }
+
+     public function createBusiness()
+    {
+        
+        /*$business = new Business;
+        $business->name = $request->name;
+        $business->phone = $request->phone;
+        $business->logo = $request->logo;
+        $business->image = $request->image;
+        $business->active = $request->active;
+        $business->save();
+        return 'Business created successfully.';*/
     }
 
     /**
@@ -35,9 +60,30 @@ class BusinessAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
+    public function storeBusiness(Request $request)
+    {
+       $input = $request->all();
+
+
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'detail' => 'required'
+        ]);
+
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());       
+        }
+
+
+        $business = Business::create($input);
+
+
+        return $this->sendResponse($business->toArray(), 'Bussiness created successfully.');
+    }
     /**
      * Display the specified resource.
      *
@@ -49,6 +95,24 @@ class BusinessAPIController extends Controller
         //
     }
 
+    public function showBusiness(Business $id)
+    {
+        $businessShow = Business::find($id);
+
+
+        if (is_null($businessShow)) {
+            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
+            return response()->json($response, 404);
+        }
+
+        $BusinessArrayShow = $businessShow->toArray();
+
+        $response = ['success' => true,'data' => $BusinessArrayShow,'message' => 'Business retrieved successfully.'];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+
+        /*return $this->sendResponse($businessShow->toArray(), 'Business retrieved successfully.');*/
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -60,6 +124,10 @@ class BusinessAPIController extends Controller
         //
     }
 
+    public function editBusines($id)
+    {
+        //
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -72,6 +140,28 @@ class BusinessAPIController extends Controller
         //
     }
 
+    public function updateBusiness(Request $request, Business $id)
+    {
+       $input = $request->all();
+
+
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'detail' => 'required'
+        ]);
+
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());       
+        }
+
+
+        $business->name = $input['name'];
+        $business->detail = $input['detail'];
+        $business->save();
+
+        return response()->json($business ->toArray(), 'Business updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +171,14 @@ class BusinessAPIController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function destroyBusiness(Business $id)
+    {
+         $id->delete();
+
+
+        return $this->sendResponse($id->toArray(), 'Business deleted successfully.');
     }
 
     /**
