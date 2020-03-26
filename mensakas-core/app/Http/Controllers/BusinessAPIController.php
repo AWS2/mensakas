@@ -142,15 +142,19 @@ class BusinessAPIController extends Controller
 
     public function updateBusiness(Request $request, Business $id)
     {
-       //I am doing validation here
-        $business = Business::findOrFail($id);
-        $business->name = $request->name;
-        $business->phone = $request->phone;
-        $business->logo = $request->logo;
-        $business->image = $request->image;
+       if (Business::where('id', $id)->exists()) {
+        $business = Business::find($id);
+        $business->name = is_null($request->name) ? $business->name : $request->name;
+        $business->phone = is_null($request->phone) ? $business->phone : $request->phone;
+        $business->logo = is_null($request->logo) ? $business->logo : $request->logo;
+        $business->image = is_null($request->image) ? $business->image : $request->image;
         $business->save();
+
+        return response()->json(["message" => "records updated successfully"], 200);
+        } else {
+        return response()->json(["message" => "Business not found"], 404);
         
-        return response()->json(['msg' =>'Business update successfully.']);
+    }
     }
     /**
      * Remove the specified resource from storage.
