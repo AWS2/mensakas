@@ -47,8 +47,9 @@ class BusinessAPIController extends Controller
         $business->phone = $request->phone;
         $business->logo = $request->logo;
         $business->image = $request->image;
+        $business->active = $request->active;
         $business->save();
-        return 'Business created successfully.';
+        return response()->json(['message'=>'Business created successfully.'],200)->header('Content-Type', 'application/json');
 
 
     }
@@ -194,7 +195,7 @@ class BusinessAPIController extends Controller
      */
 
 
-    public function getBusinessesSimalation()
+    public function getBusinessesSimulation()
     {
         $businessAllSimulation = Business::all();
 
