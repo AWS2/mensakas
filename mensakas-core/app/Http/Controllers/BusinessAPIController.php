@@ -39,17 +39,18 @@ class BusinessAPIController extends Controller
        //
     }
 
-     public function createBusiness()
+     public function createBusiness(Request $request)
     {
         
-        /*$business = new Business;
+        $business = new Business;
         $business->name = $request->name;
         $business->phone = $request->phone;
         $business->logo = $request->logo;
         $business->image = $request->image;
-        $business->active = $request->active;
         $business->save();
-        return 'Business created successfully.';*/
+        return 'Business created successfully.';
+
+
     }
 
     /**
@@ -152,10 +153,6 @@ class BusinessAPIController extends Controller
     }
     }
 
-    public function updateBusiness(Request $request, Business $id)
-    {
-       
-    }
     /**
      * Remove the specified resource from storage.
      *
