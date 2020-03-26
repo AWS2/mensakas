@@ -21,6 +21,8 @@ Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesB
 
 Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');
 
+Route::get('businesses', 'BusinessAPIController@getBusinessesSimalation');
+
 
 //API Business 
 Route::apiResource('business','BusinessAPIController');

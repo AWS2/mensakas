@@ -21,9 +21,9 @@ class BusinessAPIController extends Controller
             return response()->json($response, 404);
         }
 
-        $BusinessArray = $businessAll->toArray();
+        $businessArray = $businessAll->toArray();
 
-        $response = ['success' => true,'data' => $BusinessArray,'message' => 'Business retrieved successfully.'];
+        $response = ['success' => true,'data' => $businessArray,'message' => 'Business retrieved successfully.'];
 
         return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
@@ -106,9 +106,9 @@ class BusinessAPIController extends Controller
             return response()->json($response, 404);
         }
 
-        $BusinessArrayShow = $businessShow->toArray();
+        $businessArrayShow = $businessShow->toArray();
 
-        $response = ['success' => true,'data' => $BusinessArrayShow,'message' => 'Business retrieved successfully.'];
+        $response = ['success' => true,'data' => $businessArrayShow,'message' => 'Business retrieved successfully.'];
 
         return response()->json($response, 200)->header('Content-Type', 'application/json');
 
@@ -192,6 +192,28 @@ class BusinessAPIController extends Controller
      * @param Integer $id
      * @return JSON
      */
+
+
+    public function getBusinessesSimalation()
+    {
+        $businessAllSimulation = Business::all();
+
+        if (is_null($businessAllSimulation)) {
+            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
+            return response()->json($response, 404);
+        }
+
+        $businessArraySimulation = $businessAllSimulation->toArray();
+
+        $response = ['success' => true,'data' => $businessArraySimulation,'message' => 'Business retrieved successfully.'];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+
+
+
+
     public function getProductsOfBusiness($id)
     {
       $dbBusiness = Business::find($id);
