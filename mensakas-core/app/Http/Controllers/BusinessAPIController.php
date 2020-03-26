@@ -137,12 +137,7 @@ class BusinessAPIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
-
-    public function updateBusiness(Request $request, Business $id)
-    {
-       if (Business::where('id', $id)->exists()) {
+        if (Business::where('id', $id)->exists()) {
         $business = Business::find($id);
         $business->name = is_null($request->name) ? $business->name : $request->name;
         $business->phone = is_null($request->phone) ? $business->phone : $request->phone;
@@ -150,11 +145,16 @@ class BusinessAPIController extends Controller
         $business->image = is_null($request->image) ? $business->image : $request->image;
         $business->save();
 
-        return response()->json(["message" => "records updated successfully"], 200);
+        return response()->json(["message" => "Business updated successfully"], 200);
         } else {
         return response()->json(["message" => "Business not found"], 404);
         
     }
+    }
+
+    public function updateBusiness(Request $request, Business $id)
+    {
+       
     }
     /**
      * Remove the specified resource from storage.
