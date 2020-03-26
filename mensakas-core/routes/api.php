@@ -17,21 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//API Business
+Route::apiResource('businesses','BusinessAPIController');
 Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesByZipcode');
-
 Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');
-
 Route::get('businesses/filter/{column}/{value}', 'BusinessAPIController@filterBusinesses');
-
-Route::get('businesses', 'BusinessAPIController@getBusinessesSimulation');
-
-
-//API Business 
-Route::apiResource('business','BusinessAPIController');
-Route::get('business', 'BusinessAPIController@indexBusinessAll');
-Route::get('business/{id}', 'BusinessAPIController@showBusiness');
-Route::post('business', 'BusinessAPIController@createBusiness');
-Route::put('business/{id}', 'BusinessAPIController@updateBusiness');
-Route::delete('business/{id}', 'BusinessAPIController@delete');
-
 Route::apiResource('products', 'ProductAPIController');

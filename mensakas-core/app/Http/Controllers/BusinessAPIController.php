@@ -13,12 +13,12 @@ class BusinessAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexBusinessAll()
+    public function index()
     {
         $businessAll = Business::all();
 
         if (is_null($businessAll)) {
-            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
+            $response = ['success' => false,'data' => 'Empty','message' => 'Business not found.'];
             return response()->json($response, 404);
         }
 
@@ -30,19 +30,13 @@ class BusinessAPIController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function store(Request $request)
     {
-        
-       //
-    }
-
-     public function createBusiness(Request $request)
-    {
-        
         $business = new Business;
         $business->name = $request->name;
         $business->phone = $request->phone;
@@ -51,42 +45,8 @@ class BusinessAPIController extends Controller
         $business->active = $request->active;
         $business->save();
         return response()->json(['message'=>'Business created successfully.'],200)->header('Content-Type', 'application/json');
-
-
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-       
-    }
-
-    public function storeBusiness(Request $request)
-    {
-       $input = $request->all();
-
-
-        $validator = Validator::make($input, [
-            'name' => 'required',
-            'id' => 'required'
-        ]);
-
-
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
-        }
-
-
-        $business = Business::create($input);
-
-
-        return $this->sendResponse($business->toArray(), 'Bussiness created successfully.');
-    }
     /**
      * Display the specified resource.
      *
@@ -95,16 +55,11 @@ class BusinessAPIController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    public function showBusiness(Business $id)
-    {
         $businessShow = Business::find($id);
 
 
         if (is_null($businessShow)) {
-            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
+            $response = ['success' => false,'data' => 'Empty','message' => 'Business not found.'];
             return response()->json($response, 404);
         }
 
@@ -113,24 +68,8 @@ class BusinessAPIController extends Controller
         $response = ['success' => true,'data' => $businessArrayShow,'message' => 'Business retrieved successfully.'];
 
         return response()->json($response, 200)->header('Content-Type', 'application/json');
-
-        /*return $this->sendResponse($businessShow->toArray(), 'Business retrieved successfully.');*/
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
-    public function editBusines($id)
-    {
-        //
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -141,18 +80,17 @@ class BusinessAPIController extends Controller
     public function update(Request $request, $id)
     {
         if (Business::where('id', $id)->exists()) {
-        $business = Business::find($id);
-        $business->name = is_null($request->name) ? $business->name : $request->name;
-        $business->phone = is_null($request->phone) ? $business->phone : $request->phone;
-        $business->logo = is_null($request->logo) ? $business->logo : $request->logo;
-        $business->image = is_null($request->image) ? $business->image : $request->image;
-        $business->save();
+          $business = Business::find($id);
+          $business->name = is_null($request->name) ? $business->name : $request->name;
+          $business->phone = is_null($request->phone) ? $business->phone : $request->phone;
+          $business->logo = is_null($request->logo) ? $business->logo : $request->logo;
+          $business->image = is_null($request->image) ? $business->image : $request->image;
+          $business->save();
 
-        return response()->json(["message" => "Business updated successfully"], 200);
+          return response()->json(["message" => "Business updated successfully"], 200);
         } else {
-        return response()->json(["message" => "Business not found"], 404);
-        
-    }
+          return response()->json(["message" => "Business not found"], 404);
+        }
     }
 
     /**
@@ -163,14 +101,8 @@ class BusinessAPIController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function destroyBusiness(Business $id)
-    {
-         $business= Business::findOrFail($id);
-         $business->delete();
-
+        $business= Business::findOrFail($id);
+        $business->delete();
 
         return response()->json(['msg' =>'Business deleted successfully.']);
     }
@@ -194,28 +126,6 @@ class BusinessAPIController extends Controller
      * @param Integer $id
      * @return JSON
      */
-
-
-    public function getBusinessesSimulation()
-    {
-        $businessAllSimulation = Business::all();
-
-        if (is_null($businessAllSimulation)) {
-            $response = ['success' => false,'data' => 'Empty','message' => 'Comanda not found.'];
-            return response()->json($response, 404);
-        }
-
-        $businessArraySimulation = $businessAllSimulation->toArray();
-
-        $response = ['success' => true,'data' => $businessArraySimulation,'message' => 'Business retrieved successfully.'];
-
-        return response()->json($response, 200)->header('Content-Type', 'application/json');
-    }
-
-
-
-
-
     public function getProductsOfBusiness($id)
     {
       $dbBusiness = Business::find($id);
