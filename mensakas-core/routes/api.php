@@ -31,3 +31,5 @@ Route::get('business/{id}', 'BusinessAPIController@showBusiness');
 Route::post('business', 'BusinessAPIController@createBusiness');
 Route::put('business/{id}', 'BusinessAPIController@updateBusiness');
 Route::delete('business/{id}', 'BusinessAPIController@delete');
+
+Route::apiResource('products', 'ProductAPIController');
