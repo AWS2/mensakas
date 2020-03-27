@@ -22,6 +22,11 @@ class BusinessAPIController extends Controller
             return response()->json($response, 404);
         }
 
+        foreach ($businessAll as $business) {
+          $businessAddress = $business->businessAddresses;
+          $businessAddress->makeHidden(['id', 'business_id', 'created_at', 'updated_at']);
+        }
+
         $businessArray = $businessAll->toArray();
 
         $response = ['success' => true,'data' => $businessArray,'message' => 'Business retrieved successfully.'];
@@ -44,6 +49,15 @@ class BusinessAPIController extends Controller
         $business->image = $request->image;
         $business->active = $request->active;
         $business->save();
+
+        $businessAddress = new BusinessAddress();
+        $businessAddress->city = $request->city;
+        $businessAddress->zip_code = $request->zip_code;
+        $businessAddress->street = $request->street;
+        $businessAddress->number = $request->number;
+        $businessAddress->business_id = $business->id;
+        $businessAddress->save();
+
         return response()->json(['message'=>'Business created successfully.'],200)->header('Content-Type', 'application/json');
     }
 
@@ -62,6 +76,11 @@ class BusinessAPIController extends Controller
             $response = ['success' => false,'data' => 'Empty','message' => 'Business not found.'];
             return response()->json($response, 404);
         }
+
+        $schedules = $businessShow->schedules;
+        $schedules->makeHidden(['id', 'business_id', 'created_at', 'updated_at']);
+        $businessAddress = $businessShow->businessAddresses;
+        $businessAddress->makeHidden(['id', 'business_id', 'created_at', 'updated_at']);
 
         $businessArrayShow = $businessShow->toArray();
 
@@ -85,7 +104,12 @@ class BusinessAPIController extends Controller
           $business->phone = is_null($request->phone) ? $business->phone : $request->phone;
           $business->logo = is_null($request->logo) ? $business->logo : $request->logo;
           $business->image = is_null($request->image) ? $business->image : $request->image;
-          $business->save();
+          $businessAddress = $business->businessAddresses;
+          $businessAddress->city = is_null($request->city) ? $businessAddress->city : $request->city;
+          $businessAddress->zip_code = is_null($request->zip_code) ? $businessAddress->zip_code : $request->zip_code;
+          $businessAddress->street = is_null($request->street) ? $businessAddress->street : $request->street;
+          $businessAddress->number = is_null($request->number) ? $businessAddress->number : $request->number;
+          $business->push();
 
           return response()->json(["message" => "Business updated successfully"], 200);
         } else {
@@ -116,8 +140,20 @@ class BusinessAPIController extends Controller
     {
         $dbBusinessZipcode = Business::join('business_address', 'business.id', '=', 'business_address.business_id')
                                       ->where('zip_code', '=', $zipcode)->get();
+        $dbBusinessZipcode->makeHidden(['created_at', 'updated_at']);
 
-        return response()->json($dbBusinessZipcode)->header('Content-Type', 'application/json');
+        if (count($dbBusinessZipcode) == 0) {
+          return response()->json([
+            'status' => 404,
+            'msg' => 'No businesses found on zipcode '.$zipcode
+          ])->header('Content-Type', 'application/json');
+        }
+
+        return response()->json([
+          'status' => 200,
+          'msg' => 'OK',
+          'businesses' => $dbBusinessZipcode
+        ])->header('Content-Type', 'application/json');
     }
 
     /**
@@ -188,6 +224,11 @@ class BusinessAPIController extends Controller
           'status' => 404,
           'msg' => 'No businesses found'
         ])->header('Content-Type', 'application/json');
+      }
+
+      foreach ($dbBusinessFiltered as $business) {
+        $businessAddress = $business->businessAddresses;
+        $businessAddress->makeHidden(['id', 'business_id', 'created_at', 'updated_at']);
       }
 
       return response()->json([
