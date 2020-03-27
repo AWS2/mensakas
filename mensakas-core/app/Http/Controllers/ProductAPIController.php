@@ -138,7 +138,7 @@ class ProductAPIController extends Controller
         $product->image = is_null($request->image) ? $product->image : $request->image;
         $product->productDescriptions->descriptionTranslations[0]->name = is_null($request->name) ? $product->productDescriptions->descriptionTranslations[0]->name : $request->name;
         $product->productDescriptions->descriptionTranslations[0]->description = is_null($request->description) ? $product->productDescriptions->descriptionTranslations[0]->description : $request->description;
-        $product->save();
+        $product->push();
 
         return response()->json([
           'status' => 200,
