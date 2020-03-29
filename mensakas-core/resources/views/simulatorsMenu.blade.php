@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-
 <div class="mt-5 pt-5 border">
-<a href="{{route('downloadPdf')}}">Hola</a>
     <div class="card-deck ml-3 mr-3 pt-4">
         <div class="card onclick=location.href='/simulator/comanda'">
             <a href="/simulator/comanda">
