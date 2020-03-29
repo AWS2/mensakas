@@ -24,3 +24,4 @@ Route::get('business/{business}/invoice', 'API\facturacion\BusinessinvoiceContro
 Route::get('invoice/{invoice}', 'API\facturacion\BusinessinvoiceController@retriveBusinessInvoicesById');
 Route::patch('invoice/{invoice}', 'API\facturacion\BusinessinvoiceController@changeInvoiceStatus');
 Route::post('business/{business}/invoice', 'API\facturacion\BusinessinvoiceController@genereteInvoiceToBusiness');
+Route::get('invoice/{invoice}/download','API\facturacion\BusinessinvoiceController@downloadInvoice');

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Business;
 use App\BusinessInvoice;
-use App\BusinessRate;
 use App\Http\Controllers\API\ApiResponse;
 
 
@@ -53,6 +52,26 @@ class BusinessInvoiceController extends Controller
         }
 
         return ApiResponse::OKResponse(self::changeStatus($invoice, $request["status"]));
+    }
+
+    public function downloadInvoice(BusinessInvoice $invoice)
+    {   
+        $invoiceId  = $invoice->id;
+        $businessName = $invoice->business->name;
+        $businessPhone = $invoice->business->phone;
+        $businessAdress = $invoice->business->businessAddresses->street;
+        $amount = $invoice->amount;
+        $status = $invoice->status;
+        $pdf = \PDF::loadView('pdfTemplate.businessInvoice',array(
+            'amount' => $amount,
+            'status' => $status,
+            'businessName' => $businessName,
+            'businessPhone' => $businessPhone,
+            'businessAdress' => $businessAdress,
+            'invoiceId' => $invoiceId));
+        $fileName = $businessName.$invoiceId;
+        return $pdf->download("$fileName.pdf");
+        
     }
 
     private function genereateInvoice($business, $amount)
