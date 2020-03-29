@@ -80,6 +80,15 @@ class Business extends Model
         return $this->hasOne('App\BusinessRate');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function businessInvoices()
+    {
+        return $this->hasMany('App\BusinessInvoice');
+    }
+
+
     public function scopeFilter($query, $params)
     {
         if (isset($params['status']) && trim($params['status'] !== '')) {

@@ -15,41 +15,68 @@ use App\Http\Controllers\API\ApiResponse;
 
 class BusinessInvoiceController extends Controller
 {
-    public function retriveBusinessRateByBusinessId(Business $business)
+    public function retriveBusinessInvoicesByBusinessId(Business $business)
     {
-        return ApiResponse::OKResponse($business->businessRate);
+        return ApiResponse::OKResponse($business->businessInvoices);
     }
 
-    public function modifyOrCreateBusinessRate(Request $request)
+    public function retriveBusinessInvoicesById(BusinessInvoice $invoice)
+    {
+        return ApiResponse::OKResponse($invoice);
+    }
+
+    public function genereteInvoiceToBusiness(Business $business, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "business_id" => "required",
-            "fixed_rate" => "required|float|max:99",
-            "percentage_rate"  => "required|float|max:99",
+            "orderAmount" => "required|numeric|max:99",
         ]);
         if ($validator->fails()) {
             return ApiResponse::BadRequestResponse($validator->errors());
         }
 
-        if (!self::existsBusinessById($request["business_id"])) {
-            ApiResponse::NotFoundResponse("There is no business with this ID");
+        if (is_null($business->businessRate)) {
+            return ApiResponse::NotFoundResponse("This Business dont have any rante yet");
         }
 
-        return ApiResponse::OKResponse(self::createOrModifyBusinessRate($request["business_id"], $request["fixed_rate"], $request["percentage_rate"]));
+        $invoiceAmount = self::getInvoiceAmount($business->businessRate, $request["orderAmount"]);
+
+        return ApiResponse::OKResponse(self::genereateInvoice($business, $invoiceAmount));
     }
 
-    private function existsBusinessById($businessId)
+    public function changeInvoiceStatus(BusinessInvoice $invoice, Request $request)
     {
-        return !is_null(Business::find($businessId));
+        $validator = Validator::make($request->all(), [
+            "status" => "required|in:UNPAID,PAID",
+        ]);
+        if ($validator->fails()) {
+            return ApiResponse::BadRequestResponse($validator->errors());
+        }
+
+        return ApiResponse::OKResponse(self::changeStatus($invoice, $request["status"]));
     }
 
-    private function createOrModifyBusinessRate($businessId, $fixedRate, $percentageRate)
+    private function genereateInvoice($business, $amount)
     {
-        $businessRate = BusinessRate::firstOrNew(['business_id' => $businessId]);
-        $businessRate->fixed_rate = $fixedRate;
-        $businessRate->percentage_rate = $percentageRate;
+        $businessInvoice = new BusinessInvoice();
+        $businessInvoice->business_id = $business->id;
+        $businessInvoice->amount = $amount;
+        $businessInvoice->status = "UNPAID";
 
-        $businessRate->save();
-        return $businessRate;
+        $businessInvoice->save();
+
+        return $businessInvoice;
+    }
+
+    private function getInvoiceAmount($businessRate, $orderAmount)
+    {
+        return $businessRate->fixed_rate + ($businessRate->percentage_rate / 100) * $orderAmount;
+    }
+
+    private function changeStatus($businessInvoice, $status)
+    {
+        $businessInvoice->status = $status;
+        $businessInvoice->save();
+
+        return $businessInvoice;
     }
 }

@@ -31,7 +31,7 @@ class BusinessRateController extends Controller
         }
 
         if (!self::existsBusinessById($request["business_id"])) {
-            ApiResponse::NotFoundResponse("There is no business with this ID");
+            return ApiResponse::NotFoundResponse("There is no business with this ID");
         }
 
         return ApiResponse::OKResponse(self::createOrModifyBusinessRate($request["business_id"], $request["fixed_rate"], $request["percentage_rate"]));
