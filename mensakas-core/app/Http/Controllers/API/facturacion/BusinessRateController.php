@@ -23,10 +23,9 @@ class BusinessRateController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "business_id" => "required",
-            "fixed_rate" => "required",
-            "percentage_rate"  => "required",
+            "fixed_rate" => "required|integer|max:99",
+            "percentage_rate"  => "required|integer|max:99",
         ]);
-
         if ($validator->fails()) {
             return ApiResponse::BadRequestResponse($validator->errors());
         }
