@@ -111,7 +111,7 @@ function geolocation() {
     console.log(latitude);
     console.log(longitude);
 
-    if (latitude == null || longitude == null) {
+    if (isNaN(latitude) || isNaN(longitude)) {
       $('#map').text('The rider is out of service').css({
         "text-align": "center",
         "line-height": "300px",
@@ -134,8 +134,6 @@ function geolocation() {
       });
     }
   }
-
-  navigator.geolocation.getCurrentPosition(localizacion);
 }
 
 google.maps.event.addDomListener(window, 'load', geolocation);

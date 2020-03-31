@@ -30,8 +30,5 @@ function geolocation(){
         });
     }
   }
-
-  navigator.geolocation.getCurrentPosition(localizacion);
 }
-
 google.maps.event.addDomListener(window, 'load', geolocation);
