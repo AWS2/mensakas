@@ -62,4 +62,3 @@ function removeProduct(e){
     $('.totalShopping').val(totalPrice.toFixed(2));
 
 }
-

@@ -35,33 +35,27 @@ class RiderAPI extends Controller
         return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
-    public function create()
+    public function showRider($id)
     {
-        
-    }
+        $dbMensaka = Rider::find($id);
 
-    public function store(Request $request)
-    {
-        
-    }
+        if (is_null($dbMensaka)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Mensaka not found.'
+            ];
+            return response()->json($response, 404);
+        }
 
-    public function show($id)
-    {
-        
-    }
+        $dbMensakaArray = $dbMensaka->toArray();
 
-    public function edit($id)
-    {
-        
-    }
+        $response = [
+            'success' => true,
+            'data' => $dbMensakaArray,
+            'message' => 'Mensaka retrieved successfully.'
+        ];
 
-    public function update(Request $request, $id)
-    {
-        
-    }
-
-    public function destroy($id)
-    {
-        
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 }

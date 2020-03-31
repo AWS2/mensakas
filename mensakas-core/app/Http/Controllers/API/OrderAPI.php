@@ -13,65 +13,100 @@ class OrderAPI extends Controller
 
     public function updateMessage(Request $request,$id)
     {
-        //
         $order = Order::find($id);
         $orderMessage = OrderStatus::find($order->order_status_id);
         if ($request->message == "") {
-            return 'Message null.0';
+            return 'Message null.';
         }
 
         if (is_null($orderMessage)) {
-            return 'OrderStatus not found.1';
+            return 'OrderStatus not found.';
         }
 
         if ($orderMessage->message == NULL) {
             $orderMessage->message = $request->message;
             $orderMessage->save();
-            return 'OrderStatus updated successfully.2';
+            return 'Added successfully.';
         }
 
         $orderMessage->message = $orderMessage->message." / ".$request->message;
         $orderMessage->save();
-        return 'OrderStatus updated successfully.3';
+        return 'Updated successfully.';
     }
 
-    public function deleteMessage($id)
+    public function deleteMessage(Request $request,$id)
     {
-        //
+        $order = Order::find($id);
+        $orderMessage = OrderStatus::find($order->order_status_id);
+
+        if (is_null($orderMessage)) {
+            return ['Message not found.'];
+        }
+
+        if ($orderMessage->message == NULL) {
+            return ['Message already empty.'];
+        }
+        
+        $new_string = explode("/", $orderMessage->message);
+        if (count($new_string)<=1) {
+            $orderMessage->message = NULL;
+            $message = "Empty";
+        }else{
+            $last_part = $new_string[count($new_string)-1];
+            $last_part = "/".$last_part;
+            $message = str_replace($last_part, "", $orderMessage->message);
+            $orderMessage->message = $message;
+        }
+
+        $orderMessage->save();
+        return ['Message deleted successfully.',$message];
     }
 
-    public function index()
+    public function getAllOrders()
     {
-        //
+        $dbOrderAll = Order::all();
+
+        if (is_null($dbOrderAll)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrderAll->toArray();
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message' => 'Order retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
-    public function create()
+    public function showOrder($id)
     {
-        //
-    }
+        $dbOrder = Order::find($id);
 
-    public function store(Request $request)
-    {
-        //
-    }
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
 
-    public function show($id)
-    {
-        //
-    }
+        $dbOrderArray = $dbOrder->toArray();
 
-    public function edit($id)
-    {
-        //
-    }
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message' => 'Order retrieved successfully.'
+        ];
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 }

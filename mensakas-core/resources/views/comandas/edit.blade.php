@@ -28,13 +28,10 @@
             <div class="col-6 mx-auto">
                 <div class="h3" style="opacity:0.7">Status</div>
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="col-md-4">
                         <label for="message"><strong>Message:</strong></label>
                         <label type="text" name="message" id="message">{{$comanda->order->orderStatus->message ?? 'Empty'}}</label>
-                        <input type="text" id="inputMessage"></input>
-                        <a id="addNewMessage" class="btn btn-warning">Add new message</a>
                     </div>
-            
                     <div class="form-group col-md-4">
                         {{-- <label for="status"><strong>Status:</strong></label> --}}
                         {{-- <input name="status" id="status">{{ $comanda->order->orderStatus->status->status ?? 'status not info'}}
@@ -42,7 +39,11 @@
                         <input type="hidden" name="status_id" value="1">
                     </div>
                 </div>
-
+                <label id="newMessage"><strong>New message:</strong></label>
+                <input type="text" id="inputMessage"></input>
+                <a id="addNewMessage" class="btn btn-warning">New message</a>
+                <a id="deleteMessages" style="color: white;" class="btn btn-danger" >Delete message</a>
+                <div class="h3" style="opacity:0.7"></div>
             </div>
         </div>
         <div class="row">
@@ -54,18 +55,24 @@
                 <div class="h3" style="opacity:0.7">Delivery</div>
                 <label for="rider"><strong>Rider:</strong></strong></label>
                 <label name="delivery" id="rider" cols=50 rows=10>{{$comanda->order->delivery->rider->username ?? 'Rider not selected'}}</label>
-                <a id="changeRiderButton" class="btn btn-warning">Select new rider</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <label id="newRider"><strong>Select new Rider:</strong></label>
+                <a id="changeRiderButton" class="btn btn-warning">New rider</a>
             </div>
         </div>
         <div class="h3" style="opacity:0.7"></div>
-        <div class="col-6 mx-auto row">
-            <div class="mr-2">
-                <button type="submit" class="btn btn-primary">Update</button>
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <div class="mr-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+                </div>
             </div>
+        </div>
     </form>
-    <div>
-        <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
-    </div>
 </div>
 </form>
 </div>
