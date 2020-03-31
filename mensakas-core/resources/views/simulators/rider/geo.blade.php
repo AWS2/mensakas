@@ -27,6 +27,7 @@
                 map: map,
                 title: 'My location'
               });
+
             }
 
             navigator.geolocation.getCurrentPosition(localizacion);
