@@ -6,6 +6,7 @@
 
 @section('script')
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>
         function updateGeolocation(){
             function localizacion(posicion){
@@ -21,6 +22,32 @@
         }
 
         google.maps.event.addDomListener(window, 'load', updateGeolocation);
+
+        $(document).ready(getAllDataRidersAPI);
+
+        function getAllDataRidersAPI(){
+            $.ajax({
+                type: 'GET',
+                url: '/api/rider',
+                dataType: 'json',
+                success: function(data) {
+                    var jsonDataRiders = data['data'];
+                    addDataTable(jsonDataRiders);
+                }
+            });
+        }
+
+        function addDataTable (jsonDataRiders) {
+            $.each(jsonDataRiders,function(index, value) {
+                if (value.active == 1) {
+                    $('#tr'+value.id).append('<td>'+value.first_name+'</td>');
+                    $('#tr'+value.id).append('<td>'+value.last_name+'</td>');
+                    $('#tr'+value.id).append('<td>'+value.username+'</td>');
+                }else if (value.active == 0){
+                    $('#tr'+value.id).toggle();
+                }
+            });
+        }
     </script>
 @endsection
 
@@ -38,7 +65,7 @@
             </tr>
 
             @foreach($riders as $rider)
-            <tr>
+            <tr id="tr{{$rider['id']}}">
                 <td>
                     <form action="{{route('simulator.rider.updateGeolocation', ['rider'=>$rider['id']])}}" method="post">
                         <input type="hidden" class="lat" name="lat" value="">
@@ -53,9 +80,6 @@
                     </form>
 
                 </td>
-                <td>{{$rider->first_name}}</td>
-                <td>{{$rider->last_name}}</td>
-                <td>{{$rider->username}}</td>
             </tr>
             @endforeach
         </table>
