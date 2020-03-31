@@ -13,10 +13,7 @@ function main() {
 }
 
 function deleteMessage() {
-    console.log('Delete Message');
     if (confirm('Are you sure?')) {
-        console.log('si');
-        // var strMessage = textMessage;
         var intOrderId = $("#orderID").val();
         $.ajax({
             type: 'POST',

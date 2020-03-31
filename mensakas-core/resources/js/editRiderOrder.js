@@ -54,7 +54,7 @@ function showOrHideRiders() {
 function getAllDataRidersAPI(){
 	$.ajax({
         type: 'GET',
-        url: ' http://localhost:8000/api/rider',
+        url: '/api/rider',
         dataType: 'json',
         success: function(data) {
         	var jsonDataRiders = data['data'];
