@@ -15,7 +15,7 @@ function geolocation(){
     longitude = parseFloat(data.longitude);
     console.log(latitude);
     console.log(longitude);
-    if (latitude == null || longitude == null) {
+    if (isNaN(latitude) || isNaN(longitude)) {
         $('#map').text('The rider is out of service').css({"text-align":"center" , "line-height":"300px" , "font-size":"200%"});
     }else {
         var myLatLng = {lat: latitude, lng: longitude};
