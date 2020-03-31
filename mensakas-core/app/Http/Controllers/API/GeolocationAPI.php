@@ -51,7 +51,20 @@ class GeolocationAPI extends Controller {
         }
     }
 
-    
+    public function updateGeolocation(Request $request, $id) {
+        $rider = Rider::find($id);
+        $dbLocation = Location::find($rider->locations->id);
+
+        $dbLocation->latitude = $request->latitude;
+        $dbLocation->longitude = $request->longitude;
+
+        $dbLocation->save();
+
+        return 'update lon and let';
+
+    }
+
+
 
 
 
