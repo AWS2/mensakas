@@ -5,6 +5,7 @@
 @endsection
 
 @section('script')
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
         function updateGeolocation(){
             function localizacion(posicion){
@@ -16,12 +17,7 @@
                 $('.lat').val(latitude);
                 $('.lon').val(longitude);
             }
-
-            function error(){
-
-            }
-
-            navigator.geolocation.getCurrentPosition(localizacion,error);
+            navigator.geolocation.getCurrentPosition(localizacion);
         }
 
         google.maps.event.addDomListener(window, 'load', updateGeolocation);

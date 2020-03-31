@@ -72,6 +72,8 @@ Route::get('simulator/rider/{rider}/geo', 'Simulator\Rider\GeolocationRiderContr
 
 Route::post('simulator/rider/{rider}/updateGeolocation', 'Simulator\Rider\GeolocationRiderController@updateGeolocation')->name('simulator.rider.updateGeolocation');
 
+Route::post('simulator/rider/{rider}/endGeolocation', 'Simulator\Rider\GeolocationRiderController@endGeolocation')->name('simulator.rider.endGeolocation');
+
 // Route::post('simulator/rider', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
 Route::get('/acceptOrder', 'Simulator\Rider\RiderSimulatorController@setJob')->name('simulator.rider.setjob');
 

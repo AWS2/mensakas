@@ -39,10 +39,13 @@ class GeolocationRiderController extends \App\Http\Controllers\Controller
         }
     }
 
-    public function destroyGeolocation(Request $request, Rider $rider)
+    public function endGeolocation(Rider $rider)
     {
-        $location = Location::where($rider->id == $request->rider_id_delete);
-        $location->delete();
+        $location = Location::where('rider_id','=',$rider->id)->first();
+        $location->latitude = NULL;
+        $location->longitude = NULL;
+        $location->save();
+
         return redirect(route('simulator.rider.selectRider'));
     }
 
