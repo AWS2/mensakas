@@ -6,6 +6,10 @@
 
 @section('content')
 
+@section('script')
+<script src="{{asset('js/business/CreateBusiness.js')}}"defer></script>
+@endsection
+
 <div>
     <form action="{{route('businesses.store')}}" method="post">
         {{ csrf_field() }}
@@ -44,7 +48,7 @@
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button id="add" type="button" class="btn btn-primary">Create</button>
                 </div>
     </form>
     <div>
