@@ -4,8 +4,17 @@
 @include('layouts.secondNav', ['title' => 'Edit business'])
 @endsection
 
+@section('script')
+<script src="{{ asset('js/business/update.js') }}" defer></script>
+@endsection
+
 @section('content')
 
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <img src="{{ asset('spin-1s-200px.svg') }}" alt="Loading" style="margin: 0 auto">
+  </div>
+</div>
 <div>
     <form action="{{route('businesses.update', ['business'=>$business])}}" method="post">
         {{ csrf_field() }}
@@ -49,7 +58,7 @@
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-primary" id="update">Update</button>
                 </div>
     </form>
     <div>
