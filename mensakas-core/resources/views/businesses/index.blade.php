@@ -6,6 +6,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 @endpush
 
+
+@section('script')
+<script src="{{asset('js/business/CreateBusiness.js')}}"defer></script>
+<script src="{{asset('js/business/DeleteBusiness.js')}}"defer></script>
+@endsection
+
 @section('space')
 @include('layouts.secondNav', ['title' => 'Businesses'])
 @endsection
@@ -48,7 +54,7 @@
                     <td><strong>Status</strong></td>
                     <td colspan="2">
                         <form action="{{route('businesses.create')}}" method="get">
-                            <button type="submit" value="Add new business" class="btn btn-success ml-4"><i
+                            <button id="add" type="button" value="Add new business" class="btn btn-success ml-4"><i
                                     class="fa fa-plus"></i> Add
                                 Business</button>
                         </form>
@@ -86,8 +92,7 @@
                         <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" value="Delete" class="btn btn-danger"
-                                onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                            <button id="delete" type="button" value="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                         </form>
                     </td>
                 </tr>
