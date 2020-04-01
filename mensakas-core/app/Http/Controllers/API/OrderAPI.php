@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
+use App\Comanda;
+use App\Customer;
 use App\OrderStatus;
 use Validator;
 
@@ -131,6 +133,34 @@ class OrderAPI extends Controller
             'data' => $dbOrderArray,
             'message_order' => $orderMessage->message,
             'message' => 'Order retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+    public function getTicket($id)
+    {
+        $dbOrder = Order::find($id);
+
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrder->toArray();
+        $orderTicket = Comanda::find($dbOrder->comanda_id);
+        $orderCustomer = Customer::find($orderTicket->customerAddress->customer->id);
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'ticket' => $orderTicket->ticket_json,
+            'customer_email' => $orderCustomer->email,
+            'message' => 'Ticket retrieved successfully.'
         ];
 
         return response()->json($response, 200)->header('Content-Type', 'application/json');
