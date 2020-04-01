@@ -38,7 +38,7 @@ class OrderAPI extends Controller
     {
         $order = Order::find($id);
         $orderMessage = OrderStatus::find($order->order_status_id);
-
+        
         if (is_null($orderMessage)) {
             return ['Message not found.'];
         }
@@ -104,6 +104,32 @@ class OrderAPI extends Controller
         $response = [
             'success' => true,
             'data' => $dbOrderArray,
+            'message' => 'Order retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+    public function getMessage($id)
+    {
+        $dbOrder = Order::find($id);
+        $orderMessage = OrderStatus::find($dbOrder->order_status_id);
+
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrder->toArray();
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message_order' => $orderMessage->message,
             'message' => 'Order retrieved successfully.'
         ];
 

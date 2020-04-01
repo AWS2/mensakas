@@ -25,6 +25,7 @@ Route::get('order/{id}', 'API\OrderAPI@showOrder');
 //Route::delete('order/{id}', 'API\OrderAPI@delete');
 
 //API Order for messages
+Route::get('order/{id}/message', 'API\OrderAPI@getMessage');
 Route::put('order/{id}/message', 'API\OrderAPI@updateMessage');
 Route::put('order/{id}/deletemessage', 'API\OrderAPI@deleteMessage');
 
