@@ -36,10 +36,11 @@ class RestaurantSimulatorController extends \App\Http\Controllers\Controller
 
     public function preparingOrder(Request $request, Business $business, Order $order)
     {
-        $order->orderStatus->status_id = 3;
-        $order->estimate_time = $request->time;
-        $order->push();
-
+        if ($order->orderStatus->status_id < 4) {
+            $order->orderStatus->status_id = 3;
+            $order->estimate_time = $request->time;
+            $order->push();
+        }
         return view('simulators.restaurants.order')->with(['business' => $business, 'order' => $order]);
     }
 }
