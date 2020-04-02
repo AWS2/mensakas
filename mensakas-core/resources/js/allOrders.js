@@ -24,12 +24,12 @@ function createOrdersTable(){
         arrayDataComandaId = arrayComanda['id'];
         $("#header").after("<tr id='tableContent"+i+"'>");
         getAllDataComanda(data, arrayDataComandaId, i);
+				showEditButton(data, arrayDataComandaId, i);
         getAllDataCustomer(arrayDataComandaId, i);
         getAllDataStatus(arrayDataComandaId, i);
         getAllDataRiders(arrayDataComandaId, i);
         getAllDataAmount(arrayDataComandaId, i);
         getAllDataStatusMessage(arrayDataComandaId, i);
-        showEditButton(data, arrayDataComandaId, i);
         $("</tr>").appendTo("#tableContent"+i);
       }
     }
@@ -49,8 +49,8 @@ function getAllDataComanda(data, id, i){
 function showComandaButton(dataComanda, id, i){
 		var arrayDataComandaId;
 		arrayDataComandaId = dataComanda['id'];
-    $("<td id=td"+i+">").appendTo("#tableContent"+i);
-		$("<a id='showLink' href='http://localhost:8000/comandas/"+arrayDataComandaId+"'>").appendTo("#td"+i+"");
+    $("<td id=tdShow>").appendTo("#tableContent"+i);
+		$("<a id='showLink' href='http://localhost:8000/comandas/"+arrayDataComandaId+"'>").appendTo("#tdShow");
     //link to comandas.show
       // $("<form  href='http://localhost:8000/comandas/"+arrayDataComandaId+"' method='get'>").appendTo("#td"+i);
         $("<button type='submit' class='btn btn-success fa fa-search'></button>").appendTo('#showLink');
@@ -67,11 +67,11 @@ function showEditButton(dataComanda, id, i){
   arrayDataComandaId = dataComanda['data'][i];
   //link to comandas.edit
   $("<td id=tdEdit>").appendTo("#tableContent"+i);
-	$("<a id='editLink' href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit'>").appendTo("#td"+i+"");
+	$("<a id='editLink' href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit'>").appendTo("#tdEdit");
     // $("<form href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit' method='get'>").appendTo("#tdEdit");
     $("<button type='submit' value='Edit' class='btn btn-warning'><i class='fa fa-pencil'></i> Edit</button>").appendTo('#editLink');
     // $("</form>").appendTo("#tdEdit");
-		$("</a>").appendTo("#td"+i+"");
+		$("</a>").appendTo("#tdtdEdit");
   $("</td>").appendTo("#tableContent"+i);
 
 }
