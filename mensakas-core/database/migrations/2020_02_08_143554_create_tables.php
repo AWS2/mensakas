@@ -351,7 +351,7 @@ class CreateTables extends Migration
 
             $table->bigIncrements('id');
             $table->bigInteger('business_id')->unsigned();
-            $table->boolean('day');
+            $table->integer('day');
             $table->time('open_1');
             $table->time('close_1');
             $table->time('open_2')->nullable();
