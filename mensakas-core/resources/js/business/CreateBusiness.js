@@ -1,25 +1,49 @@
-
 $("#add").click(function() {
-$.ajax({
-        type: 'post',
-        url: 'http://127.0.0.1:8000/api/businesses',
-        data: {
-            '_token': $('input[id=_token]').val(),
-            'name': $('input[name=name]').val(),
-            'phone': $('input[phone=phone]').val(),
-            'street': $('input[street=street]').val(),
-            'number': $('input[number=number]').val(),
-            'city': $('input[city=city]').val(),
-            'zip_code':$('input[zip_code=zip_code]').val()
-        },
-        success: function(data) {
-            if ((data.errors)) {
-                $('.error').removeClass('hidden');
-                $('.error').text(data.errors.name);
-            } else {
-                $('.error').remove();
-                $('#table').append("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.name + "</td><td><button class='edit-modal btn btn-info' data-id='" + data.id + "' data-name='" + data.name + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-name='" + data.name + "'><span class='glyphicon glyphicon-trash'></span> Destroy</button></td></tr>");
-            }
-        },
-    });
-}); 
+  var token = $('input[name=_token]').val();
+  var name = $('input[name=name]');
+  var phone = $('input[name=phone]');
+  var street = $('input[name=street]');
+  var number = $('input[name=number]');
+  var city = $('input[name=city]');
+  var zip_code = $('input[name=zip_code]');
+
+  if (name.val() == '' || phone.val() == '' || street.val() == '' || number.val() == '' || city.val() == '' || zip_code.val() == '') {
+    createFlashAlert('You can\'t create this business, there are empty fields.', 'danger');
+    return;
+  }
+
+  $.ajax({
+    type: 'post',
+    url: window.origin+'/api/businesses',
+    data: {
+      '_token': token,
+      'name': name.val(),
+      'phone': phone.val(),
+      'street': street.val(),
+      'number': number.val(),
+      'city': city.val(),
+      'zip_code': zip_code.val()
+    },
+    success: function(res, textStatus, xhr) {
+      if (xhr.status == 200) {
+        name.val('');
+        phone.val('');
+        street.val('');
+        number.val('');
+        city.val('');
+        zip_code.val('');
+        createFlashAlert(res.message, 'success');
+      }
+    }
+  });
+});
+
+function createFlashAlert(msg, type) {
+  $('div.alert').remove();
+  var alert = '<div class="alert alert-'+type+' alert-dismissible fade show" role="alert">' + msg +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                  '<span aria-hidden="true">&times;</span>' +
+                '</button>' +
+              '</div>';
+  $('main').before(alert);
+}

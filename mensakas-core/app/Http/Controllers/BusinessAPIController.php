@@ -61,7 +61,7 @@ class BusinessAPIController extends Controller
         $businessAddress->business_id = $business->id;
         $businessAddress->save();
 
-        return response()->json(['message'=>'Business created successfully.'],200)->header('Content-Type', 'application/json');
+        return response()->json(['message'=>'Business \''.$business->name.'\' created successfully.'],200)->header('Content-Type', 'application/json');
     }
 
     /**
