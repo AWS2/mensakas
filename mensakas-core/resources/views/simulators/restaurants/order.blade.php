@@ -13,7 +13,7 @@
 @section('content')
 
 @php($comanda = $order->comanda)
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal" id="loadingModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <img src="{{ asset('spin-1s-200px.svg') }}" alt="Loading" style="margin: 0 auto">
   </div>
