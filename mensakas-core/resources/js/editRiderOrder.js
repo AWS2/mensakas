@@ -2,8 +2,12 @@ console.log('EDIT RIDER ORDER JS');
 
 $(document).ready(main);
 
-//Add event on button #changeRiderButton --- Call function getAllDataRidersAPI();
+/**
+* Add event on button #changeRiderButton
+* Call function getAllDataRidersAPI();
+*/
 function main() {
+	$('#newRider').toggle();
 	$('#changeRiderButton').click(showOrHideRiders);
 	getAllDataRidersAPI();
 }
@@ -20,43 +24,57 @@ function createSelectForChangeRider(jsonRiders) {
 	$('#changeRiderButton').before(selectWithRiders);
 	selectWithRiders.hide();
 }
-//Function to show and stop showing the button to show the riders,
-//if text button is Select Rider then call a function updateOrCreateRiderOrder(rider_id,order_id); with new data
+
+/**
+* Function to show and stop showing the button to show the riders.
+* If text button is Select Rider then call a function updateOrCreateRiderOrder(intRiderID,intOrderID);
+*/
 function showOrHideRiders() {
-		if($('#changeRiderButton').text()=='Select new rider'){
-			$('#selectWithRiders').toggle();
-			$('#changeRiderButton').text('Confirm rider');
-		}
-		else if($('#changeRiderButton').text()=='Confirm rider'){
-			$('#selectWithRiders').toggle();
-			$('#changeRiderButton').text('Select new rider');
-			var rider_id = $("#selectWithRiders option:selected").val();
-			var order_id = $("#orderID").val();
-			updateOrCreateRiderOrder(rider_id,order_id);
-		}
+	var buttonSelectNewRider = $('#changeRiderButton');
+	var selectRiders = $('#selectWithRiders');
+
+	if(buttonSelectNewRider.text()=='New rider'){
+		selectRiders.toggle();
+		$('#newRider').toggle();
+		buttonSelectNewRider.attr('class', 'btn btn-success').text('Confirm').css('color', 'white');
+	}
+	else if(buttonSelectNewRider.text()=='Confirm'){
+		selectRiders.toggle();
+		$('#newRider').toggle();
+		buttonSelectNewRider.text('New rider').attr('class', 'btn btn-warning').css('color', 'black');
+		var intRiderID = $("#selectWithRiders option:selected").val();
+		var intOrderID = $("#orderID").val();
+		updateOrCreateRiderOrder(intRiderID,intOrderID);
+	}
 }
 
-//Call API and get all data then call function createSelectForChangeRider(data['data']); for create new select
+/**
+* Call API and get all data then call function createSelectForChangeRider(data['data']); for create new select
+*/
 function getAllDataRidersAPI(){
 	$.ajax({
         type: 'GET',
-        url: ' http://localhost:8000/api/rider',
+        url: '/api/rider',
         dataType: 'json',
         success: function(data) {
-        	createSelectForChangeRider(data['data']);
+        	var jsonDataRiders = data['data'];
+        	createSelectForChangeRider(jsonDataRiders);
         }
     });
 }
 
-//Function that is activated by clicking the button(Select Rider) where we make the API calls to do the update or the store
+/**
+* Function that is activated by clicking the button(Select Rider) where we make the API calls to do the update or the store
+* @params rider_id and order_id, to make the relationship tables.
+*/
 function updateOrCreateRiderOrder(rider_id,order_id){
 	$('#rider').text($("#selectWithRiders option:selected").text());
-	var deliveryID = $('#deliveryID').val();
+	var intDeliveryID = $('#deliveryID').val();
 	//If exist data in table delivery, update delivery
-	if (deliveryID > 0) {
+	if (intDeliveryID > 0) {
 		$.ajax({
 	        type: 'POST',
-	        url: '/api/delivery/'+deliveryID,
+	        url: '/api/delivery/'+intDeliveryID,
 	        beforeSend: function (xhr) {
 	            var token = $('meta[name="csrf_token"]').attr('content');
 	            if (token) {

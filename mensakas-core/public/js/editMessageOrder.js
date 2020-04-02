@@ -95,31 +95,76 @@
 
 console.log("MESSAGE JS");
 $(document).ready(main);
+/**
+* Function where we add new event on button id=#addNewMessage
+*/
 
 function main() {
   $('#inputMessage').toggle();
+  $('#newMessage').toggle();
   $('#addNewMessage').click(showOrHideInput);
+  $('#deleteMessages').click(deleteMessage);
 }
 
-function showOrHideInput() {
-  if ($('#addNewMessage').text() == "Add new message") {
-    $('#inputMessage').val("");
-    $('#inputMessage').toggle();
-    $('#addNewMessage').text("Confirm message");
-  } else {
-    addMessage($('#inputMessage').val());
-    $('#inputMessage').toggle();
-    $('#addNewMessage').text("Add new message");
+function deleteMessage() {
+  if (confirm('Are you sure?')) {
+    var intOrderId = $("#orderID").val();
+    $.ajax({
+      type: 'POST',
+      url: '/api/order/' + intOrderId + '/deletemessage',
+      beforeSend: function beforeSend(xhr) {
+        var token = $('meta[name="csrf_token"]').attr('content');
+
+        if (token) {
+          return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+        }
+      },
+      data: {
+        '_method': 'PUT',
+        'order_id': intOrderId
+      },
+      success: function success(data) {
+        alert(data[0]);
+
+        if (data[0].includes("deleted")) {
+          $('#message').text(data[1]);
+        }
+      }
+    });
   }
 }
+/**
+* Function where we call function addMessage(textMessage); if the button text is "Confirm message"
+*/
+
+
+function showOrHideInput() {
+  var strInputMessage = $('#inputMessage');
+  var buttonNewMessage = $('#addNewMessage');
+
+  if (buttonNewMessage.text() == "New message") {
+    strInputMessage.val("").toggle();
+    $('#newMessage').toggle();
+    buttonNewMessage.text("Confirm").css('color', 'white').attr('class', 'btn btn-success');
+  } else if (buttonNewMessage.text() == "Confirm") {
+    addMessage(strInputMessage.val());
+    strInputMessage.toggle();
+    $('#newMessage').toggle();
+    buttonNewMessage.attr('class', 'btn btn-warning').css('color', 'black').text("New message");
+  }
+}
+/**
+* Function where we add new message (API)
+* @params New message text
+*/
+
 
 function addMessage(textMessage) {
-  console.log(textMessage);
-  var message = textMessage;
-  var order_id = $("#orderID").val();
+  var strMessage = textMessage;
+  var intOrderId = $("#orderID").val();
   $.ajax({
     type: 'POST',
-    url: '/api/order/' + order_id + '/message',
+    url: '/api/order/' + intOrderId + '/message',
     beforeSend: function beforeSend(xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -129,16 +174,16 @@ function addMessage(textMessage) {
     },
     data: {
       '_method': 'PUT',
-      'message': message,
-      'order_id': order_id
+      'message': strMessage,
+      'order_id': intOrderId
     },
     success: function success(data) {
       alert(data);
 
-      if (data.includes("2")) {
-        $('#message').text(message);
-      } else if (data.includes("3")) {
-        $('#message').text($('#message').text() + " / " + message);
+      if (data.includes("Added")) {
+        $('#message').text(strMessage);
+      } else if (data.includes("Updated")) {
+        $('#message').text($('#message').text() + " / " + strMessage);
       }
     }
   });

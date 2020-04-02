@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
+use App\Comanda;
+use App\Customer;
 use App\OrderStatus;
 use App\Comanda;
 use App\Status;
@@ -20,26 +22,25 @@ class OrderAPI extends Controller
 
     public function updateMessage(Request $request,$id)
     {
-        //
         $order = Order::find($id);
         $orderMessage = OrderStatus::find($order->order_status_id);
         if ($request->message == "") {
-            return 'Message null.0';
+            return 'Message null.';
         }
 
         if (is_null($orderMessage)) {
-            return 'OrderStatus not found.1';
+            return 'OrderStatus not found.';
         }
 
         if ($orderMessage->message == NULL) {
             $orderMessage->message = $request->message;
             $orderMessage->save();
-            return 'OrderStatus updated successfully.2';
+            return 'Added successfully.';
         }
 
         $orderMessage->message = $orderMessage->message." / ".$request->message;
         $orderMessage->save();
-        return 'OrderStatus updated successfully.3';
+        return 'Updated successfully.';
     }
 
     public function showMessages($id)
@@ -67,10 +68,80 @@ class OrderAPI extends Controller
     }
 
 
-    public function deleteMessage($id)
+
+    public function deleteMessage(Request $request,$id)
     {
-        //
+        $order = Order::find($id);
+        $orderMessage = OrderStatus::find($order->order_status_id);
+
+        if (is_null($orderMessage)) {
+            return ['Message not found.'];
+        }
+        if ($orderMessage->message == NULL) {
+            return ['Message already empty.'];
+        }
+
+        $new_string = explode("/", $orderMessage->message);
+        if (count($new_string)<=1) {
+            $orderMessage->message = NULL;
+            $message = "Empty";
+        }else{
+            $last_part = $new_string[count($new_string)-1];
+            $last_part = "/".$last_part;
+            $message = str_replace($last_part, "", $orderMessage->message);
+            $orderMessage->message = $message;
+        }
+
+        $orderMessage->save();
+        return ['Message deleted successfully.',$message];
     }
+
+    public function getAllOrders()
+    {
+        $dbOrderAll = Order::all();
+
+        if (is_null($dbOrderAll)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrderAll->toArray();
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message' => 'Order retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+    public function showOrder($id)
+    {
+        $dbOrder = Order::find($id);
+
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+        $dbOrderArray = $dbOrder->toArray();
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message' => 'Order retrieved successfully.'
+          ];
+
+          return response()->json($response, 200)->header('Content-Type', 'application/json');
+        }
+
 
     public function index()
     {
@@ -179,19 +250,19 @@ class OrderAPI extends Controller
                 'success' => false,
                 'data' => 'Empty',
                 'message' => 'Status not found.'
+              ];
+              return response()->json($response, 404);
+          }
+          $dataStatusArray = $dbStatus->toArray();
+          $response = [
+              'success' => true,
+              'data' => $dataStatusArray,
+              'message' => 'Status retrieved successfully.'
             ];
-            return response()->json($response, 404);
-        }
+              return response()->json($response, 200)->header('Content-Type', 'application/json');
+          }
 
-        $dataStatusArray = $dbStatus->toArray();
-        $response = [
-            'success' => true,
-            'data' => $dataStatusArray,
-            'message' => 'Status retrieved successfully.'
-        ];
 
-        return response()->json($response, 200)->header('Content-Type', 'application/json');
-    }
 
     public function getRiderOrder($id)
     {
@@ -242,5 +313,59 @@ class OrderAPI extends Controller
       ];
 
       return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+    public function getMessage($id)
+    {
+        $dbOrder = Order::find($id);
+        $orderMessage = OrderStatus::find($dbOrder->order_status_id);
+
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrder->toArray();
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'message_order' => $orderMessage->message,
+            'message' => 'Order retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
+
+    public function getTicket($id)
+    {
+        $dbOrder = Order::find($id);
+
+        if (is_null($dbOrder)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Order not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbOrderArray = $dbOrder->toArray();
+        $orderTicket = Comanda::find($dbOrder->comanda_id);
+        $orderCustomer = Customer::find($orderTicket->customerAddress->customer->id);
+
+        $response = [
+            'success' => true,
+            'data' => $dbOrderArray,
+            'ticket' => $orderTicket->ticket_json,
+            'customer_email' => $orderCustomer->email,
+            'message' => 'Ticket retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 }

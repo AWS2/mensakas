@@ -32,23 +32,27 @@ Route::get('order/{id}', 'API\OrderAPI@show');
 Route::post('order', 'API\OrderAPI@store');
 Route::put('order/{id}', 'API\OrderAPI@update');
 Route::delete('order/{id}', 'API\OrderAPI@delete');
+
+//API Order Ticket
+Route::get('order/{id}/ticket', 'API\OrderAPI@getTicket');
 //API Order for messages
+Route::get('order/{id}/message', 'API\OrderAPI@getMessage');
 Route::put('order/{id}/message', 'API\OrderAPI@updateMessage');
-Route::delete('order/{id}/message', 'API\OrderAPI@deleteMessage');
+Route::put('order/{id}/deletemessage', 'API\OrderAPI@deleteMessage');
 
 //API RIDER
 Route::get('rider', 'API\RiderAPI@getAllRider');
-Route::get('rider/{id}', 'API\RiderAPI@show');
-Route::post('rider', 'API\RiderAPI@store');
-Route::put('rider/{id}', 'API\RiderAPI@update');
-Route::delete('rider/{id}', 'API\RiderAPI@delete');
+Route::get('rider/{id}', 'API\RiderAPI@showRider');
+//Route::post('rider', 'API\RiderAPI@store');
+//Route::put('rider/{id}', 'API\RiderAPI@update');
+//Route::delete('rider/{id}', 'API\RiderAPI@delete');
 
 //API DELIVERY
 Route::get('delivery', 'API\DeliveryAPI@getAllDataDelivery');
-Route::get('delivery/{id}', 'API\DeliveryAPI@show');
+Route::get('delivery/{id}', 'API\DeliveryAPI@showDelivery');
 Route::post('delivery', 'API\DeliveryAPI@createDelivery');
 Route::put('delivery/{id}', 'API\DeliveryAPI@updateDelivery');
-Route::delete('delivery/{id}', 'API\DeliveryAPI@delete');
+//Route::delete('delivery/{id}', 'API\DeliveryAPI@delete');
 
 //API LOCATION
 //All locations: (http://localhost:8000/api/geolocation)

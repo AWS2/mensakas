@@ -95,14 +95,6 @@
 
 function updateGeolocation() {
   var id_rider = $('#id_rider').val();
-  $.ajax({
-    type: 'GET',
-    url: '/api/geolocation/' + id_rider,
-    dataType: 'json',
-    success: function success(data) {
-      localizacion(data.data[0]);
-    }
-  });
 
   function localizacion(posicion) {
     var latitude = posicion.coords.latitude;
@@ -134,7 +126,11 @@ function updateGeolocation() {
   navigator.geolocation.getCurrentPosition(localizacion, error);
 }
 
-google.maps.event.addDomListener(window, 'load', updateGeolocation);
+google.maps.event.addDomListener(window, 'load', updateGeolocation); //refresh to 10 seconds
+
+setInterval(function () {
+  updateGeolocation();
+}, 10000);
 
 /***/ }),
 

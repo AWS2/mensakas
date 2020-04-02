@@ -6,6 +6,7 @@
 
 @section('script')
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script src="{{ asset('js/geolocation.js') }} " defer></script>
 
 @endsection

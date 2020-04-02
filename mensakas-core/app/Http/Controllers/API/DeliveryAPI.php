@@ -9,7 +9,6 @@ use Validator;
 
 class DeliveryAPI extends Controller
 {
-
     /**
     * API function that returns a JSON with all delivery
     * @return JSON
@@ -39,11 +38,6 @@ class DeliveryAPI extends Controller
         return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
-    public function create()
-    {
-        //
-    }
-
     /**
     * API function that create a delivery
     * @return JSON
@@ -57,14 +51,28 @@ class DeliveryAPI extends Controller
         return 'Delivery created successfully.';
     }
 
-    public function show($id)
+    public function showDelivery($id)
     {
-        //
-    }
+        $dbDelivery = Delivery::find($id);
 
-    public function edit($id)
-    {
-        //
+        if (is_null($dbDelivery)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Delivery not found.'
+            ];
+            return response()->json($response, 404);
+        }
+
+        $dbDeliveryArray = $dbDelivery->toArray();
+
+        $response = [
+            'success' => true,
+            'data' => $dbDeliveryArray,
+            'message' => 'Delivery retrieved successfully.'
+        ];
+
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
     /**
@@ -84,10 +92,5 @@ class DeliveryAPI extends Controller
         $delivery->order_id = $request->order_id;
         $delivery->save();
         return 'Delivery updated successfully.';
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

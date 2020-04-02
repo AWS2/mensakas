@@ -1,5 +1,7 @@
 @extends('layouts.app')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
+
   function acceptOrder(element, id_rider, id_order) {
     $.ajax({
       type: 'GET',
@@ -17,13 +19,21 @@
       }
     });
   }
+
+  $(document).ready(updateInfo);
+
+  function updateInfo(){
+      $("#info").load(location.href+" #info>*","");
+  }
+
+  setInterval(updateInfo, 2500);
 </script>
 @section('space')
 @include('layouts.secondNav', ['title' => 'Simulador: select a job'])
 @endsection
 
 @section('content')
-<div class="table d-flex justify-content-center">
+<div id="info" class="table d-flex justify-content-center">
     <div class="">
         <table>
             <tr>

@@ -4,6 +4,20 @@
 @include('layouts.secondNav',['title'=>'Simulador: Estado del pedido'])
 @endsection
 
+@section('script')
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(updateProgressbar);
+
+        function updateProgressbar(){
+            $("#progressbar").load(location.href+" #progressbar>*","");
+        }
+
+        setInterval(updateProgressbar, 3000);
+    </script>
+@endsection
+
 @section('content')
 <link href="{{ asset('css/orderStatus.css') }}" rel="stylesheet">
 <div class="container px-1 px-md-4 py-5 mx-auto">
