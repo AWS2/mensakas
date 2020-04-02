@@ -1,4 +1,4 @@
-$("#delete").click(function(){
+$(".delete").click(function(){
     var id = $(this).data("id");
     var token = $("meta[name='csrf-token']").attr("content");
    

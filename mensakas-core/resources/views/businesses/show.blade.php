@@ -4,6 +4,12 @@
 @include('layouts.secondNav', ['title' => 'Business #'.$business->id])
 @endsection
 
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{asset('js/business/CreateBusiness.js')}}"defer></script>
+<script src="{{asset('js/business/DeleteBusiness.js')}}"defer></script>
+@endsection
+
 @section('content')
 
 <div>
@@ -122,7 +128,7 @@
             <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i
+                <button type="button" value="Delete" class="delete btn btn-danger"><i
                         class="fa fa-trash"></i> Delete</button>
             </form>
         </div>

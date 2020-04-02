@@ -2,7 +2,7 @@
 $("#add").click(function() {
 $.ajax({
         type: 'post',
-        url: window.location.origin+'/api/businesses',
+        url: 'http://127.0.0.1:8000/api/businesses',
         data: {
             '_token': $('input[id=_token]').val(),
             'name': $('input[name=name]').val(),
