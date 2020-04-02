@@ -14,6 +14,7 @@
     <table>
       <tr id="header">
         <td></td>
+        <td></td>
         <td><strong>Customer Email</strong></td>
         <td><strong>Order Status</strong></td>
         <td><strong>Rider</strong></td>
