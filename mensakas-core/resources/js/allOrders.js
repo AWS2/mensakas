@@ -43,7 +43,7 @@ function createOrdersTable(){
 //FIRST BUTTON TO COMANDA.SHOW------------------------------------------------------------------------------------------------------------> REDIRECT NEEDS TO BE FIXED
 
 function getAllDataComanda(data, id, i){
-  showComandaButton(data['data'], id, i);
+  showComandaButton(data['data'][i], id, i);
 }
 //$(location).attr('href','http://localhost:8000/comandas/' + arrayDataComandaId);
 function showComandaButton(dataComanda, id, i){
@@ -84,7 +84,7 @@ function getAllDataCustomer(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/customer/'+id,
     dataType: 'json',
-		async: false, 
+		async: false,
     success: function(data) {
       showCustomerEmail(data['data'], id, i);
     }
