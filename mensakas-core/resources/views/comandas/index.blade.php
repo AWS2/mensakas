@@ -22,7 +22,6 @@
         <td><strong>Additional Message</strong></td>
       </tr>
       <!-- generated with js -->
-
     </table>
   </div>
 </div>
