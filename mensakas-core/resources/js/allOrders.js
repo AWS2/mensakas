@@ -6,7 +6,6 @@ function main()
   createOrdersTable();
 }
 
-
 function createOrdersTable()
 {
   $.ajax({
@@ -54,7 +53,6 @@ function showComandaButton(dataComanda, id, i)
     $("</td>").appendTo("#tableContent"+i);
 }
 
-
 function showEditButton(dataComanda, id, i)
 {
   var arrayDataComandaId;
@@ -66,7 +64,6 @@ function showEditButton(dataComanda, id, i)
 		$("</a>").appendTo("#tdtdEdit");
   $("</td>").appendTo("#tableContent"+i);
 }
-
 
 function getAllDataCustomer(id, i)
 {
@@ -88,7 +85,6 @@ function showCustomerEmail(data, id, i)
   $("<td>"+customerEmail+"</td>").appendTo("#tableContent"+i);
 }
 
-
 function getAllDataStatus(id, i)
 {
   $.ajax({
@@ -108,7 +104,6 @@ function showStatus(data, id, i, dataLength)
   var lastStatus = data[dataLength-1];
   $("<td>"+lastStatus['status']+"</td>").appendTo("#tableContent"+i);
 }
-
 
 function getAllDataRiders(id, i)
 {
@@ -135,7 +130,6 @@ function showRiderUsername(data, id, i)
   }
 }
 
-
 function getAllDataAmount(id, i)
 {
   $.ajax({
@@ -160,7 +154,6 @@ function showAmount(data, id, i)
     $("<td> -- </td>").appendTo("#tableContent"+i);
   }
 }
-
 
 function getAllDataStatusMessage(id, i)
 {
