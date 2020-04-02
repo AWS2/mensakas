@@ -240,8 +240,6 @@ class OrderAPI extends Controller
               return response()->json($response, 200)->header('Content-Type', 'application/json');
           }
 
-
-
     public function getRiderOrder($id)
     {
       $dbOrder = Order::where('comanda_id', $id)->get('id');
