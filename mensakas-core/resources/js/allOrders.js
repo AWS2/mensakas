@@ -9,8 +9,9 @@ function main() {
 function createOrdersTable(){
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/orders',
+    url: '/api/orders',
     dataType: 'json',
+
     success: function(data) {
       //render de la tabla
       //crear funcion para hacer un bucle y que haga las llamadas a ajax que toquen y estasllamadas llamen a la funcion que genere la tabla con los datos correspondientes
@@ -18,7 +19,7 @@ function createOrdersTable(){
       var arrayComanda;
       //this bucle gets the length of the comanda array to fill the table
       // for (var i = (arrayDataComanda.length-5); i < arrayDataComanda.length; i++) {
-      for (var i = 0; i < (arrayDataComanda.length-6); i++) {
+      for (var i = 0; i < arrayDataComanda.length; i++) {
         arrayComanda = arrayDataComanda[i];
         arrayDataComandaId = arrayComanda['id'];
         $("#header").after("<tr id='tableContent"+i+"'>");
@@ -46,14 +47,15 @@ function getAllDataComanda(data, id, i){
 }
 //$(location).attr('href','http://localhost:8000/comandas/' + arrayDataComandaId);
 function showComandaButton(dataComanda, id, i){
-    var arrayDataComandaId;
-    arrayDataComandaId = dataComanda['id'];
-
+		var arrayDataComandaId;
+		arrayDataComandaId = dataComanda['id'];
     $("<td id=td"+i+">").appendTo("#tableContent"+i);
+		$("<a id='showLink' href='http://localhost:8000/comandas/"+arrayDataComandaId+"'>").appendTo("#td"+i+"");
     //link to comandas.show
-      $("<form  action='http://localhost:8000/comandas/"+arrayDataComandaId+"' method='get'>").appendTo("#td"+i);
-        $("<button type='submit' class='btn btn-success fa fa-search'></button>").appendTo("#td"+i);
-      $("</form>").appendTo("#td"+i);
+      // $("<form  href='http://localhost:8000/comandas/"+arrayDataComandaId+"' method='get'>").appendTo("#td"+i);
+        $("<button type='submit' class='btn btn-success fa fa-search'></button>").appendTo('#showLink');
+      // $("</form>").appendTo("#td"+i);
+			$("</a>").appendTo("#td"+i+"");
     $("</td>").appendTo("#tableContent"+i);
   }
 
@@ -65,10 +67,13 @@ function showEditButton(dataComanda, id, i){
   arrayDataComandaId = dataComanda['data'][i];
   //link to comandas.edit
   $("<td id=tdEdit>").appendTo("#tableContent"+i);
-    $("<form action='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit' method='get'>").appendTo("#tdEdit");
-    $("<button type='submit' value='Edit' class='btn btn-warning'><i class='fa fa-pencil'></i> Edit</button>").appendTo("#tdEdit");
-    $("</form>").appendTo("#tdEdit");
+	$("<a id='editLink' href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit'>").appendTo("#td"+i+"");
+    // $("<form href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit' method='get'>").appendTo("#tdEdit");
+    $("<button type='submit' value='Edit' class='btn btn-warning'><i class='fa fa-pencil'></i> Edit</button>").appendTo('#editLink');
+    // $("</form>").appendTo("#tdEdit");
+		$("</a>").appendTo("#td"+i+"");
   $("</td>").appendTo("#tableContent"+i);
+
 }
 ////////////////////////////////////////////////////////////////////
 
@@ -79,9 +84,9 @@ function getAllDataCustomer(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/customer/'+id,
     dataType: 'json',
+		async: false, 
     success: function(data) {
       showCustomerEmail(data['data'], id, i);
-
     }
   });
 }
@@ -93,8 +98,6 @@ function showCustomerEmail(data, id, i){
   $("<td>"+customerEmail+"</td>").appendTo("#tableContent"+i);
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -105,6 +108,7 @@ function getAllDataStatus(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/status/'+id,
     dataType: 'json',
+
     success: function(data) {
       dataLength = data['data'].length;
       showStatus(data['data'], id, i, dataLength);
@@ -128,6 +132,7 @@ function getAllDataRiders(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/rider/'+id,
     dataType: 'json',
+
     success: function(data) {
       showRiderUsername(data['data'], id, i);
     }
@@ -154,6 +159,7 @@ function getAllDataAmount(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/amount/'+id,
     dataType: 'json',
+
     success: function(data) {
       showAmount(data['data'], id, i);
     }
@@ -175,6 +181,7 @@ function getAllDataStatusMessage(id, i){
     type: 'GET',
     url: 'http://localhost:8000/api/order/message/'+id,
     dataType: 'json',
+
     success: function(data) {
       showStatusMessage(data['data'], id, i);
     }
