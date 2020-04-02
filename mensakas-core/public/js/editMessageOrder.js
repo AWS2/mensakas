@@ -107,11 +107,7 @@ function main() {
 }
 
 function deleteMessage() {
-  console.log('Delete Message');
-
   if (confirm('Are you sure?')) {
-    console.log('si'); // var strMessage = textMessage;
-
     var intOrderId = $("#orderID").val();
     $.ajax({
       type: 'POST',
@@ -202,7 +198,7 @@ function addMessage(textMessage) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp2\htdocs\modulo-order-mensakas\mensakas\mensakas-core\resources\js\editMessageOrder.js */"./resources/js/editMessageOrder.js");
+module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/editMessageOrder.js */"./resources/js/editMessageOrder.js");
 
 
 /***/ })

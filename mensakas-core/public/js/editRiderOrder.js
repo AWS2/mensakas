@@ -150,7 +150,7 @@ function showOrHideRiders() {
 function getAllDataRidersAPI() {
   $.ajax({
     type: 'GET',
-    url: ' http://localhost:8000/api/rider',
+    url: '/api/rider',
     dataType: 'json',
     success: function success(data) {
       var jsonDataRiders = data['data'];
@@ -219,7 +219,7 @@ function updateOrCreateRiderOrder(rider_id, order_id) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp2\htdocs\modulo-order-mensakas\mensakas\mensakas-core\resources\js\editRiderOrder.js */"./resources/js/editRiderOrder.js");
+module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/editRiderOrder.js */"./resources/js/editRiderOrder.js");
 
 
 /***/ })

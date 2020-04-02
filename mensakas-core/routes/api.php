@@ -47,3 +47,4 @@ Route::put('delivery/{id}', 'API\DeliveryAPI@updateDelivery');
 Route::get('geolocation', 'API\GeolocationAPI@locationRiderAll');
 //A specific location (http://localhost:8000/api/geolocation/[id_rider])
 Route::get('geolocation/{id}', 'API\GeolocationAPI@locationRiderOne');
+Route::put('geolocation/{id}', 'API\GeolocationAPI@updateGeolocation');

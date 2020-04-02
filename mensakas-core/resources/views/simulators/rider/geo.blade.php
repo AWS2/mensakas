@@ -6,38 +6,7 @@
 
 @section('script')
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-    <!-- <script src="{{ asset('js/updateGeolocation.js') }}"></script> -->
-    <script type="text/javascript">
-
-          function updateGeolocation(){
-
-            function localizacion(posicion){
-              var latitude = posicion.coords.latitude;
-              var longitude = posicion.coords.longitude;
-              $('.lat').val(latitude);
-              $('.lon').val(longitude);
-
-              var myLatLng = {lat: latitude, lng: longitude};
-              var mapOptions = {zoom:17, center:myLatLng};
-
-              var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-              var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'My location'
-              });
-
-            }
-
-            navigator.geolocation.getCurrentPosition(localizacion);
-          }
-
-        google.maps.event.addDomListener(window, 'load', updateGeolocation);
-
-        //refresh to 10 seconds
-        setInterval( function(){ updateGeolocation() },10000 );
-    </script>
+    <script src="{{ asset('js/updateGeolocation.js') }}"></script>
 @endsection
 
 @section('content')
@@ -58,11 +27,13 @@
         </form>
     </div>
 
-    <form action="{{route('simulator.rider.updateGeolocation', ['rider'=>$rider['id']])}}" method="post" id='formulario'>
-        <input type="hidden" class="lat" name="lat" >
-        <input type="hidden" class="lon" name="lon" >
-        <input type="hidden" class="id" name="id_rider_v" value="{{$rider['id']}}">
-    </form>
+
+    <input type="hidden" class="lat" name="latitude" >
+    <input type="hidden" class="lon" name="longitude" >
+    <input type="hidden" class="id" name="id_rider_v" value="{{$rider['id']}}">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 
 
 </div>

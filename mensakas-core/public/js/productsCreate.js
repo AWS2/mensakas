@@ -115,7 +115,7 @@ function imReady() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp2\htdocs\modulo-order-mensakas\mensakas\mensakas-core\resources\js\productsCreate.js */"./resources/js/productsCreate.js");
+module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/productsCreate.js */"./resources/js/productsCreate.js");
 
 
 /***/ })
