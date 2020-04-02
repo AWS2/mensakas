@@ -4,7 +4,7 @@ $("#delete").click(function(){
    
     $.ajax(
     {
-        url: "api/business/"+id,
+        url: "businesses/"+id,
         type: 'DELETE',
         data: {
             "id": id,

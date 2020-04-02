@@ -48,7 +48,7 @@ class BusinessAPIController extends Controller
         $business->phone = $request->phone;
         $business->logo = $request->logo;
         $business->image = $request->image;
-        $business->active = $request->active;
+        $business->active = 1;
         $business->save();
 
         $businessAddress = new BusinessAddress();

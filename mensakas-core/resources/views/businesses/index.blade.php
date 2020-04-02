@@ -54,7 +54,7 @@
                     <td><strong>Status</strong></td>
                     <td colspan="2">
                         <form action="{{route('businesses.create')}}" method="get">
-                            <button id="add" type="button" value="Add new business" class="btn btn-success ml-4"><i
+                            <button type="submit" value="Add new business" class="btn btn-success ml-4"><i
                                     class="fa fa-plus"></i> Add
                                 Business</button>
                         </form>
@@ -92,6 +92,7 @@
                         <form action="{{route('businesses.destroy', ['business'=>$business])}}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
+
                             <button id="delete" type="button" value="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                         </form>
                     </td>
