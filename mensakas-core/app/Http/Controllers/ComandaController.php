@@ -10,10 +10,7 @@ class ComandaController extends Controller
 {
     public function index()
     {
-        $comandas = Comanda::all();
-
-        return view('comandas.index')
-            ->with('comandas', $comandas);
+        return view('comandas.index');
     }
 
     public function show(Comanda $comanda)
