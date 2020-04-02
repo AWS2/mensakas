@@ -8,10 +8,8 @@ use App\Order;
 use App\Comanda;
 use App\Customer;
 use App\OrderStatus;
-use App\Comanda;
 use App\Status;
 use App\CustomerAddress;
-use App\Customer;
 use App\Delivery;
 use App\Rider;
 use App\Payment;
@@ -145,7 +143,6 @@ class OrderAPI extends Controller
 
     public function index()
     {
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////
       $dbComandaAll = Comanda::all();
       if (is_null($dbComandaAll)) {
           $response = [
@@ -180,13 +177,11 @@ class OrderAPI extends Controller
       }
 
       $dataOrdersArray = $dbOrderAll->toArray();
-
       $response = [
           'success' => true,
           'data' => $dataOrdersArray,
           'message' => 'Order retrieved successfully.'
       ];
-
       return response()->json($response, 200)->header('Content-Type', 'application/json');
     }
 
@@ -204,7 +199,6 @@ class OrderAPI extends Controller
       }
 
       $dataOrderStatusArray = $dbOrderMessage->toArray();
-
       $response = [
           'success' => true,
           'data' => $dataOrderStatusArray,
