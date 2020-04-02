@@ -4,9 +4,20 @@
 @include('layouts.secondNav', ['title' => 'Order'])
 @endsection
 
+@section('script')
+  @if ($order->orderStatus->status_id == 2)
+  <script src="{{asset('js/business/accept.js')}}" defer></script>
+  @endif
+@endsection
+
 @section('content')
 
 @php($comanda = $order->comanda)
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <img src="{{ asset('spin-1s-200px.svg') }}" alt="Loading" style="margin: 0 auto">
+  </div>
+</div>
 <div>
     <div class="col-6 mx-auto">
         <div class="h3" style="opacity:0.7">Comanda</div>
@@ -31,8 +42,8 @@
                 <p id="message">{{$order->orderStatus->message ?? 'no additional info'}}</p>
             </div>
             <div class="form-group col-md-4">
-                <label for="message"><strong>Time:</strong></label>
-                <p id="message">{{$order->estimate_time ?? 'no additional info'}}</p>
+                <label for="time"><strong>Time:</strong></label>
+                <p id="time">{{$order->estimate_time ?? 'no additional info'}}</p>
             </div>
         </div>
         @if ($order->orderStatus->status_id == 1)
@@ -41,11 +52,11 @@
         </div>
         @elseif($order->orderStatus->status_id == 2)
         <form action="{{route('simulator.restaurant.preparing', ['business'=>$business,'order'=>$order])}}"
-            method="post">
+            method="post" id="acceptForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <input type="time" name="time" required>
-            <button type="submit" class="btn btn-success">Start order!</button>
+            <button type="button" class="btn btn-success" id="acceptBtn">Start order!</button>
         </form>
         @elseif($order->orderStatus->status_id == 3)
         <p id="waiting">Waiting the rider</p>

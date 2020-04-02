@@ -22,4 +22,5 @@ Route::apiResource('businesses','BusinessAPIController');
 Route::get('businesses/zipcode/{zipcode}', 'BusinessAPIController@getBusinessesByZipcode');
 Route::get('businesses/{id}/products', 'BusinessAPIController@getProductsOfBusiness');
 Route::get('businesses/filter/{column}/{value}', 'BusinessAPIController@filterBusinesses');
+Route::patch('businesses/{business_id}/order/{order_id}', 'BusinessAPIController@acceptOrder');
 Route::apiResource('products', 'ProductAPIController');

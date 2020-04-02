@@ -18,7 +18,8 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/business/CreateBusiness.js', 'public/js/business/CreateBusiness.js')
    .js('resources/js/business/DeleteBusiness.js', 'public/js/business/DeleteBusiness.js')
    .js('resources/js/business/update.js', 'public/js/business')
-   
+   .js('resources/js/business/accept.js', 'public/js/business')
+
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/orderStatus.scss', 'public/css')
    .sass('resources/sass/filterTable.scss', 'public/css');

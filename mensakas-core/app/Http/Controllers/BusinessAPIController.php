@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use App\Business;
 use App\BusinessAddress;
+use App\Order;
+use App\Status;
 
 class BusinessAPIController extends Controller
 {
@@ -236,6 +238,62 @@ class BusinessAPIController extends Controller
         'status' => 200,
         'msg' => 'OK',
         'businesses' => $dbBusinessFiltered
+      ])->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * API function that accepts a order, with a expected delivery time and an optional message
+     * Example: http://localhost:8000/api/businesses/1/order/7?time=15:00&message=Entrega en puerta
+     * @param \Illuminate\Http\Request  $request
+     * @param Integer $business_id
+     * @param Integer $order_id
+     * @return JSON
+     */
+    public function acceptOrder(Request $request, $business_id, $order_id) {
+      $order = Order::find($order_id);
+      if ($order == null) {
+        return response()->json([
+          'status' => 404,
+          'msg' => 'The order #'.$order_id.' doesn\'t exist'
+        ])->header('Content-Type', 'application/json');
+      }
+
+      $status_id = $order->orderStatus->status_id;
+      if ($status_id != 2) {
+        $dbStatus = Status::find($status_id);
+        return response()->json([
+          'status' => 204,
+          'msg' => 'Cannot accept this order, the status is \''.$dbStatus->status.'\''
+        ])->header('Content-Type', 'application/json');
+      }
+
+      $businessOrder = Order::find($order_id)
+          ->join('comanda', 'comanda.id', '=', 'order.comanda_id')
+          ->join('comanda_product',  'comanda_product.comanda_id', '=', 'comanda.id')
+          ->join('product', 'product.id', '=', 'comanda_product.product_id')
+          ->join('business', 'business.id', '=', 'product.business_id')
+          ->join('order_status', 'order_status.id', '=', 'order.order_status_id')
+          ->where('business_id', '=', $business_id)
+          ->where('order_status.status_id', '=', 2)->first();
+
+      if ($businessOrder == null) {
+        return response()->json([
+          'status' => 204,
+          'msg' => 'The business #'.$business_id.' cannot accept the order #'.$order_id
+        ])->header('Content-Type', 'application/json');
+      }
+
+      $order->orderStatus->status_id = 3;
+      $order->estimate_time = $request->time;
+      $order->orderStatus->message = $request->message;
+      $order->push();
+      return response()->json([
+        'status' => 200,
+        'msg' => 'The order #'.$order_id.' has been accepted successfully',
+        'text' => 'Waiting the rider',
+        'delivery_time' => $order->estimate_time,
+        'new_message' => $order->orderStatus->message ?? 'no additional info',
+        'new_status' => $order->orderStatus->status->status
       ])->header('Content-Type', 'application/json');
     }
 }
