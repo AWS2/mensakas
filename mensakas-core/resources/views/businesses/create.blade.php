@@ -49,7 +49,7 @@
             </div>
             <div class="col-10 mx-auto row">
                 <div class="mr-2">
-                    <button id="add" type="button" class="btn btn-primary">Create</button>
+                    <button id="add" type="submit" class="btn btn-primary">Create</button>
                 </div>
     </form>
     <div>

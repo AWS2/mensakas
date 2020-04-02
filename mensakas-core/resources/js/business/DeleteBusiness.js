@@ -1,10 +1,11 @@
 $(".delete").click(function(){
-    var id = $(this).data("id");
-    var token = $("meta[name='csrf-token']").attr("content");
+
+    var tr = $(this).closest('tr');
+    var id = tr.find('td:eq(1)').text();
    
     $.ajax(
     {
-        url: "businesses/"+id,
+        url: "api/businesses/"+id,
         type: 'DELETE',
         data: {
             "id": id,
@@ -12,6 +13,7 @@ $(".delete").click(function(){
         },
         success: function (){
             console.log("it Works");
+            tr.remove()
         }
     });
    
