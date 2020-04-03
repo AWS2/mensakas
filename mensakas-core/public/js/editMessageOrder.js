@@ -111,7 +111,7 @@ function deleteMessage() {
     var intOrderId = $("#orderID").val();
     $.ajax({
       type: 'POST',
-      url: '/api/order/' + intOrderId + '/deletemessage',
+      url: 'api/order/' + intOrderId + '/deletemessage',
       beforeSend: function beforeSend(xhr) {
         var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -164,7 +164,7 @@ function addMessage(textMessage) {
   var intOrderId = $("#orderID").val();
   $.ajax({
     type: 'POST',
-    url: '/api/order/' + intOrderId + '/message',
+    url: 'api/order/' + intOrderId + '/message',
     beforeSend: function beforeSend(xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
 

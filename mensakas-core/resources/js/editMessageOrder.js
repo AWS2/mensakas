@@ -17,7 +17,7 @@ function deleteMessage() {
         var intOrderId = $("#orderID").val();
         $.ajax({
             type: 'POST',
-            url: '/api/order/'+intOrderId+'/deletemessage',
+            url: 'api/order/'+intOrderId+'/deletemessage',
             beforeSend: function (xhr) {
                 var token = $('meta[name="csrf_token"]').attr('content');
                 if (token) {
@@ -28,7 +28,7 @@ function deleteMessage() {
                 '_method': 'PUT',
                 'order_id': intOrderId
             },
-            success: function (data) {  
+            success: function (data) {
                 alert(data[0]);
                 if (data[0].includes("deleted")) {
                     $('#message').text(data[1]);
@@ -66,7 +66,7 @@ function addMessage(textMessage) {
 	var intOrderId = $("#orderID").val();
 	$.ajax({
         type: 'POST',
-        url: '/api/order/'+intOrderId+'/message',
+        url: 'api/order/'+intOrderId+'/message',
         beforeSend: function (xhr) {
             var token = $('meta[name="csrf_token"]').attr('content');
             if (token) {
@@ -74,11 +74,11 @@ function addMessage(textMessage) {
             }
         },
         data: {
-        	'_method': 'PUT',
+        '_method': 'PUT',
 		    'message': strMessage,
 		    'order_id': intOrderId
 		},
-        success: function (data) {  
+        success: function (data) {
             alert(data);
             if (data.includes("Added")) {
             	$('#message').text(strMessage);

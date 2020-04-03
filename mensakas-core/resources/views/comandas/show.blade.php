@@ -99,7 +99,7 @@
     <div class="col-6 mx-auto">
         <div class="row mt-2 ml-1">
             <div class="mr-2">
-                <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
+                <a href="{{ route('comandas.index') }}" class="btn btn-success">Back</a>
             </div>
             <div>
                 <form action="{{route('comandas.edit', ['comanda'=>$comanda->id])}}" method="get">
