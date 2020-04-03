@@ -84,3 +84,8 @@ Route::get('simulator/restaurants/{business}', 'Simulator\RestaurantSimulatorCon
 Route::get('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@order')->name('simulator.restaurant.order');
 
 Route::patch('simulator/restaurants/{business}/order/{order}', 'Simulator\RestaurantSimulatorController@preparingOrder')->name('simulator.restaurant.preparing');
+
+//Simulator business2business
+Route::get('simulator/b2b', 'Simulator\B2bSimulatorController@listBusinesses')->name('simulator.b2b.listBusinesses');
+
+Route::get('simulator/b2b/{business}', 'Simulator\B2bSimulatorController@showBusiness')->name('simulator.b2b.showBusiness');

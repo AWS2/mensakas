@@ -34,6 +34,15 @@
                 <h5 class="card-title ">RIDERS</h5>
             </div>
         </div>
+        <div class="card onclick=location.href='/simulator/b2b'">
+            <a href="/simulator/b2b">
+                <img src="https://image.flaticon.com/icons/svg/1006/1006555.svg" width="200" height="200"
+                    class="card-img-top" alt="...">
+            </a>
+            <div class="card-body mx-auto">
+                <h5 class="card-title ">B2B</h5>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
