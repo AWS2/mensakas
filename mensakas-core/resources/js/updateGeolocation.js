@@ -27,14 +27,13 @@ google.maps.event.addDomListener(window, 'load', updateGeolocation);
 //refresh to 10 seconds
 setInterval( function(){ updateGeolocation() },10000 );
 
-
 function updateGeo() {
   var longitude = $('.lon').val();
   var latitude = $('.lat').val();
   var id_rider = $('.id').val();
   $.ajax({
     type: 'POST',
-    url: '/api/geolocation/'+id_rider,
+    url: 'api/geolocation/'+id_rider,
     beforeSend: function (xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
       if (token) {

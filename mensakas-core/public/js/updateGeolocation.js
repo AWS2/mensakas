@@ -130,7 +130,7 @@ function updateGeo() {
   var id_rider = $('.id').val();
   $.ajax({
     type: 'POST',
-    url: '/api/geolocation/' + id_rider,
+    url: 'api/geolocation/' + id_rider,
     beforeSend: function beforeSend(xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -162,7 +162,7 @@ setInterval(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/updateGeolocation.js */"./resources/js/updateGeolocation.js");
+module.exports = __webpack_require__(/*! C:\Users\ferra\Desktop\mensakas\mensakas-core\resources\js\updateGeolocation.js */"./resources/js/updateGeolocation.js");
 
 
 /***/ })

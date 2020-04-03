@@ -14,8 +14,6 @@ class OrderSeeder extends Seeder
     public function run()
     {
         $this->status();
-        $this->orderStatus();
-        $this->order();
     }
 
     public function status()

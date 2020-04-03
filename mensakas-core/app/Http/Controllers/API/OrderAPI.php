@@ -220,8 +220,10 @@ class OrderAPI extends Controller
     public function getStatus($id)
     {
         $dbOrder = Order::where('comanda_id', $id)->get('order_status_id');
-        $dbOrderStatus =  OrderStatus::find($dbOrder)->get(0);
+        $dbOrderStatus =  OrderStatus::find($dbOrder)->first();
+        $dbOrderStatus = $dbOrderStatus['status_id'];
         $dbStatus = Status::find($dbOrderStatus);
+        // dd($dbOrderStatus);
         if (is_null($dbStatus))
         {
             $response = [
