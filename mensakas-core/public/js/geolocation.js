@@ -147,7 +147,7 @@ google.maps.event.addDomListener(window, 'load', geolocation);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/geolocation.js */"./resources/js/geolocation.js");
+module.exports = __webpack_require__(/*! /home/rafa/laravelDev/mensakas/mensakas-core/resources/js/geolocation.js */"./resources/js/geolocation.js");
 
 
 /***/ })

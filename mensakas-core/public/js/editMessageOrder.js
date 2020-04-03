@@ -111,7 +111,7 @@ function deleteMessage() {
     var intOrderId = $("#orderID").val();
     $.ajax({
       type: 'POST',
-      url: '/api/order/' + intOrderId + '/deletemessage',
+      url: 'api/order/' + intOrderId + '/deletemessage',
       beforeSend: function beforeSend(xhr) {
         var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -164,7 +164,7 @@ function addMessage(textMessage) {
   var intOrderId = $("#orderID").val();
   $.ajax({
     type: 'POST',
-    url: '/api/order/' + intOrderId + '/message',
+    url: 'api/order/' + intOrderId + '/message',
     beforeSend: function beforeSend(xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -198,7 +198,7 @@ function addMessage(textMessage) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/didac/Escritorio/proyecto/mensakas2/mensakas/mensakas-core/resources/js/editMessageOrder.js */"./resources/js/editMessageOrder.js");
+module.exports = __webpack_require__(/*! /home/rafa/laravelDev/mensakas/mensakas-core/resources/js/editMessageOrder.js */"./resources/js/editMessageOrder.js");
 
 
 /***/ })

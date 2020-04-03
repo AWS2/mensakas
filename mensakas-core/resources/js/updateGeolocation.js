@@ -34,7 +34,7 @@ function updateGeo() {
   var id_rider = $('.id').val();
   $.ajax({
     type: 'POST',
-    url: '/api/geolocation/'+id_rider,
+    url: 'api/geolocation/'+id_rider,
     beforeSend: function (xhr) {
       var token = $('meta[name="csrf_token"]').attr('content');
       if (token) {

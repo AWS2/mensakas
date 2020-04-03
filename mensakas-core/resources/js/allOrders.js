@@ -47,7 +47,7 @@ function showComandaButton(dataComanda, id, i)
 		arrayDataComandaId = dataComanda['id'];
     $("<td id=tdShow>").appendTo("#tableContent"+i);
 		//link to comandas.show
-		$("<a id='showLink' href='http://localhost:8000/comandas/"+arrayDataComandaId+"'>").appendTo("#tdShow");
+		$("<a id='showLink' href='comandas/"+arrayDataComandaId+"'>").appendTo("#tdShow");
         $("<button type='submit' class='btn btn-success fa fa-search'></button>").appendTo('#showLink');
 			$("</a>").appendTo("#td"+i+"");
     $("</td>").appendTo("#tableContent"+i);
@@ -59,7 +59,7 @@ function showEditButton(dataComanda, id, i)
   arrayDataComandaId = dataComanda['data'][i];
   //link to comandas.edit
   $("<td id=tdEdit>").appendTo("#tableContent"+i);
-	$("<a id='editLink' href='http://localhost:8000/comandas/"+arrayDataComandaId['id']+"/edit'>").appendTo("#tdEdit");
+	$("<a id='editLink' href='comandas/"+arrayDataComandaId['id']+"/edit'>").appendTo("#tdEdit");
     $("<button type='submit' value='Edit' class='btn btn-warning'><i class='fa fa-pencil'></i> Edit</button>").appendTo('#editLink');
 		$("</a>").appendTo("#tdtdEdit");
   $("</td>").appendTo("#tableContent"+i);
@@ -69,7 +69,7 @@ function getAllDataCustomer(id, i)
 {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/order/customer/'+id,
+    url: 'api/order/customer/'+id,
     dataType: 'json',
 		async: false,
     success: function(data) {
@@ -89,7 +89,7 @@ function getAllDataStatus(id, i)
 {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/order/status/'+id,
+    url: 'api/order/status/'+id,
     dataType: 'json',
     success: function(data)
 		{
@@ -109,7 +109,7 @@ function getAllDataRiders(id, i)
 {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/order/rider/'+id,
+    url: 'api/order/rider/'+id,
     dataType: 'json',
     success: function(data)
 		{
@@ -134,7 +134,7 @@ function getAllDataAmount(id, i)
 {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/order/amount/'+id,
+    url: 'api/order/amount/'+id,
     dataType: 'json',
     success: function(data)
 		{
@@ -159,7 +159,7 @@ function getAllDataStatusMessage(id, i)
 {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8000/api/order/message/'+id,
+    url: 'api/order/message/'+id,
     dataType: 'json',
     success: function(data) {
       showStatusMessage(data['data'], id, i);
