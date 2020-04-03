@@ -1,4 +1,4 @@
-$("#create").click(function() {
+$(".create").click(function() {
   var token = $('input[name=_token]').val();
   var business_id = $('input[name=business_id"]');
   var price = $('input[name=price]');

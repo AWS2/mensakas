@@ -98,7 +98,7 @@
     </div>
     <div class="col-7 row mt-5 ml-3">
         <div class="mr-2">
-            <button id="create" type="button" form="create" class=" create btn btn-primary">Create</button>
+            <button id="create" type="submit" form="create" class=" create btn btn-primary">Create</button>
         </div>
         <div class="mr-2">
                 <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
