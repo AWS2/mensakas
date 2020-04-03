@@ -108,8 +108,8 @@ function displayInvoiceError(response) {
 
 function createInvoiceHtml(response) {
     $("#ierrors").empty();
-    //
-    let value = '<div class=invoice' + response.data.id + '>Amount: ' + response.data.amount + 'Status: ' + response.data.status + '<button value="' + response.data.id + '" class="btn btn-success btn-block changeStatus">Change Status</button></div>'
+
+    let value = '<div class="col-8 mt-3 invoice' + response.data.id + '"><strong>Amount:</strong> ' + response.data.amount + '<br><strong>Status:</strong> ' + response.data.status + '<button value="' + response.data.id + '" class="btn btn-success btn-block changeStatus">Change Status</button></div>'
     $(value).appendTo($("#invoices"))
     refreshEvents()
 
@@ -139,7 +139,7 @@ function changeStatus(event) {
 function changeInvoice(response) {
     $("#ierrors").empty();
     let div = $(".invoice" + response.data.id)
-    let value = 'Amount: ' + response.data.amount + 'Status: ' + response.data.status + '<button value="' + response.data.id + '" class="btn btn-success btn-block changeStatus">Change Status</button>'
+    let value = '<strong>Amount:</strong> ' + response.data.amount + '<br><strong>Status:</strong> ' + response.data.status + '<button value="' + response.data.id + '" class="btn btn-success btn-block changeStatus">Change Status</button>'
     div.html(value)
     refreshEvents()
 
