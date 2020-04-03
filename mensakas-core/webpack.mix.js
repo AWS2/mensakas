@@ -20,11 +20,6 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/business/update.js', 'public/js/business')
    .js('resources/js/business/accept.js', 'public/js/business')
 
-
-   .js('resources/js/products/CreateProduct.js', 'public/js/product/CreateProduct.js')
-   .js('resources/js/products/DeleteProduct.js', 'public/js/product/DeleteProduct.js')
-
-
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/orderStatus.scss', 'public/css')
    .sass('resources/sass/filterTable.scss', 'public/css');

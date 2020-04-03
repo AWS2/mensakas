@@ -1,17 +1,12 @@
 @extends('layouts.app')
 
-@section('script')
-<script src="{{ asset('js/productsCreate.js') }} " defer></script>
-@endsection
-
 @section('space')
 @include('layouts.secondNav', ['title' => 'New Product'])
 @endsection
 
 @section('script')
-<script src="{{asset('js/products/CreateProduct.js')}}"defer></script>
-@endsection
-
+<script src="{{ asset('js/productsCreate.js') }} " defer></script>
+@endsectionn
 
 @section('content')
 
@@ -98,7 +93,7 @@
     </div>
     <div class="col-7 row mt-5 ml-3">
         <div class="mr-2">
-            <button id="create" type="submit" form="create" class=" create btn btn-primary">Create</button>
+            <button id="add" type="submit" class=" add btn btn-primary">Create</button>
         </div>
         <div class="mr-2">
                 <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
