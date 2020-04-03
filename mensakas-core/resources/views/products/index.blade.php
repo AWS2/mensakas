@@ -4,6 +4,11 @@
     @include('layouts.secondNav', ['title' => 'Products'])
 @endsection
 
+@section('script')
+<script src="{{asset('js/product/CreateProduct.js')}}"defer></script>
+<script src="{{asset('js/product/DeleteProduct.js')}}"defer></script>
+@endsection
+
 @section('content')
 <div class="table d-flex justify-content-center">
     
@@ -51,7 +56,7 @@
                 <form action="{{route('products.destroy', ['product'=>$product])}}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                    <button id="delete" type="button" value="Delete" class=" delete btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                 </form>
                 </td>
             </tr>

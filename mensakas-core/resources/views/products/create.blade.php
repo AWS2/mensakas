@@ -8,6 +8,11 @@
 @include('layouts.secondNav', ['title' => 'New Product'])
 @endsection
 
+@section('script')
+<script src="{{asset('js/products/CreateProduct.js')}}"defer></script>
+@endsection
+
+
 @section('content')
 
 <form action="{{route('products.store')}}" method="post" id="create">
@@ -93,7 +98,7 @@
     </div>
     <div class="col-7 row mt-5 ml-3">
         <div class="mr-2">
-            <button type="submit" form="create" class="btn btn-primary">Create</button>
+            <button id="create" type="button" form="create" class=" create btn btn-primary">Create</button>
         </div>
         <div class="mr-2">
                 <a href="{{ URL::previous() }}" class="btn btn-success">Back</a>
